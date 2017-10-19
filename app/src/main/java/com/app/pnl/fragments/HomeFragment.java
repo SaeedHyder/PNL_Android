@@ -65,6 +65,7 @@ public class HomeFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_popular:
+                getDockActivity().addDockableFragment(SortingByFragment.newInstance(),SortingByFragment.class.getName());
                 break;
             case R.id.btn_services:
                 getDockActivity().addDockableFragment(RateAndWriteFragment.newInstance(),RateAndWriteFragment.class.getName());

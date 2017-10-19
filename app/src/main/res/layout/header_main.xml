@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/header_layout"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
     <RelativeLayout
         android:id="@+id/header_child"
@@ -19,7 +20,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher"
+            android:padding="@dimen/x12"
+            android:src="@drawable/dropdown"
             android:visibility="visible" />
 
 
@@ -42,8 +44,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:padding="@dimen/x12"
             android:layout_marginRight="@dimen/x10"
-            android:src="@drawable/ic_launcher"
+            android:src="@drawable/dropdown"
             android:visibility="visible" />
 
     </RelativeLayout>

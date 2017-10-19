@@ -104,6 +104,7 @@
     <string name="enter_valid_email">Enter Valid Email</string>
     <string name="enter_password">Password Field cannot be Empty</string>
     <string name="passwordLength">Password should be more then 6 characters</string>
+    <string name="does_not_match">confirm password does not match</string>
     <string name="enter_name">Enter Name</string>
     <string name="comfirm_password_error">Passwords did not match</string>
     <string name="sign_up_head">Sign Up</string>
@@ -134,5 +135,13 @@
     <string name="favorites">Favorites</string>
     <string name="rate_review">Rate and Review</string>
     <string name="travel">Travel Company</string>
+    <string name="notifications">Notifications</string>
+    <string name="reviews_">Reviews</string>
+    <string name="sorting_by">Sorting By</string>
+    <string name="change_password_">Change Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="new_password_">New Password</string>
+    <string name="old_password_">Old Password</string>
+    <string name="update">Update</string>
 
 </resources>
