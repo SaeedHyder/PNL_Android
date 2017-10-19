@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x10"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/x30"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:alpha="0.2"
+                android:background="@color/light_grey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x40"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.app.pnl.ui.views.AnyTextView
+                    android:id="@+id/tv_show_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_weight="0.8"
+                    android:text="Show Name"
+                    android:textColor="@color/blue_notifications"
+                    android:textSize="@dimen/x14"
+                    app:typeface="@string/Roboto" />
+
+                <ToggleButton
+                    android:id="@+id/tb_rating"
+                    android:layout_width="@dimen/x50"
+                    android:layout_height="@dimen/x20"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/selector_toggle"
+                    android:checked="true"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:alpha="0.2"
+                android:background="@color/light_grey" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x40"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/x20"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.app.pnl.ui.views.AnyEditTextView
+                android:id="@+id/edt_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/name"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="@dimen/x14"
+                app:typeface="Roboto-Regular.ttf"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/x10"
+                android:alpha="0.2"
+                android:background="@color/light_grey" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x20"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/x5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x80"
+                    android:background="@drawable/rounded_rectangle"
+                    android:alpha="0.3"/>
+
+                <com.app.pnl.ui.views.AnyEditTextView
+                    android:id="@+id/edit_write_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/x80"
+                    android:layout_weight="1"
+                    android:gravity="start|top"
+                    android:hint="@string/write_here"
+                    android:inputType="textMultiLine"
+                    android:maxLength="140"
+                    android:maxLines="3"
+                    android:padding="@dimen/x10"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/x12"
+                    app:emptyAllowed="false"
+                    app:typeface="Roboto-Regular.ttf"
+                    app:testType="alphaNumeric"
+                    android:background="@null"/>
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.app.pnl.ui.views.AnyTextView
+                android:id="@+id/tv_good"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Good"
+                android:textColor="@color/yellow_write_review"
+                android:textSize="@dimen/x16"
+                app:typeface="Roboto-Regular.ttf"/>
+
+            <com.app.pnl.ui.views.CustomRatingBar
+                android:id="@+id/rb_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x10"
+                android:padding="@dimen/x5"
+                app:maxStars="5"
+                app:onlyForDisplay="true"
+                app:paddingStart="@dimen/x5"
+                app:starPadding="@dimen/x5" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x40"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_marginRight="@dimen/x40"
+            android:layout_marginTop="@dimen/x100"
+            android:background="@drawable/btn_red_drawable"
+            android:text="@string/submit"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</ScrollView>

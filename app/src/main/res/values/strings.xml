@@ -117,4 +117,22 @@
     <string name="no_data">No Data to Show</string>
     <string name="search">Search</string>
 
+    <string name="write_here">Write here</string>
+    <string name="submit">Submit</string>
+    <string name="travel_company">Travel Company</string>
+    <string name="address_details">Address Details</string>
+    <string name="mark_favourites">Mark Favourites</string>
+    <string name="conatct_details">Conatct Details</string>
+    <string name="share">Share</string>
+    <string name="website">Website</string>
+    <string name="_4_5">4.5</string>
+    <string name="write_a_review">Write a Review</string>
+    <string name="reviews">Reviews</string>
+    <string name="garry_smith">Garry Smith</string>
+    <string name="view_all_posts">View All Posts</string>
+    <string name="beta">Will be implemented in beta</string>
+    <string name="favorites">Favorites</string>
+    <string name="rate_review">Rate and Review</string>
+    <string name="travel">Travel Company</string>
+
 </resources>

@@ -46,4 +46,8 @@
     <color name="app_btn_blue">#3B5998</color>
     <color name="app_blue">#0A1A72</color>
     <color name="homeLineColor">#D6D8DE</color>
+
+    <color name="blue_notifications">#212F7E</color>
+    <color name="red_notifications">#EB2D33</color>
+    <color name="yellow_write_review">#EEBF08</color>
 </resources>
