@@ -87,6 +87,7 @@ public class TitleBar extends RelativeLayout {
 		txtTitle.setVisibility(View.GONE);
 		btnLeft.setVisibility(View.GONE);
 		btnRight.setVisibility(View.GONE);
+		llSearch.setVisibility(GONE);
 
 	}
 
