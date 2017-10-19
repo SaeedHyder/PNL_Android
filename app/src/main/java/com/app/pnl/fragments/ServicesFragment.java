@@ -51,6 +51,30 @@ public class ServicesFragment extends BaseFragment implements RecyclerViewItemLi
     }
 
     @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.setSubHeading(getString(R.string.services));
+        titleBar.showBackButton();
+        titleBar.showSearchBar(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_services, container, false);
         ButterKnife.bind(this, view);
@@ -83,32 +107,9 @@ public class ServicesFragment extends BaseFragment implements RecyclerViewItemLi
 
     }
 
-    @Override
-    public void setTitleBar(TitleBar titleBar) {
-        super.setTitleBar(titleBar);
-        titleBar.hideButtons();
-        titleBar.setSubHeading(getString(R.string.services));
-        titleBar.showBackButton();
-        titleBar.showSearchBar(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-    }
-
     @OnClick(R.id.btn_all_services)
     public void onViewClicked() {
+        getDockActivity().replaceDockableFragment(ViewAllServicesFragment.newInstance(), ViewAllServicesFragment.class.getSimpleName());
     }
 
     @Override
