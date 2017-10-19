@@ -1,20 +1,27 @@
 package com.app.pnl.ui.views;
 
 import android.content.Context;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.pnl.R;
+
+import static com.app.pnl.R.id.edt_search;
 
 public class TitleBar extends RelativeLayout {
 
 	private TextView txtTitle;
 	private ImageView btnLeft;
 	private ImageView btnRight;
+	private LinearLayout llSearch;
+	private AnyEditTextView edt_search;
+
 
 
 	private View.OnClickListener menuButtonListener;
@@ -28,6 +35,18 @@ public class TitleBar extends RelativeLayout {
 		this.context = context;
 		initLayout(context);
 	}
+
+	public void showSearchBar(TextWatcher textWatcher) {
+		llSearch.setVisibility(VISIBLE);
+		edt_search.addTextChangedListener(textWatcher);
+	}
+
+	public AnyEditTextView getEditTextViewSearch(int resouceId) {
+
+		AnyEditTextView edt_search = (AnyEditTextView) findViewById(resouceId);
+		return edt_search;
+	}
+
 
 	public TitleBar(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -51,6 +70,8 @@ public class TitleBar extends RelativeLayout {
 		txtTitle = (TextView) this.findViewById(R.id.txt_subHead);
 		btnRight = (ImageView) this.findViewById(R.id.btnRight);
 		btnLeft = (ImageView) this.findViewById(R.id.btnLeft);
+		llSearch = (LinearLayout) this.findViewById(R.id.llSearch);
+		edt_search = (AnyEditTextView) findViewById(R.id.edt_search);
 
 
 	}
@@ -66,6 +87,7 @@ public class TitleBar extends RelativeLayout {
 		txtTitle.setVisibility(View.GONE);
 		btnLeft.setVisibility(View.GONE);
 		btnRight.setVisibility(View.GONE);
+		llSearch.setVisibility(GONE);
 
 	}
 
