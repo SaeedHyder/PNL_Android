@@ -100,7 +100,9 @@ public class ViewAllServicesFragment extends BaseFragment {
     public void setTitleBar(TitleBar titleBar) {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
-        titleBar.setSubHeading("");
+        titleBar.setSubHeading(getString(R.string.services));
+        titleBar.showBackButton();
+        titleBar.showSearchBar();
     }
 
     @Override

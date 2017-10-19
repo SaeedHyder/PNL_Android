@@ -1,10 +1,12 @@
 package com.app.pnl.ui.views;
 
 import android.content.Context;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,6 +17,8 @@ public class TitleBar extends RelativeLayout {
 	private TextView txtTitle;
 	private ImageView btnLeft;
 	private ImageView btnRight;
+	private LinearLayout llSearch;
+
 
 
 	private View.OnClickListener menuButtonListener;
@@ -28,6 +32,11 @@ public class TitleBar extends RelativeLayout {
 		this.context = context;
 		initLayout(context);
 	}
+
+	public void showSearchBar() {
+		llSearch.setVisibility(VISIBLE);
+	}
+
 
 	public TitleBar(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -51,6 +60,7 @@ public class TitleBar extends RelativeLayout {
 		txtTitle = (TextView) this.findViewById(R.id.txt_subHead);
 		btnRight = (ImageView) this.findViewById(R.id.btnRight);
 		btnLeft = (ImageView) this.findViewById(R.id.btnLeft);
+		llSearch = (LinearLayout) this.findViewById(R.id.llSearch);
 
 
 	}

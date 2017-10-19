@@ -101,6 +101,8 @@ public class CompaniesFragment extends BaseFragment {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
         titleBar.setSubHeading(getString(R.string.services));
+        titleBar.showBackButton();
+        titleBar.showSearchBar();
     }
 
     @Override
