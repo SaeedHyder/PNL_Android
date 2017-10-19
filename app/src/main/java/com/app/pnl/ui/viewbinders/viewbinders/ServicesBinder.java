@@ -45,7 +45,7 @@ public class ServicesBinder extends RecyclerViewBinder<ServiceEnt> {
         });
     }
 
-    private static class ViewHolder extends BaseViewHolder {
+     static class ViewHolder extends BaseViewHolder {
         @BindView(R.id.img_service)
         ImageView imgService;
         @BindView(R.id.txt_service)

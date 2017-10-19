@@ -3,6 +3,8 @@ package com.app.pnl.fragments;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import com.app.pnl.fragments.abstracts.BaseFragment;
 import com.app.pnl.interfaces.RecyclerViewItemListener;
 import com.app.pnl.ui.viewbinders.viewbinders.ServicesBinder;
 import com.app.pnl.ui.views.CustomRecyclerView;
+import com.app.pnl.ui.views.TitleBar;
 
 import java.util.ArrayList;
 
@@ -80,6 +83,29 @@ public class ServicesFragment extends BaseFragment implements RecyclerViewItemLi
 
     }
 
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.setSubHeading(getString(R.string.services));
+        titleBar.showBackButton();
+        titleBar.showSearchBar(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
 
     @OnClick(R.id.btn_all_services)
     public void onViewClicked() {
