@@ -73,17 +73,20 @@ public class SideMenuFragment extends BaseFragment {
                 getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
                 break;
             case R.id.btn_notifications:
-                getDockActivity().replaceDockableFragment(NotificationFragment.newInstance(),"NotificationFragment");
+                getDockActivity().replaceDockableFragment(NotificationFragment.newInstance(), "NotificationFragment");
                 break;
             case R.id.btn_favourites:
-                getDockActivity().replaceDockableFragment(FavouriteFragment.newInstance(),"FavouriteFragment");
+                getDockActivity().replaceDockableFragment(FavouriteFragment.newInstance(), "FavouriteFragment");
                 break;
             case R.id.btn_review_history:
-                getDockActivity().replaceDockableFragment(ReviewHistory.newInstance(),"ReviewHistory");
+                getDockActivity().replaceDockableFragment(ReviewHistory.newInstance(), "ReviewHistory");
                 break;
             case R.id.btn_setting:
+                getDockActivity().replaceDockableFragment(SettingFragment.newInstance(), "SettingFragment");
                 break;
             case R.id.btn_logout:
+                getDockActivity().popBackStackTillEntry(0);
+                getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
                 break;
         }
     }

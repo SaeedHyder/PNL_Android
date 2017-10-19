@@ -3,6 +3,7 @@ package com.app.pnl.fragments;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -89,7 +90,7 @@ public class ServicesFragment extends BaseFragment implements RecyclerViewItemLi
     }
 
     private void bindData() {
-
+        userCollections = new ArrayList<>();
         userCollections.add(new ServiceEnt(R.drawable.hospital, getString(R.string.hospital)));
         userCollections.add(new ServiceEnt(R.drawable.restaurant, getString(R.string.restaurant)));
         userCollections.add(new ServiceEnt(R.drawable.bakery, getString(R.string.bakery)));
@@ -102,8 +103,10 @@ public class ServicesFragment extends BaseFragment implements RecyclerViewItemLi
         userCollections.add(new ServiceEnt(R.drawable.traveling, getString(R.string.traveling)));
         userCollections.add(new ServiceEnt(R.drawable.finance, getString(R.string.finance)));
         userCollections.add(new ServiceEnt(R.drawable.pet, getString(R.string.pets)));
-        rcyServices.BindRecyclerView(new ServicesBinder(this), userCollections,
-                new GridLayoutManager(getDockActivity(), 3), new DefaultItemAnimator());
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getDockActivity(), 3);
+
+        rcyServices.BindRecyclerView(new ServicesBinder(this), userCollections,layoutManager
+                , new DefaultItemAnimator());
 
     }
 

@@ -64,6 +64,7 @@ public class ServiceCategoryFragment extends BaseFragment implements RecyclerVie
     }
 
     private void BindData() {
+        userCollections = new ArrayList<>();
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));

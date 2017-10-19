@@ -58,7 +58,7 @@ public class MainActivity extends DockActivity implements OnClickListener {
         mContext = this;
         Log.i("Screen Density", ScreenHelper.getDensity(this) + "");
 
-        sideMenuType = SideMenuChooser.RESIDE_MENU.getValue();
+        sideMenuType = SideMenuChooser.DRAWER.getValue();
         sideMenuDirection = SideMenuDirection.LEFT.getValue();
 
         settingSideMenu(sideMenuType, sideMenuDirection);
@@ -111,7 +111,7 @@ public class MainActivity extends DockActivity implements OnClickListener {
         if (type.equals(SideMenuChooser.DRAWER.getValue())) {
 
 
-            DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams((int) getResources().getDimension(R.dimen.x300), (int) DrawerLayout.LayoutParams.MATCH_PARENT);
+            DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams((int) getResources().getDimension(R.dimen.x200), (int) DrawerLayout.LayoutParams.MATCH_PARENT);
 
 
             if (direction.equals(SideMenuDirection.LEFT.getValue())) {

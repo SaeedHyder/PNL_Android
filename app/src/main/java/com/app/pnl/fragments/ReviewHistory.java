@@ -12,6 +12,7 @@ import com.app.pnl.fragments.abstracts.BaseFragment;
 import com.app.pnl.ui.adapters.ArrayListAdapter;
 import com.app.pnl.ui.viewbinders.abstracts.ReviewsItemBinder;
 import com.app.pnl.ui.views.AnyTextView;
+import com.app.pnl.ui.views.TitleBar;
 
 import java.util.ArrayList;
 
@@ -71,6 +72,14 @@ public class ReviewHistory extends BaseFragment {
         userCollection.add(new ReviewsEnt("Garry Smith", "asdasdasdasdasdasdasdasdasd", 4));
 
         bindData(userCollection);
+    }
+
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.setSubHeading(getString(R.string.review_history));
+        titleBar.showBackButton();
     }
 
     private void bindData(ArrayList<ReviewsEnt> userCollection) {
