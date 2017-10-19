@@ -12,12 +12,15 @@ import android.widget.TextView;
 
 import com.app.pnl.R;
 
+import static com.app.pnl.R.id.edt_search;
+
 public class TitleBar extends RelativeLayout {
 
 	private TextView txtTitle;
 	private ImageView btnLeft;
 	private ImageView btnRight;
 	private LinearLayout llSearch;
+	private AnyEditTextView edt_search;
 
 
 
@@ -33,8 +36,15 @@ public class TitleBar extends RelativeLayout {
 		initLayout(context);
 	}
 
-	public void showSearchBar() {
+	public void showSearchBar(TextWatcher textWatcher) {
 		llSearch.setVisibility(VISIBLE);
+		edt_search.addTextChangedListener(textWatcher);
+	}
+
+	public AnyEditTextView getEditTextViewSearch(int resouceId) {
+
+		AnyEditTextView edt_search = (AnyEditTextView) findViewById(resouceId);
+		return edt_search;
 	}
 
 
@@ -61,6 +71,7 @@ public class TitleBar extends RelativeLayout {
 		btnRight = (ImageView) this.findViewById(R.id.btnRight);
 		btnLeft = (ImageView) this.findViewById(R.id.btnLeft);
 		llSearch = (LinearLayout) this.findViewById(R.id.llSearch);
+		edt_search = (AnyEditTextView) findViewById(R.id.edt_search);
 
 
 	}
