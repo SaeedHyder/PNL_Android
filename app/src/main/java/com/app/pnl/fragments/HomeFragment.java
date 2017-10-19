@@ -84,10 +84,10 @@ public class HomeFragment extends BaseFragment {
             case R.id.top_shelf:
                 break;
             case R.id.btn_companies:
-                getDockActivity().replaceDockableFragment(FavouriteFragment.newInstance(),FavouriteFragment.class.getName());
+                getDockActivity().replaceDockableFragment(CompaniesFragment.newInstance(),CompaniesFragment.class.getName());
                 break;
             case R.id.btn_favourites:
-                getDockActivity().replaceDockableFragment(CompanyDetailFragment.newInstance(),CompanyDetailFragment.class.getName());
+                getDockActivity().replaceDockableFragment(FavouriteFragment.newInstance(),FavouriteFragment.class.getName());
                 break;
         }
     }
