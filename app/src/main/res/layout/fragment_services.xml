@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg"
+                android:orientation="vertical">
+
+    <com.app.pnl.ui.views.CustomRecyclerView
+        android:id="@+id/rcy_services"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_all_services"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"/>
+
+    <Button
+        android:id="@+id/btn_all_services"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/x30"
+        android:background="@drawable/btn_red_drawable"
+        android:text="@string/view_all_services"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/x15"/>
+</RelativeLayout>

@@ -115,8 +115,24 @@
     <string name="companies">Companies</string>
     <string name="most_popular">Most Popular</string>
     <string name="services">Services</string>
+
+    <string name="view_all_services">View All Services</string>
+    <string name="hospital">Hospital</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="bakery">Bakery</string>
+    <string name="spa">Spa</string>
+    <string name="cafe">Cafe</string>
+    <string name="casino">Casino</string>
+    <string name="construction">Construction</string>
+    <string name="store">Store</string>
+    <string name="law">Law</string>
+    <string name="traveling">Traveling</string>
+    <string name="finance">Finance</string>
+    <string name="pets">Pets</string>
+
     <string name="no_data">No Data to Show</string>
     <string name="search">Search</string>
+
 
     <string name="write_here">Write here</string>
     <string name="submit">Submit</string>

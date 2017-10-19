@@ -8,7 +8,8 @@
 
     <item
         android:top="-3dp"
-        android:left="-3dp">
+        android:left="-3dp"
+        android:bottom="-3dp">
         <shape>
             <solid android:color="@android:color/transparent" />
             <stroke

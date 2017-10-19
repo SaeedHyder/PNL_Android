@@ -1,15 +1,18 @@
 package com.app.pnl.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.app.pnl.R;
 import com.app.pnl.fragments.abstracts.BaseFragment;
+import com.app.pnl.ui.views.AnyTextView;
 import com.app.pnl.ui.views.TitleBar;
 
 import butterknife.BindView;
@@ -24,8 +27,14 @@ public class HomeFragment extends BaseFragment {
     LinearLayout btnPopular;
     @BindView(R.id.btn_services)
     LinearLayout btnServices;
+    @BindView(R.id.top_shelf)
+    LinearLayout topShelf;
     @BindView(R.id.btn_companies)
     LinearLayout btnCompanies;
+    @BindView(R.id.txt_favourite_count)
+    AnyTextView txtFavouriteCount;
+    @BindView(R.id.img_favourite_badge)
+    RelativeLayout imgFavouriteBadge;
     @BindView(R.id.btn_favourites)
     LinearLayout btnFavourites;
 
@@ -61,20 +70,24 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.btn_popular, R.id.btn_services, R.id.btn_companies, R.id.btn_favourites})
+
+
+    @OnClick({R.id.btn_popular, R.id.btn_services, R.id.top_shelf, R.id.btn_companies, R.id.btn_favourites})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_popular:
-                getDockActivity().addDockableFragment(SortingByFragment.newInstance(),SortingByFragment.class.getName());
+                getDockActivity().replaceDockableFragment(PopularFragment.newInstance(), PopularFragment.class.getSimpleName());
                 break;
             case R.id.btn_services:
-                getDockActivity().addDockableFragment(RateAndWriteFragment.newInstance(),RateAndWriteFragment.class.getName());
+                getDockActivity().replaceDockableFragment(ServicesFragment.newInstance(), ServicesFragment.class.getSimpleName());
+                break;
+            case R.id.top_shelf:
                 break;
             case R.id.btn_companies:
-                getDockActivity().addDockableFragment(FavouriteFragment.newInstance(),FavouriteFragment.class.getName());
+                getDockActivity().replaceDockableFragment(CompaniesFragment.newInstance(),CompaniesFragment.class.getName());
                 break;
             case R.id.btn_favourites:
-                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(),CompanyDetailFragment.class.getName());
+                getDockActivity().replaceDockableFragment(FavouriteFragment.newInstance(),FavouriteFragment.class.getName());
                 break;
         }
     }
