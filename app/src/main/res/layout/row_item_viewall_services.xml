@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x50"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x1"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_weight="0.4"
+            android:alpha="0.3"
+            android:background="@color/light_grey" />
+
+
+
+        <com.app.pnl.ui.views.AnyTextView
+            android:id="@+id/companies_sorting"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Service Category 1"
+            android:textColor="@color/app_blue"
+            android:textSize="@dimen/x15"
+
+            app:typeface="Roboto-Regular.ttf"
+
+            />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/x1"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_weight="0.4"
+            android:alpha="0.3"
+            android:background="@color/light_grey" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

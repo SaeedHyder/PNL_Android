@@ -114,6 +114,6 @@
     <string name="companies">Companies</string>
     <string name="most_popular">Most Popular</string>
     <string name="services">Services</string>
-
+    <string name="no_data">No Data to Show</string>
 
 </resources>
