@@ -1,7 +1,6 @@
 package com.app.pnl.fragments;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -70,8 +69,6 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-
-
     @OnClick({R.id.btn_popular, R.id.btn_services, R.id.top_shelf, R.id.btn_companies, R.id.btn_favourites})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -84,10 +81,10 @@ public class HomeFragment extends BaseFragment {
             case R.id.top_shelf:
                 break;
             case R.id.btn_companies:
-                getDockActivity().replaceDockableFragment(CompaniesFragment.newInstance(),CompaniesFragment.class.getName());
+                getDockActivity().replaceDockableFragment(CompaniesFragment.newInstance(), CompaniesFragment.class.getName());
                 break;
             case R.id.btn_favourites:
-                getDockActivity().replaceDockableFragment(FavouriteFragment.newInstance(),FavouriteFragment.class.getName());
+                getDockActivity().replaceDockableFragment(FavouriteFragment.newInstance(), FavouriteFragment.class.getName());
                 break;
         }
     }
