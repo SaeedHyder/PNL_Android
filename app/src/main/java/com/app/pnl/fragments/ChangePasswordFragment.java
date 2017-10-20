@@ -8,7 +8,6 @@ import android.widget.Button;
 
 import com.app.pnl.R;
 import com.app.pnl.fragments.abstracts.BaseFragment;
-import com.app.pnl.global.WebServiceConstants;
 import com.app.pnl.ui.views.AnyEditTextView;
 import com.app.pnl.ui.views.TitleBar;
 
@@ -72,9 +71,13 @@ public class ChangePasswordFragment extends BaseFragment {
         } else if (edtNewPassword.getText().toString().length() < 6) {
             edtNewPassword.setError(getString(R.string.passwordLength));
             return false;
-        } else if (edtConfirmPassword.getText() == null || (edtConfirmPassword.getText().toString().isEmpty()) || edtConfirmPassword.getText().toString().length() < 6) {
+        } else if (edtConfirmPassword.getText() == null || (edtConfirmPassword.getText().toString().isEmpty())) {
             edtConfirmPassword.setError(getString(R.string.enter_password));
             return false;
+        } else if (edtConfirmPassword.getText().toString().length() < 6) {
+            edtConfirmPassword.setError(getString(R.string.passwordLength));
+            return false;
+
         } else if (!edtConfirmPassword.getText().toString().equals(edtNewPassword.getText().toString())) {
             edtConfirmPassword.setError(getString(R.string.does_not_match));
             return false;
@@ -99,8 +102,8 @@ public class ChangePasswordFragment extends BaseFragment {
 
     @OnClick(R.id.btn_update)
     public void onViewClicked() {
-        if(isvalidate()) {
-            getDockActivity().addDockableFragment(HomeFragment.newInstance(),HomeFragment.class.getName());
-             }
+        if (isvalidate()) {
+            getDockActivity().addDockableFragment(HomeFragment.newInstance(), HomeFragment.class.getName());
+        }
     }
 }

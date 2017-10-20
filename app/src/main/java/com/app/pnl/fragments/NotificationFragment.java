@@ -70,9 +70,10 @@ public class NotificationFragment extends BaseFragment {
     private void setNotificationData() {
         userCollection = new ArrayList<>();
 
-        userCollection.add(new NotificationEnt("Garry Smith","asdadadadasdasdasdasdasdasdasdasdasdasdas","6:00 PM"));
-        userCollection.add(new NotificationEnt("Garry Smith","asdadadadasdasdasdasdasdasdasdasdasdasdas","6:00 PM"));
-        userCollection.add(new NotificationEnt("Garry Smith","asdadadadasdasdasdasdasdasdasdasdasdasdas","6:00 PM"));
+        userCollection.add(new NotificationEnt("Garry Smith",getString(R.string.small_ipsum),"6:00 PM"));
+        userCollection.add(new NotificationEnt("Garry Smith",getString(R.string.small_ipsum),"6:00 PM"));
+        userCollection.add(new NotificationEnt("Garry Smith",getString(R.string.small_ipsum),"6:00 PM"));
+
 
         bindData(userCollection);
     }

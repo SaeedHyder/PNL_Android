@@ -1,28 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg"
-                android:orientation="vertical">
 
-    <com.app.pnl.ui.views.CustomRecyclerView
-        android:id="@+id/rcy_services"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/btn_all_services"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@color/white"/>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/btn_all_services"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/x30"
-        android:background="@drawable/btn_red_drawable"
-        android:text="@string/view_all_services"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/x15"/>
-</RelativeLayout>
+        android:background="@drawable/bg"
+        android:orientation="vertical">
+
+        <com.app.pnl.ui.views.AnyTextView
+            android:id="@+id/txt_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="@string/no_data"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/x15"
+            android:visibility="gone"
+            app:typeface="Roboto-Regular.ttf"
+
+            />
+
+        <com.app.pnl.ui.views.ExpandableGridView
+            android:id="@+id/rcy_services"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:numColumns="3"
+            tools:listitem="@layout/row_item_services"
+            android:scrollbars="none"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn_all_services"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rcy_services"
+            android:layout_marginBottom="@dimen/x10"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_marginTop="@dimen/x30"
+            android:background="@drawable/btn_red_drawable"
+            android:text="@string/view_all_services"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x15" />
+
+
+    </RelativeLayout>
+
+</ScrollView>

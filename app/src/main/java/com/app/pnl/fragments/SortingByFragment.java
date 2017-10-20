@@ -4,16 +4,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.app.pnl.R;
+import com.app.pnl.entities.CompaniesEnt;
 import com.app.pnl.entities.FavoritesEnt;
 import com.app.pnl.entities.SortingByEnt;
+import com.app.pnl.entities.servicesGridViewEnt;
 import com.app.pnl.fragments.abstracts.BaseFragment;
 import com.app.pnl.ui.adapters.ArrayListAdapter;
 import com.app.pnl.ui.viewbinders.abstracts.SortingByItemBinder;
 import com.app.pnl.ui.views.AnyTextView;
 import com.app.pnl.ui.views.TitleBar;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -30,15 +34,17 @@ public class SortingByFragment extends BaseFragment {
     @BindView(R.id.lv_sortingBy)
     ListView lvSortingBy;
     Unbinder unbinder;
+    private static String SortingNmae="SortingNmae";
+    private CompaniesEnt entity;
 
-    private String sorting="A";
+    private String sortingid="A";
 
     private ArrayListAdapter<SortingByEnt> adapter;
     private ArrayList<SortingByEnt> userCollection;
 
-    public static SortingByFragment newInstance() {
+    public static SortingByFragment newInstance(CompaniesEnt companiesEnt) {
         Bundle args = new Bundle();
-
+        args.putString(SortingNmae, new Gson().toJson(companiesEnt));
         SortingByFragment fragment = new SortingByFragment();
         fragment.setArguments(args);
         return fragment;
@@ -48,6 +54,10 @@ public class SortingByFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            SortingNmae=getArguments().getString(SortingNmae);
+        }
+        if(!SortingNmae.equals("")){
+            entity=new Gson().fromJson(SortingNmae, CompaniesEnt.class);
         }
         adapter = new ArrayListAdapter<SortingByEnt>(getDockActivity(), new SortingByItemBinder(getDockActivity(), prefHelper));
     }
@@ -64,6 +74,18 @@ public class SortingByFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         setSortingData();
+        sortingid=entity.getCompaniesSorting()+"";
+        listners();
+    }
+
+    private void listners() {
+
+        lvSortingBy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(),"CompanyDetailFragment");
+            }
+        });
     }
 
     private void setSortingData() {
@@ -97,7 +119,7 @@ public class SortingByFragment extends BaseFragment {
     public void setTitleBar(TitleBar titleBar) {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
-        titleBar.setSubHeading(getString(R.string.sorting_by) + " " +sorting);
+        titleBar.setSubHeading(getString(R.string.sorting_by) + " " +sortingid);
         titleBar.showBackButton();
     }
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.app.pnl.R;
@@ -64,6 +65,17 @@ public class FavouriteFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         setFavouriteData();
+        listner();
+    }
+
+    private void listner() {
+
+        lvNotifications.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(),"CompanyDetailFragment");
+            }
+        });
     }
 
     private void setFavouriteData() {

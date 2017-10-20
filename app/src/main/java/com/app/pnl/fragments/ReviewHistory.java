@@ -67,9 +67,9 @@ public class ReviewHistory extends BaseFragment {
     private void setReviewsData() {
         userCollection = new ArrayList<>();
 
-        userCollection.add(new ReviewsEnt("Garry Smith", "asdasdasdasdasdasdasdasdasd", 4));
-        userCollection.add(new ReviewsEnt("Garry Smith", "asdasdasdasdasdasdasdasdasd", 4));
-        userCollection.add(new ReviewsEnt("Garry Smith", "asdasdasdasdasdasdasdasdasd", 4));
+        userCollection.add(new ReviewsEnt("Garry Smith", getString(R.string.small_ipsum), 4));
+        userCollection.add(new ReviewsEnt("Garry Smith",getString(R.string.small_ipsum), 4));
+        userCollection.add(new ReviewsEnt("Garry Smith",getString(R.string.small_ipsum), 4));
 
         bindData(userCollection);
     }

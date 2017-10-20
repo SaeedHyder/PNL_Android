@@ -165,7 +165,7 @@
                 android:layout_marginTop="@dimen/x10"
                 android:padding="@dimen/x5"
                 app:maxStars="5"
-                app:onlyForDisplay="true"
+                app:onlyForDisplay="false"
                 app:paddingStart="@dimen/x5"
                 app:starPadding="@dimen/x5" />
 

@@ -101,6 +101,7 @@ public class SettingFragment extends BaseFragment {
                 break;
             case R.id.btn_update:
                 getDockActivity().addDockableFragment(HomeFragment.newInstance(),HomeFragment.class.getSimpleName());
+
                 break;
         }
     }

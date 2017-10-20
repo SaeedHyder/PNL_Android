@@ -19,6 +19,7 @@ public class TitleBar extends RelativeLayout {
 	private TextView txtTitle;
 	private ImageView btnLeft;
 	private ImageView btnRight;
+	private LinearLayout iv_search;
 	private LinearLayout llSearch;
 	private AnyEditTextView edt_search;
 
@@ -36,9 +37,10 @@ public class TitleBar extends RelativeLayout {
 		initLayout(context);
 	}
 
-	public void showSearchBar(TextWatcher textWatcher) {
+	public void showSearchBar(TextWatcher textWatcher,OnClickListener search) {
 		llSearch.setVisibility(VISIBLE);
 		edt_search.addTextChangedListener(textWatcher);
+		iv_search.setOnClickListener(search);
 	}
 
 	public AnyEditTextView getEditTextViewSearch(int resouceId) {
@@ -72,6 +74,7 @@ public class TitleBar extends RelativeLayout {
 		btnLeft = (ImageView) this.findViewById(R.id.btnLeft);
 		llSearch = (LinearLayout) this.findViewById(R.id.llSearch);
 		edt_search = (AnyEditTextView) findViewById(R.id.edt_search);
+		iv_search=(LinearLayout)this.findViewById(R.id.iv_search);
 
 
 	}

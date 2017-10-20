@@ -111,11 +111,11 @@ public class CompanyDetailFragment extends BaseFragment {
                 UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.beta));
                 break;
             case R.id.tv_write_review:
-              //  getDockActivity().replaceDockableFragment(StudentTutorialFragment.newInstance(), "StudentTutorialFragment");
+                getDockActivity().replaceDockableFragment(RateAndWriteFragment.newInstance(), "RateAndWriteFragment");
                 //write review fragment
                 break;
             case R.id.ll_all_posts:
-              //  getDockActivity().replaceDockableFragment(StudentTutorialFragment.newInstance(), "StudentTutorialFragment");
+                getDockActivity().replaceDockableFragment(ReviewsFragment.newInstance(), "ReviewsFragment");
                 //reviews listing fragment
                 break;
         }

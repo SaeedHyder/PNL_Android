@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@drawable/border_right_bottom"
     android:gravity="center"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/x15"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
 
     <ImageView
         android:id="@+id/img_service"
-        android:layout_width="@dimen/x40"
-        android:layout_height="@dimen/x40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/popular" />
 
     <com.app.pnl.ui.views.AnyTextView
@@ -20,7 +28,10 @@
         android:layout_height="wrap_content"
         android:text="@string/most_popular"
         android:textColor="@color/app_blue"
-        android:textSize="@dimen/x18"
+        android:textSize="@dimen/x15"
+        android:gravity="center"
         app:typeface="@string/Roboto" />
+
+    </LinearLayout>
 
 </LinearLayout>

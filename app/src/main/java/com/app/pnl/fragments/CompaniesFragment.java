@@ -6,15 +6,19 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.app.pnl.R;
 import com.app.pnl.entities.CompaniesEnt;
 import com.app.pnl.fragments.abstracts.BaseFragment;
+import com.app.pnl.helpers.UIHelper;
+import com.app.pnl.helpers.Utils;
 import com.app.pnl.ui.adapters.ArrayListAdapter;
 import com.app.pnl.ui.viewbinders.abstracts.CompaniesItemBinder;
 import com.app.pnl.ui.views.AnyTextView;
 import com.app.pnl.ui.views.TitleBar;
+import com.app.pnl.ui.views.Util;
 
 import java.util.ArrayList;
 
@@ -66,7 +70,18 @@ public class CompaniesFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         setCompaniesData();
+        listners();
 
+    }
+
+    private void listners() {
+
+        lvCompanies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getDockActivity().addDockableFragment(SortingByFragment.newInstance(userCollection.get(position)),"SortingByFragment");
+            }
+        });
     }
 
     private void setCompaniesData() {
@@ -104,6 +119,7 @@ public class CompaniesFragment extends BaseFragment {
         titleBar.hideButtons();
         titleBar.setSubHeading(getString(R.string.services));
         titleBar.showBackButton();
+        titleBar.getEditTextViewSearch(R.id.edt_search).setText("");
         titleBar.showSearchBar(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -118,6 +134,12 @@ public class CompaniesFragment extends BaseFragment {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.beta));
+                Utils.HideKeyBoard(getDockActivity());
             }
         });
     }

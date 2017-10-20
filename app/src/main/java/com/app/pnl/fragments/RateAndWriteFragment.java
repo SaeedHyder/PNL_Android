@@ -21,6 +21,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static com.app.pnl.R.id.edit_write_review;
+
 /**
  * Created by ahmedsyed on 10/19/2017.
  */
@@ -31,7 +33,7 @@ public class RateAndWriteFragment extends BaseFragment {
     ToggleButton tbRating;
     @BindView(R.id.edt_name)
     AnyEditTextView edtName;
-    @BindView(R.id.edit_write_review)
+    @BindView(edit_write_review)
     AnyEditTextView editWriteReview;
     @BindView(R.id.tv_good)
     AnyTextView tvGood;
@@ -78,7 +80,9 @@ public class RateAndWriteFragment extends BaseFragment {
 
     @OnClick(R.id.btn_login)
     public void onViewClicked() {
-       // getDockActivity().replaceDockableFragment(StudentTutorialFragment.newInstance(), "StudentTutorialFragment");
+        if(validate()){
+        getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
+        }
     }
 
     @Override
@@ -88,4 +92,9 @@ public class RateAndWriteFragment extends BaseFragment {
         titleBar.setSubHeading(getString(R.string.rate_review));
         titleBar.showBackButton();
     }
+
+    private boolean validate() {
+        return editWriteReview.testValidity();
+    }
+
 }

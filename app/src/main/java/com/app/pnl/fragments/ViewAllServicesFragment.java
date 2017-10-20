@@ -12,6 +12,8 @@ import com.app.pnl.R;
 import com.app.pnl.entities.CompaniesEnt;
 import com.app.pnl.entities.ViewAllServicesEnt;
 import com.app.pnl.fragments.abstracts.BaseFragment;
+import com.app.pnl.helpers.UIHelper;
+import com.app.pnl.helpers.Utils;
 import com.app.pnl.ui.adapters.ArrayListAdapter;
 import com.app.pnl.ui.viewbinders.abstracts.CompaniesItemBinder;
 import com.app.pnl.ui.viewbinders.abstracts.ViewAllServicesItemBinder;
@@ -103,6 +105,7 @@ public class ViewAllServicesFragment extends BaseFragment {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
         titleBar.setSubHeading(getString(R.string.services));
+        titleBar.getEditTextViewSearch(R.id.edt_search).setText("");
         titleBar.showBackButton();
         titleBar.showSearchBar(new TextWatcher() {
             @Override
@@ -118,6 +121,12 @@ public class ViewAllServicesFragment extends BaseFragment {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.beta));
+                Utils.HideKeyBoard(getDockActivity());
             }
         });
     }

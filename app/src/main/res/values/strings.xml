@@ -73,6 +73,7 @@
     <string name="contact_phone">5555 555 555</string>
     <string name="enter_text">Enter Text</string>
     <string name="you_paid">YOU PAID</string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="tap_to_rate">TAP A STAR TO RATE DRIVER</string>
     <string name="contact_address">Columbus College of Arts, New York</string>
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and types
@@ -83,6 +84,9 @@
          . It was popularised in the 1960s with the release of Letraset sheets cont
          aining Lorem Ipsum passages, and more recently with desktop publishing so
          ftware like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
+    <string name="small_ipsum">Lorem Ipsum is simply dummy text of the printing . Lorem Ipsum has been the industrys standard dummy text ever sinc
+        e the 1500s.</string>
     <string name="this_is_login_fragment">This is Login Fragment</string>
 
     <string name="default_hint_text">Where are you going?</string>
@@ -159,5 +163,7 @@
     <string name="new_password_">New Password</string>
     <string name="old_password_">Old Password</string>
     <string name="update">Update</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

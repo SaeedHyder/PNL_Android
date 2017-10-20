@@ -1,4 +1,10 @@
-package com.app.wewash.helpers;
+package com.app.pnl.helpers;
+
+import android.content.Context;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+
+import com.app.pnl.activities.DockActivity;
 
 /**
  * Created on 9/26/2017.
@@ -21,4 +27,14 @@ public class Utils {
         String className = element.getFileName().replace(".java", "");
         return "[" + className + "](" + element.getMethodName() + ":" + element.getLineNumber() + ")";
     }
+
+    public static void HideKeyBoard(DockActivity dockActivity) {
+        View view = dockActivity.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) dockActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+
 }

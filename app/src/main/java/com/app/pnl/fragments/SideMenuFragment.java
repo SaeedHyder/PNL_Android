@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.app.pnl.R;
 import com.app.pnl.fragments.abstracts.BaseFragment;
+import com.app.pnl.helpers.DialogHelper;
 import com.app.pnl.ui.views.TitleBar;
 
 import butterknife.BindView;
@@ -85,8 +86,22 @@ public class SideMenuFragment extends BaseFragment {
                 getDockActivity().replaceDockableFragment(SettingFragment.newInstance(), "SettingFragment");
                 break;
             case R.id.btn_logout:
-                getDockActivity().popBackStackTillEntry(0);
-                getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
+                final DialogHelper dialog = new DialogHelper(getDockActivity());
+                dialog.initlogout(R.layout.logout_dialog, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getDockActivity().popBackStackTillEntry(0);
+                        getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
+                        dialog.hideDialog();
+                    }
+                }, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.hideDialog();
+                    }
+                });
+                dialog.showDialog();
+
                 break;
         }
     }

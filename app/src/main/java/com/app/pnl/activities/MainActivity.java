@@ -1,5 +1,6 @@
 package com.app.pnl.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
@@ -138,6 +140,8 @@ public class MainActivity extends DockActivity implements OnClickListener {
             setMenuItemDirection(direction);
         }
     }
+
+
 
     private void setMenuItemDirection(String direction) {
 
