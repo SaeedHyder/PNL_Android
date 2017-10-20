@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/homeimage"/>
+            android:src="@drawable/banner"/>
 
     </RelativeLayout>
 
@@ -109,7 +109,7 @@
                 <ImageView
                     android:layout_width="@dimen/x40"
                     android:layout_height="@dimen/x40"
-                    android:src="@drawable/popular"/>
+                    android:src="@drawable/icon"/>
 
 
                 <com.app.pnl.ui.views.AnyTextView
