@@ -1,4 +1,4 @@
-package com.app.pnl;
+package com.ingic.pnl;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

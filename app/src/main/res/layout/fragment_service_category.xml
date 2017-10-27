@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <com.app.pnl.ui.views.AnyTextView
+    <com.ingic.pnl.ui.views.AnyTextView
         android:id="@+id/txt_no_data"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,7 +20,7 @@
 
         />
 
-    <com.app.pnl.ui.views.CustomRecyclerView
+    <com.ingic.pnl.ui.views.CustomRecyclerView
         android:id="@+id/lv_companies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

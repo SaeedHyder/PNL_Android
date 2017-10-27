@@ -50,7 +50,7 @@
                     android:src="@drawable/home_nav"
                     tools:ignore="ContentDescription"/>
 
-                <com.app.pnl.ui.views.AnyTextView
+                <com.ingic.pnl.ui.views.AnyTextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
@@ -87,7 +87,7 @@
                     android:src="@drawable/notification_nav"
                     tools:ignore="ContentDescription"/>
 
-                <com.app.pnl.ui.views.AnyTextView
+                <com.ingic.pnl.ui.views.AnyTextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
@@ -124,7 +124,7 @@
                     android:src="@drawable/favorite_nav"
                     tools:ignore="ContentDescription"/>
 
-                <com.app.pnl.ui.views.AnyTextView
+                <com.ingic.pnl.ui.views.AnyTextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
@@ -161,7 +161,7 @@
                     android:src="@drawable/review_nav"
                     tools:ignore="ContentDescription"/>
 
-                <com.app.pnl.ui.views.AnyTextView
+                <com.ingic.pnl.ui.views.AnyTextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
@@ -198,7 +198,7 @@
                     android:src="@drawable/setting_nav"
                     tools:ignore="ContentDescription"/>
 
-                <com.app.pnl.ui.views.AnyTextView
+                <com.ingic.pnl.ui.views.AnyTextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
@@ -235,7 +235,7 @@
                     android:src="@drawable/logout_nav"
                     tools:ignore="ContentDescription"/>
 
-                <com.app.pnl.ui.views.AnyTextView
+                <com.ingic.pnl.ui.views.AnyTextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"

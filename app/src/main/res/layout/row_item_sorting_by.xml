@@ -36,7 +36,7 @@
             android:layout_weight="0.7"
             android:orientation="vertical">
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_company_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                 android:alpha="0.2"
                 android:background="@color/light_grey" />
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_company_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:layout_marginRight="@dimen/x20"
                 android:orientation="horizontal">
 
-                <com.app.pnl.ui.views.AnyTextView
+                <com.ingic.pnl.ui.views.AnyTextView
                     android:id="@+id/tv_location"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                     android:textSize="@dimen/x10"
                     app:typeface="@string/Roboto" />
 
-                <com.app.pnl.ui.views.AnyTextView
+                <com.ingic.pnl.ui.views.AnyTextView
                     android:id="@+id/tv_phone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

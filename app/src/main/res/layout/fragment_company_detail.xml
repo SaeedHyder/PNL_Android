@@ -23,7 +23,7 @@
             android:layout_height="@dimen/x30"
             android:background="@drawable/gradient_color">
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_heading_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -37,7 +37,7 @@
                 app:typeface="@string/Roboto" />
         </LinearLayout>
 
-        <com.app.pnl.ui.views.AnyTextView
+        <com.ingic.pnl.ui.views.AnyTextView
             android:id="@+id/tv_company_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             android:layout_marginTop="@dimen/x10"
             android:orientation="horizontal">
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_address_details"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                 android:textSize="@dimen/x12"
                 app:typeface="@string/Roboto" />
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_mark_favourite"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
             android:layout_marginTop="@dimen/x10"
             android:orientation="horizontal">
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_contact_details"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                 android:textSize="@dimen/x12"
                 app:typeface="@string/Roboto" />
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_share_favourite"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
             android:layout_marginTop="@dimen/x10"
             android:orientation="horizontal">
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_website"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <com.app.pnl.ui.views.CustomRatingBar
+            <com.ingic.pnl.ui.views.CustomRatingBar
                 android:id="@+id/rb_review"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
                 app:onlyForDisplay="true"
                 app:starPadding="@dimen/x2" />
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_rating_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -201,7 +201,7 @@
                 android:textSize="@dimen/x12"
                 app:typeface="@string/Roboto" />
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_write_review"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -218,12 +218,11 @@
             android:layout_height="@dimen/x30"
             android:background="@drawable/gradient_color">
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_heading_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/x10"
                 android:alpha="0.7"
                 android:gravity="center"
                 android:text="@string/reviews"
@@ -246,7 +245,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.app.pnl.ui.views.AnyTextView
+                <com.ingic.pnl.ui.views.AnyTextView
                     android:id="@+id/tv_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -258,7 +257,7 @@
                     android:textSize="@dimen/x14"
                     app:typeface="@string/Roboto" />
 
-                <com.app.pnl.ui.views.CustomRatingBar
+                <com.ingic.pnl.ui.views.CustomRatingBar
                     android:id="@+id/rb_review_2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -278,7 +277,7 @@
                 android:layout_weight="0.2"
                 android:weightSum="1">
 
-                <com.app.pnl.ui.views.AnyTextView
+                <com.ingic.pnl.ui.views.AnyTextView
                     android:id="@+id/tv_msg_notification"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -333,7 +332,7 @@
             android:layout_gravity="center"
             android:gravity="center">
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_all_posts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

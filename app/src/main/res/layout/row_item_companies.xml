@@ -23,7 +23,7 @@
 
 
 
-        <com.app.pnl.ui.views.AnyTextView
+        <com.ingic.pnl.ui.views.AnyTextView
             android:id="@+id/companies_sorting"
             android:layout_width="0dp"
             android:layout_height="match_parent"
