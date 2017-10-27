@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:scrollbars="none"
-    xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:scrollbars="none">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg"
         android:orientation="vertical">
 
-        <com.app.pnl.ui.views.AnyTextView
+        <com.ingic.pnl.ui.views.AnyTextView
             android:id="@+id/txt_no_data"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -28,32 +26,39 @@
 
             />
 
-        <com.app.pnl.ui.views.ExpandableGridView
+        <com.ingic.pnl.ui.views.ExpandableGridView
             android:id="@+id/rcy_services"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/button_container"
+            android:layout_alignParentTop="true"
             android:background="@color/white"
             android:numColumns="3"
-            tools:listitem="@layout/row_item_services"
             android:scrollbars="none"
-            android:visibility="visible" />
+            android:visibility="visible"
+            tools:listitem="@layout/row_item_services"/>
 
-        <Button
-            android:id="@+id/btn_all_services"
+        <FrameLayout
+            android:id="@+id/button_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rcy_services"
-            android:layout_marginBottom="@dimen/x10"
-            android:layout_marginLeft="@dimen/x30"
-            android:layout_marginRight="@dimen/x30"
-            android:layout_marginTop="@dimen/x30"
-            android:background="@drawable/btn_red_drawable"
-            android:text="@string/view_all_services"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/x15" />
+            android:layout_height="@dimen/x80"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/txt_no_data">
 
+            <Button
+                android:id="@+id/btn_all_services"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x40"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_marginRight="@dimen/x30"
+                android:background="@drawable/btn_red_drawable"
+                android:text="@string/view_all_services"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x15"/>
+        </FrameLayout>
 
     </RelativeLayout>
 
-</ScrollView>
+</LinearLayout>

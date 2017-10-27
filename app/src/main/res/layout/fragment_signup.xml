@@ -4,6 +4,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/bg"
             android:fillViewport="true"
             android:orientation="vertical">
 
@@ -37,7 +38,7 @@
                 android:src="@drawable/name"
                 tools:ignore="ContentDescription"/>
 
-            <com.app.pnl.ui.views.AnyEditTextView
+            <com.ingic.pnl.ui.views.AnyEditTextView
                 android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -82,7 +83,7 @@
                 android:src="@drawable/email"
                 tools:ignore="ContentDescription"/>
 
-            <com.app.pnl.ui.views.AnyEditTextView
+            <com.ingic.pnl.ui.views.AnyEditTextView
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -92,7 +93,7 @@
                 android:alpha="0.8"
                 android:background="@color/transparent"
                 android:gravity="center_vertical"
-                android:hint="@string/email"
+                android:hint="@string/email_address"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:maxLength="30"
@@ -126,7 +127,7 @@
                 android:src="@drawable/pwd"
                 tools:ignore="ContentDescription"/>
 
-            <com.app.pnl.ui.views.AnyEditTextView
+            <com.ingic.pnl.ui.views.AnyEditTextView
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -170,7 +171,7 @@
                 android:src="@drawable/pwd"
                 tools:ignore="ContentDescription"/>
 
-            <com.app.pnl.ui.views.AnyEditTextView
+            <com.ingic.pnl.ui.views.AnyEditTextView
                 android:id="@+id/edt_comfirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -209,7 +210,79 @@
             android:textAllCaps="false"
             android:textColor="@color/white"/>
 
-        <Button
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/x1"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:alpha="0.6"
+                android:background="@color/white"/>
+
+            <com.ingic.pnl.ui.views.AnyTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:gravity="center_horizontal"
+                android:text="@string/or"
+                android:textColor="@color/white"
+                app:typeface="@string/Roboto"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/x1"
+                android:layout_gravity="center_vertical"
+
+                android:layout_weight="1"
+                android:alpha="0.6"
+                android:background="@color/white"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x20"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/btn_facebook"
+                android:layout_width="@dimen/x72"
+                android:layout_height="@dimen/x72"
+                android:layout_marginEnd="@dimen/x50"
+                android:background="@drawable/fb_circle"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/x25"
+                    android:layout_height="@dimen/x25"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/sing_up_with_facebook"
+                    android:src="@drawable/fb"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/btn_google"
+                android:layout_width="@dimen/x72"
+                android:layout_height="@dimen/x72"
+                android:background="@drawable/gplus_circle"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/x25"
+                    android:layout_height="@dimen/x25"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/sing_up_with_facebook"
+                    android:src="@drawable/googleplus"/>
+            </FrameLayout>
+        </LinearLayout>
+        <!-- <Button
             android:id="@+id/btn_facebook"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x40"
@@ -217,17 +290,18 @@
             android:background="@drawable/btn_blue_drawable"
             android:text="@string/sing_up_with_facebook"
             android:textAllCaps="false"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"/>-->
 
-        <com.app.pnl.ui.views.AnyTextView
-            android:layout_marginTop="@dimen/x10"
+        <com.ingic.pnl.ui.views.AnyTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/by_registering_you_agree_to_pnl_terms_conditions"
+            android:layout_marginTop="@dimen/x15"
+            android:gravity="start"
+            android:text="@string/register_term_message"
             android:textColor="@color/white"
-            android:textSize="@dimen/x14"
+            android:textSize="@dimen/x13"
             app:typeface="@string/Roboto"/>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/x20"

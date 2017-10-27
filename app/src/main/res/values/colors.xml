@@ -50,4 +50,5 @@
     <color name="blue_notifications">#212F7E</color>
     <color name="red_notifications">#EB2D33</color>
     <color name="yellow_write_review">#EEBF08</color>
+    <color name="google_color">#EA4235</color>
 </resources>

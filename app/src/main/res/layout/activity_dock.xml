@@ -13,7 +13,7 @@
         android:background="@drawable/bg"
         android:layout_height="match_parent" >
 
-        <com.app.pnl.ui.views.TitleBar
+        <com.ingic.pnl.ui.views.TitleBar
             android:id="@+id/header_main"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
 
     <FrameLayout
         android:id="@+id/sideMneuFragmentContainer"
-        android:layout_width="@dimen/x200"
+        android:layout_width="@dimen/x300"
         android:layout_height="match_parent"
         android:layout_gravity="left"
         android:choiceMode="singleChoice"

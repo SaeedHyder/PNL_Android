@@ -45,7 +45,7 @@
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
     <string name="confirm_pass">Confirm Password</string>
-    <string name="forgot_password">Forgot Password?</string>
+    <string name="forgot_password">Forgot Password</string>
     <string name="click_here">  Click Here</string>
     <string name="imgdesc_signup">Sign Up</string>
     <string name="imgdesc_signin">Sign In</string>
@@ -95,7 +95,7 @@
     <string name="Roboto">Roboto-Regular.ttf</string>
     <string name="email">Email</string>
     <string name="log_in">Log In</string>
-    <string name="or">or</string>
+    <string name="or">OR</string>
     <string name="log_in_with_facebook">Log In with Facebook</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="sign_up_now">Signup</string>
@@ -104,7 +104,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="sing_up_with_facebook">Sign Up with Facebook</string>
     <string name="sign_up">Sign Up</string>
-    <string name="by_registering_you_agree_to_pnl_terms_conditions"><![CDATA[By registering you agree to PNL Terms & Conditions]]></string>
+    <string name="register_term_message"><![CDATA[By registering you agree to PNL Terms & Conditions]]></string>
     <string name="enter_valid_email">Enter Valid Email</string>
     <string name="enter_password">Password Field cannot be Empty</string>
     <string name="passwordLength">Password should be more then 6 characters</string>
@@ -113,7 +113,7 @@
     <string name="comfirm_password_error">Passwords did not match</string>
     <string name="sign_up_head">Sign Up</string>
     <string name="notification">Notifications</string>
-    <string name="favourites">Favourites</string>
+    <string name="favourites">Favorites</string>
     <string name="review_history">Review History</string>
     <string name="logout">Logout</string>
     <string name="companies">Companies</string>
@@ -141,9 +141,9 @@
     <string name="write_here">Write here</string>
     <string name="submit">Submit</string>
     <string name="travel_company">Travel Company</string>
-    <string name="address_details">Address Details</string>
+    <string name="address_details">Address details</string>
     <string name="mark_favourites">Mark Favourites</string>
-    <string name="conatct_details">Conatct Details</string>
+    <string name="conatct_details">Contact details</string>
     <string name="share">Share</string>
     <string name="website">Website</string>
     <string name="_4_5">4.5</string>
@@ -165,5 +165,17 @@
     <string name="update">Update</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="search_company">Search Company</string>
+    <string name="search_category">Search Category</string>
+    <string name="profile_update_message">Profile Updated</string>
+    <string name="enter_phone">Enter Phone Number</string>
+    <string name="city_error">Enter City</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="turn_notification_on_off">Turn Notification On/Off</string>
+    <string name="forgot_password_message">Your Password will be \n deliverd at the following email</string>
+    <string name="send">Send</string>
+    <string name="re_enter_password">Re-enter Password</string>
+    <string name="re_enter_password_message">Enter your new Password here</string>
+    <string name="confrim">Confirm</string>
 
 </resources>

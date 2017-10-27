@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
                 android:textSize="@dimen/x14"
                 app:typeface="@string/Roboto" />
 
-            <com.app.pnl.ui.views.CustomRatingBar
+            <com.ingic.pnl.ui.views.CustomRatingBar
                 android:id="@+id/rb_review"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             android:layout_gravity="center_horizontal"
             android:weightSum="1">
 
-            <com.app.pnl.ui.views.AnyTextView
+            <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_msg_notification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
