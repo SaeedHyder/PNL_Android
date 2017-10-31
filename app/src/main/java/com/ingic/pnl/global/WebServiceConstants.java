@@ -9,8 +9,10 @@ public class WebServiceConstants {
     public static final String Register ="Register" ;
     public static final String LIST_CATEGORY ="LIST_CATEGORY" ;
     public static final String CATEGORY_SHOWCASE ="CATEGORY_SHOWCASE" ;
-    public static final String LIST_COMPANY_BY_CATEGORY ="LIST_COMPANY_BY_CATEGORY" ;
+    public static final String LIST_COMPANY_BY_CARACTER ="LIST_COMPANY_BY_CARACTER" ;
     public static final String LIST_MOST_POPULAR ="LIST_MOST_POPULAR" ;
     public static final String COMPANY_DETAIL ="COMPANY_DETAIL" ;
     public static final String LIST_COMPANY_SORTED ="LIST_COMPANY_SORTED" ;
+    public static final String PLATFORM_GOOGLE = "google";
+    public static final String PLATFORM_FACEBOOK = "facebook";
 }

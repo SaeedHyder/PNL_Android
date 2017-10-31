@@ -1,6 +1,7 @@
 package com.ingic.pnl.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -10,11 +11,17 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.facebook.CallbackManager;
+import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.ingic.pnl.R;
+import com.ingic.pnl.entities.FacebookLoginEnt;
 import com.ingic.pnl.entities.UserIDEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
 import com.ingic.pnl.global.WebServiceConstants;
-import com.ingic.pnl.helpers.UIHelper;
+import com.ingic.pnl.helpers.FacebookLoginHelper;
+import com.ingic.pnl.helpers.GoogleHelper;
+import com.ingic.pnl.interfaces.FacebookLoginListener;
 import com.ingic.pnl.ui.views.AnyEditTextView;
 import com.ingic.pnl.ui.views.TitleBar;
 
@@ -26,7 +33,8 @@ import butterknife.Unbinder;
 /**
  * Created on 10/17/2017.
  */
-public class RegisterFragment extends BaseFragment {
+public class RegisterFragment extends BaseFragment implements GoogleHelper.GoogleHelperInterfce, FacebookLoginListener {
+    private static final int RC_SIGN_IN = 007;
     @BindView(R.id.edt_name)
     AnyEditTextView edtName;
     @BindView(R.id.edt_email)
@@ -42,6 +50,11 @@ public class RegisterFragment extends BaseFragment {
     @BindView(R.id.btn_google)
     FrameLayout btnGoogle;
     Unbinder unbinder;
+    private FacebookLoginHelper facebookLoginHelper;
+    private CallbackManager callbackManager;
+    private GoogleHelper googleHelper;
+    private String mSocialMediaPlatform = "";
+    private String mSocialMediaID = "";
 
     public static RegisterFragment newInstance() {
         Bundle args = new Bundle();
@@ -69,6 +82,9 @@ public class RegisterFragment extends BaseFragment {
     public void ResponseSuccess(Object result, String Tag, String message) {
         switch (Tag) {
             case WebServiceConstants.Register:
+                LoginManager.getInstance().logOut();
+                googleHelper.googleRevokeAccess();
+                googleHelper.googleSignOut();
                 prefHelper.setUserID(((UserIDEnt) result).getUserId() + "");
                 getDockActivity().popBackStackTillEntry(0);
                 getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
@@ -84,6 +100,28 @@ public class RegisterFragment extends BaseFragment {
         titleBar.showBackButton();
     }
 
+    private void setupGoogleSignup() {
+        googleHelper = GoogleHelper.getInstance();
+        googleHelper.setGoogleHelperInterface(this);
+        googleHelper.configGoogleApiClient(this);
+    }
+
+    private void setupFacebookLogin() {
+        callbackManager = CallbackManager.Factory.create();
+        // btnfbLogin.setFragment(this);
+        facebookLoginHelper = new FacebookLoginHelper(getDockActivity(), this, this);
+        LoginManager.getInstance().registerCallback(callbackManager, facebookLoginHelper);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            googleHelper.handleGoogleResult(requestCode, resultCode, data);
+        } else
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup, container, false);
@@ -94,7 +132,21 @@ public class RegisterFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setupGoogleSignup();
+        setupFacebookLogin();
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        googleHelper.ConnectGoogleAPi();
+        // googleHelper.checkGoogleSeesion();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        googleHelper.DisconnectGoogleApi();
     }
 
     @OnClick({R.id.btn_signup, R.id.btn_facebook, R.id.btn_google})
@@ -110,10 +162,10 @@ public class RegisterFragment extends BaseFragment {
                 }
                 break;
             case R.id.btn_facebook:
-                UIHelper.showShortToastInCenter(getDockActivity(), "Will be implemented in Beta Version");
+                LoginManager.getInstance().logInWithReadPermissions(RegisterFragment.this, facebookLoginHelper.getPermissionNeeds());
                 break;
             case R.id.btn_google:
-                UIHelper.showShortToastInCenter(getDockActivity(), "Will be implemented in Beta Version");
+                googleHelper.intentGoogleSign();
                 break;
         }
     }
@@ -153,5 +205,30 @@ public class RegisterFragment extends BaseFragment {
         } else {
             return true;
         }
+    }
+
+    private void clearViews() {
+        edtComfirmPassword.setText("");
+        edtPassword.setText("");
+        edtName.setText("");
+        edtEmail.setText("");
+    }
+
+    @Override
+    public void onGoogleSignInResult(GoogleSignInAccount result) {
+        clearViews();
+        edtName.setText(result.getDisplayName());
+        edtEmail.setText(result.getEmail());
+        mSocialMediaPlatform = WebServiceConstants.PLATFORM_GOOGLE;
+        mSocialMediaID = result.getId();
+    }
+
+    @Override
+    public void onSuccessfulFacebookLogin(FacebookLoginEnt LoginEnt) {
+        clearViews();
+        edtName.setText(LoginEnt.getFacebookFullName());
+        edtEmail.setText(LoginEnt.getFacebookEmail() == null ? "" : LoginEnt.getFacebookEmail());
+        mSocialMediaPlatform = WebServiceConstants.PLATFORM_FACEBOOK;
+        mSocialMediaID = LoginEnt.getFacebookUID();
     }
 }

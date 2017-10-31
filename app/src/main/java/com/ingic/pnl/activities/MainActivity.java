@@ -1,5 +1,6 @@
 package com.ingic.pnl.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -186,7 +187,13 @@ public class MainActivity extends DockActivity implements OnClickListener {
             }
         };
 
+
         return result;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

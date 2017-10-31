@@ -8,12 +8,13 @@
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
 
-    <string name="api_key">AIzaSyCDylplefNyWlLDoBL_n2VFjwlMWvq3sBg  </string>
+    <string name="api_key">AIzaSyBu-nm4iqab7_HQBvWYO3ndYFz4cm_3cCo</string>
     <string name="app_name">PNL</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="facebook_app_id">674632155971845</string>
-    <string name="facebook_app_id_test">175703936145004</string>
+    <string name="facebook_app_id">142068919772209</string>
+    <string name="fb_login_protocol_scheme">fb142068919772209</string>
+
 
     <!-- Error Messages -->
     <string name="error_passwords_do_not_match">Passwords do not match.</string>
@@ -177,5 +178,34 @@
     <string name="re_enter_password">Re-enter Password</string>
     <string name="re_enter_password_message">Enter your new Password here</string>
     <string name="confrim">Confirm</string>
+    <string name="please_wait">Please Wait...</string>
+    <array name="sortedalphabet">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>J</item>
+        <item>K</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+        <item>O</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
+        <item>U</item>
+        <item>V</item>
+        <item>W</item>
+        <item>X</item>
+        <item>Y</item>
+        <item>Z</item>
+    </array>
 
 </resources>
