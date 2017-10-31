@@ -60,14 +60,16 @@ public class SortingByFragment extends BaseFragment {
         adapter = new ArrayListAdapter<SortingByEnt>(getDockActivity(), new SortingByItemBinder(getDockActivity(), prefHelper));
     }
 
+
     @Override
-    public void ResponseSuccess(Object result, String Tag) {
+    public void ResponseSuccess(Object result, String Tag, String message) {
         switch (Tag) {
             case WebServiceConstants.LIST_COMPANY_BY_CARACTER:
                 bindData((ArrayList<SortingByEnt>) result);
                 break;
         }
     }
+
 
     @Override
     public void setTitleBar(TitleBar titleBar) {
