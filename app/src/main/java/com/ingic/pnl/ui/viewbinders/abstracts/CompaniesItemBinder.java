@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
  * Created by saeedhyder on 10/19/2017.
  */
 
-public class CompaniesItemBinder extends ViewBinder<CompaniesEnt> {
+public class CompaniesItemBinder extends ViewBinder<String> {
 
     private DockActivity dockActivity;
     private BasePreferenceHelper prefHelper;
@@ -36,12 +36,12 @@ public class CompaniesItemBinder extends ViewBinder<CompaniesEnt> {
     }
 
     @Override
-    public void bindView(CompaniesEnt entity, int position, int grpPosition, View view, Activity activity) {
+    public void bindView(String entity, int position, int grpPosition, View view, Activity activity) {
 
         final ViewHolder viewHolder = (ViewHolder) view.getTag();
         imageLoader = ImageLoader.getInstance();
 
-        viewHolder.companiesSorting.setText(entity.getCompaniesSorting()+"");
+        viewHolder.companiesSorting.setText(entity);
     }
 
     static class ViewHolder extends BaseViewHolder {

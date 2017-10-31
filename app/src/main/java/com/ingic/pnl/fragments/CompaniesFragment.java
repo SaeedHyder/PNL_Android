@@ -16,6 +16,7 @@ import com.ingic.pnl.ui.views.AnyTextView;
 import com.ingic.pnl.ui.views.TitleBar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,8 +34,8 @@ public class CompaniesFragment extends BaseFragment {
     ListView lvCompanies;
     Unbinder unbinder;
 
-    private ArrayListAdapter<CompaniesEnt> adapter;
-    private ArrayList<CompaniesEnt> userCollection;
+    private ArrayListAdapter<String> adapter;
+    private ArrayList<String> userCollection;
 
     public static CompaniesFragment newInstance() {
         Bundle args = new Bundle();
@@ -49,7 +50,7 @@ public class CompaniesFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
-        adapter = new ArrayListAdapter<CompaniesEnt>(getDockActivity(), new CompaniesItemBinder(getDockActivity(), prefHelper));
+        adapter = new ArrayListAdapter<String>(getDockActivity(), new CompaniesItemBinder(getDockActivity(), prefHelper));
 
     }
 
@@ -80,17 +81,14 @@ public class CompaniesFragment extends BaseFragment {
     }
 
     private void setCompaniesData() {
-        userCollection = new ArrayList<>();
+        String[] alphabets = getResources().getStringArray(R.array.sortedalphabet);
+        userCollection = new ArrayList<String>(Arrays.asList(alphabets));
 
-        userCollection.add(new CompaniesEnt("A"));
-        userCollection.add(new CompaniesEnt("B"));
-        userCollection.add(new CompaniesEnt("C"));
-        userCollection.add(new CompaniesEnt("D"));
 
     bindData(userCollection);
     }
 
-    private void bindData(ArrayList<CompaniesEnt> userCollection) {
+    private void bindData(ArrayList<String> userCollection) {
 
         if (userCollection.size() <= 0) {
             txtNoData.setVisibility(View.VISIBLE);

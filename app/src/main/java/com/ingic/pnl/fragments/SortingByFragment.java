@@ -13,12 +13,12 @@ import com.ingic.pnl.R;
 import com.ingic.pnl.entities.CompaniesEnt;
 import com.ingic.pnl.entities.SortingByEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.WebServiceConstants;
 import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.ui.adapters.ArrayListAdapter;
 import com.ingic.pnl.ui.viewbinders.abstracts.SortingByItemBinder;
 import com.ingic.pnl.ui.views.AnyTextView;
 import com.ingic.pnl.ui.views.TitleBar;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -43,9 +43,9 @@ public class SortingByFragment extends BaseFragment {
     private ArrayListAdapter<SortingByEnt> adapter;
     private ArrayList<SortingByEnt> userCollection;
 
-    public static SortingByFragment newInstance(CompaniesEnt companiesEnt) {
+    public static SortingByFragment newInstance(String companiesLetter) {
         Bundle args = new Bundle();
-        args.putString(SortingNmae, new Gson().toJson(companiesEnt));
+        args.putString(SortingNmae, companiesLetter);
         SortingByFragment fragment = new SortingByFragment();
         fragment.setArguments(args);
         return fragment;
@@ -57,10 +57,16 @@ public class SortingByFragment extends BaseFragment {
         if (getArguments() != null) {
             SortingNmae = getArguments().getString(SortingNmae);
         }
-        if (!SortingNmae.equals("")) {
-            entity = new Gson().fromJson(SortingNmae, CompaniesEnt.class);
-        }
         adapter = new ArrayListAdapter<SortingByEnt>(getDockActivity(), new SortingByItemBinder(getDockActivity(), prefHelper));
+    }
+
+    @Override
+    public void ResponseSuccess(Object result, String Tag) {
+        switch (Tag) {
+            case WebServiceConstants.LIST_COMPANY_BY_CARACTER:
+                bindData((ArrayList<SortingByEnt>) result);
+                break;
+        }
     }
 
     @Override
@@ -103,9 +109,7 @@ public class SortingByFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        setSortingData();
-        sortingid = entity.getCompaniesSorting() + "";
+        serviceHelper.enqueueCall(webService.getCompaniesByCaracter(SortingNmae), WebServiceConstants.LIST_COMPANY_BY_CARACTER);
         listners();
     }
 
@@ -114,6 +118,16 @@ public class SortingByFragment extends BaseFragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+/*
+    private void setSortingData(ArrayList<SortingByEnt> result) {
+        userCollection = new ArrayList<>();
+
+        userCollection.add(new SortingByEnt("drawable://" + R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
+        userCollection.add(new SortingByEnt("drawable://" + R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
+        userCollection.add(new SortingByEnt("drawable://" + R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
+
+        bindData(userCollection);
+    }*/
 
     private void listners() {
 
@@ -123,16 +137,6 @@ public class SortingByFragment extends BaseFragment {
                 getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(), "CompanyDetailFragment");
             }
         });
-    }
-
-    private void setSortingData() {
-        userCollection = new ArrayList<>();
-
-        userCollection.add(new SortingByEnt("drawable://" + R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
-        userCollection.add(new SortingByEnt("drawable://" + R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
-        userCollection.add(new SortingByEnt("drawable://" + R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
-
-        bindData(userCollection);
     }
 
     private void bindData(ArrayList<SortingByEnt> userCollection) {

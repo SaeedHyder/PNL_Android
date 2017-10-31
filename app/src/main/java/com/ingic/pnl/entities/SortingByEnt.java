@@ -1,62 +1,72 @@
 package com.ingic.pnl.entities;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by saeedhyder on 10/19/2017.
  */
 
 public class SortingByEnt {
 
-    String image;
-    String companyName;
-    String description;
-    String location;
-    String phone;
 
-    public SortingByEnt(String image, String companyName, String description, String location, String phone) {
-        this.image = image;
-        this.companyName = companyName;
-        this.description = description;
-        this.location = location;
-        this.phone = phone;
+    @SerializedName("Name")
+    private String Name;
+    @SerializedName("Description")
+    private String Description;
+    @SerializedName("ImageUrl")
+    private String ImageUrl;
+    @SerializedName("WebUrl")
+    private String WebUrl;
+    @SerializedName("LocationUrl")
+    private String LocationUrl;
+    @SerializedName("Id")
+    private int Id;
+
+    public String getName() {
+        return Name;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
     public String getDescription() {
-        return description;
+        return Description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String Description) {
+        this.Description = Description;
     }
 
-    public String getLocation() {
-        return location;
+    public String getImageUrl() {
+        return ImageUrl;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setImageUrl(String ImageUrl) {
+        this.ImageUrl = ImageUrl;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getWebUrl() {
+        return WebUrl;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setWebUrl(String WebUrl) {
+        this.WebUrl = WebUrl;
+    }
+
+    public String getLocationUrl() {
+        return LocationUrl;
+    }
+
+    public void setLocationUrl(String LocationUrl) {
+        this.LocationUrl = LocationUrl;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int Id) {
+        this.Id = Id;
     }
 }
