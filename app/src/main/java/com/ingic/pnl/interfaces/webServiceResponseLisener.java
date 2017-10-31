@@ -5,6 +5,6 @@ package com.ingic.pnl.interfaces;
  */
 
 public interface webServiceResponseLisener<T> {
-    public void ResponseSuccess(T result, String Tag);
+    public void ResponseSuccess(T result, String Tag, String message);
     public void  ResponseFailure(String tag);
 }

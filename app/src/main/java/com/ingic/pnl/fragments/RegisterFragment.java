@@ -66,7 +66,7 @@ public class RegisterFragment extends BaseFragment {
     }
 
     @Override
-    public void ResponseSuccess(Object result, String Tag) {
+    public void ResponseSuccess(Object result, String Tag, String message) {
         switch (Tag) {
             case WebServiceConstants.Register:
                 prefHelper.setUserID(((UserIDEnt) result).getUserId() + "");

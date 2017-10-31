@@ -75,7 +75,7 @@ public class LoginFragment extends BaseFragment {
     }
 
     @Override
-    public void ResponseSuccess(Object result, String Tag) {
+    public void ResponseSuccess(Object result, String Tag, String message) {
         switch (Tag) {
             case WebServiceConstants.LOGIN:
                 UserIDEnt userID = (UserIDEnt) result;

@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import com.ingic.pnl.R;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.WebServiceConstants;
+import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.ui.views.AnyEditTextView;
 import com.ingic.pnl.ui.views.TitleBar;
 
@@ -103,7 +105,17 @@ public class ChangePasswordFragment extends BaseFragment {
     @OnClick(R.id.btn_update)
     public void onViewClicked() {
         if (isvalidate()) {
-            getDockActivity().addDockableFragment(HomeFragment.newInstance(), HomeFragment.class.getName());
+            serviceHelper.enqueueCall(webService.changePassword(prefHelper.getUserID(),edtCurrentPassword.getText().toString(), edtNewPassword.getText().toString(), edtConfirmPassword.getText().toString()),
+                    WebServiceConstants.CHANGEPASSWORD);
+        }
+    }
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.CHANGEPASSWORD:
+                UIHelper.showShortToastInCenter(getDockActivity(),message);
+                getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
+                break;
         }
     }
 }

@@ -20,5 +20,20 @@ public interface WebService {
                                                     @Field("password") String Password,
                                                     @Field("ConfirmPassword") String ConfirmPassword);
 
+    @FormUrlEncoded
+    @POST("account/updatepassword")
+    Call<ResponseWrapper> changePassword(@Field("UserId") String UserId,
+                                         @Field("OldPassword") String OldPassword,
+                                         @Field("Password") String Password,
+                                         @Field("ConfirmPassword") String ConfirmPassword);
+
+    @FormUrlEncoded
+    @POST("account/forgotpassword")
+    Call<ResponseWrapper> forgotPassword(@Field("Email") String Email);
+
+   /* @GET("/api/company/GetAllMyFavorites")
+    Call<ResponseWrapper> traineeProfile(
+            @Path("userId") int userId);*/
+
 
 }

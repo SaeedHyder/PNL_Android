@@ -10,6 +10,8 @@ import android.widget.Button;
 
 import com.ingic.pnl.R;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.WebServiceConstants;
+import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.ui.views.AnyEditTextView;
 import com.ingic.pnl.ui.views.TitleBar;
 
@@ -70,8 +72,20 @@ public class ForgotPasswordFragment extends BaseFragment {
     @OnClick(R.id.btn_send)
     public void onViewClicked() {
         if (isvalidated()) {
-            getDockActivity().popBackStackTillEntry(0);
-            getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
+            serviceHelper.enqueueCall(webService.forgotPassword(edtEmail.getText().toString()),
+                    WebServiceConstants.FORGOTPASSWORD);
+
+        }
+    }
+
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.FORGOTPASSWORD:
+                UIHelper.showShortToastInCenter(getDockActivity(),message);
+                getDockActivity().popBackStackTillEntry(0);
+                getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
+                break;
         }
     }
 
