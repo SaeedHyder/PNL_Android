@@ -6,6 +6,11 @@ public class WebServiceConstants {
     public static final String LOGIN ="LOGIN" ;
     public static final String CHANGEPASSWORD ="CHANGEPASSWORD" ;
     public static final String FORGOTPASSWORD ="FORGOTPASSWORD" ;
+    public static final String COMPANYDETAIL ="COMPANYDETAIL" ;
+    public static final String MARKFAVORITE ="MARKFAVORITE" ;
+    public static final String FAVOURITELIST ="FAVOURITELIST" ;
+    public static final String REVIEWSLIST ="REVIEWSLIST" ;
+    public static final String CREATEREVIEW ="CREATEREVIEW" ;
     public static final String Register ="Register" ;
     public static final String LIST_CATEGORY ="LIST_CATEGORY" ;
     public static final String CATEGORY_SHOWCASE ="CATEGORY_SHOWCASE" ;

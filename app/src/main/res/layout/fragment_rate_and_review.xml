@@ -86,6 +86,8 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:textSize="@dimen/x14"
+                app:testType="alphaNumeric"
+                app:emptyAllowed="false"
                 app:typeface="Roboto-Regular.ttf"/>
 
             <View

@@ -8,11 +8,16 @@ import android.widget.Button;
 import android.widget.ToggleButton;
 
 import com.ingic.pnl.R;
+import com.ingic.pnl.entities.ReviewsEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.WebServiceConstants;
+import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.ui.views.AnyEditTextView;
 import com.ingic.pnl.ui.views.AnyTextView;
 import com.ingic.pnl.ui.views.CustomRatingBar;
 import com.ingic.pnl.ui.views.TitleBar;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,9 +46,20 @@ public class RateAndWriteFragment extends BaseFragment {
     Button btnLogin;
     Unbinder unbinder;
 
+    private static String COMPANYIDKEY = "companyidkey";
+    private int companyId;
+
     public static RateAndWriteFragment newInstance() {
         Bundle args = new Bundle();
 
+        RateAndWriteFragment fragment = new RateAndWriteFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static RateAndWriteFragment newInstance(int companyId) {
+        Bundle args = new Bundle();
+        args.putInt(COMPANYIDKEY,companyId);
         RateAndWriteFragment fragment = new RateAndWriteFragment();
         fragment.setArguments(args);
         return fragment;
@@ -53,6 +69,7 @@ public class RateAndWriteFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            companyId = getArguments().getInt(COMPANYIDKEY);
         }
 
     }
@@ -79,7 +96,18 @@ public class RateAndWriteFragment extends BaseFragment {
     @OnClick(R.id.btn_login)
     public void onViewClicked() {
         if(validate()){
-        getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
+            serviceHelper.enqueueCall(webService.createReview(prefHelper.getUserID(), companyId, (int)rbReview.getScore(),editWriteReview.getText().toString(),tbRating.isChecked()), WebServiceConstants.CREATEREVIEW);
+        //
+        }
+    }
+
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.CREATEREVIEW:
+                UIHelper.showShortToastInCenter(getDockActivity(),message);
+                getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
+                break;
         }
     }
 
@@ -92,7 +120,7 @@ public class RateAndWriteFragment extends BaseFragment {
     }
 
     private boolean validate() {
-        return editWriteReview.testValidity();
+        return (editWriteReview.testValidity() && edtName.testValidity());
     }
 
 }

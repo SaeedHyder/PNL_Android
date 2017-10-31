@@ -68,4 +68,7 @@ dependencies {
     //Facebook
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile project(':nineoldandroids-library-2.4.0')
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
 }

@@ -9,6 +9,7 @@ import android.widget.ListView;
 import com.ingic.pnl.R;
 import com.ingic.pnl.entities.ReviewsEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.WebServiceConstants;
 import com.ingic.pnl.ui.adapters.ArrayListAdapter;
 import com.ingic.pnl.ui.viewbinders.abstracts.ReviewsItemBinder;
 import com.ingic.pnl.ui.views.AnyTextView;
@@ -29,6 +30,7 @@ public class ReviewHistory extends BaseFragment {
     @BindView(R.id.lv_review_history)
     ListView lvReviewHistory;
     Unbinder unbinder;
+    private ArrayList<ReviewsEnt> reviewsEnts;
 
     public static ReviewHistory newInstance() {
         Bundle args = new Bundle();
@@ -60,18 +62,19 @@ public class ReviewHistory extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setReviewsData();
+        serviceHelper.enqueueCall(webService.getReviewList(1), WebServiceConstants.REVIEWSLIST);
+       // setReviewsData();
 
     }
 
-    private void setReviewsData() {
-        userCollection = new ArrayList<>();
-
-        userCollection.add(new ReviewsEnt("Garry Smith", getString(R.string.small_ipsum), 4));
-        userCollection.add(new ReviewsEnt("Garry Smith",getString(R.string.small_ipsum), 4));
-        userCollection.add(new ReviewsEnt("Garry Smith",getString(R.string.small_ipsum), 4));
-
-        bindData(userCollection);
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.REVIEWSLIST:
+                reviewsEnts=(ArrayList<ReviewsEnt>)result;
+                bindData(reviewsEnts);
+                break;
+        }
     }
 
     @Override

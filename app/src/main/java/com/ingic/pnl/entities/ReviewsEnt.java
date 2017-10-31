@@ -1,42 +1,68 @@
 package com.ingic.pnl.entities;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by saeedhyder on 10/19/2017.
  */
 
 public class ReviewsEnt {
 
-    String title;
-    String description;
-    float rating;
+    @SerializedName("CompanyId")
+    @Expose
+    private Integer companyId;
+    @SerializedName("UserName")
+    @Expose
+    private Object userName;
+    @SerializedName("Analysis")
+    @Expose
+    private String analysis;
+    @SerializedName("Status")
+    @Expose
+    private String status;
+    @SerializedName("Id")
+    @Expose
+    private Integer id;
 
-    public ReviewsEnt(String title, String description, float rating) {
-        this.title = title;
-        this.description = description;
-        this.rating = rating;
+    public Integer getCompanyId() {
+        return companyId;
     }
 
-    public String getTitle() {
-        return title;
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public Object getUserName() {
+        return userName;
     }
 
-    public String getDescription() {
-        return description;
+    public void setUserName(Object userName) {
+        this.userName = userName;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getAnalysis() {
+        return analysis;
     }
 
-    public float getRating() {
-        return rating;
+    public void setAnalysis(String analysis) {
+        this.analysis = analysis;
     }
 
-    public void setRating(float rating) {
-        this.rating = rating;
+    public String getStatus() {
+        return status;
     }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
 }

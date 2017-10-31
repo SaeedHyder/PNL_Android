@@ -61,14 +61,7 @@ public class SortingByFragment extends BaseFragment {
     }
 
 
-    @Override
-    public void ResponseSuccess(Object result, String Tag, String message) {
-        switch (Tag) {
-            case WebServiceConstants.LIST_COMPANY_BY_CARACTER:
-                bindData((ArrayList<SortingByEnt>) result);
-                break;
-        }
-    }
+
 
 
     @Override
@@ -116,6 +109,16 @@ public class SortingByFragment extends BaseFragment {
     }
 
     @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.LIST_COMPANY_BY_CARACTER:
+                bindData((ArrayList<SortingByEnt>) result);
+                userCollection=((ArrayList<SortingByEnt>) result);
+                break;
+        }
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
@@ -136,7 +139,7 @@ public class SortingByFragment extends BaseFragment {
         lvSortingBy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(), "CompanyDetailFragment");
+                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(userCollection.get(position).getId()), "CompanyDetailFragment");
             }
         });
     }

@@ -4,10 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by saeedhyder on 10/19/2017.
+ * Created by saeedhyder on 10/31/2017.
  */
 
-public class FavoritesEnt {
+public class CompanyModel {
 
     @SerializedName("Name")
     @Expose

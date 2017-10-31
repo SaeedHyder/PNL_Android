@@ -1,7 +1,11 @@
 package com.ingic.pnl.retrofit;
 
 
+import com.ingic.pnl.entities.CompanyDetailEnt;
+import com.ingic.pnl.entities.CompanyModel;
+import com.ingic.pnl.entities.FavoritesEnt;
 import com.ingic.pnl.entities.ResponseWrapper;
+import com.ingic.pnl.entities.ReviewsEnt;
 import com.ingic.pnl.entities.SortingByEnt;
 import com.ingic.pnl.entities.UserIDEnt;
 
@@ -12,6 +16,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface WebService {
@@ -35,15 +40,36 @@ public interface WebService {
 
     @FormUrlEncoded
     @POST("account/forgotpassword")
-    Call<ResponseWrapper> forgotPassword(@Field("Email") String Email);
+    Call<ResponseWrapper> forgotPassword(@Query("Email") String Email);
 
    /* @GET("/api/company/GetAllMyFavorites")
     Call<ResponseWrapper> traineeProfile(
             @Path("userId") int userId);*/
 
-    @GET("company/GetAllStartsWith")
-    Call<ResponseWrapper<ArrayList<SortingByEnt>>> getCompaniesByCaracter(@Query("c") String caracter);
+    @GET("company/GetAllStartsWith/{c}")
+    Call<ResponseWrapper<ArrayList<SortingByEnt>>> getCompaniesByCaracter(@Path("c") String caracter);
 
+    @GET("company/get/{id}")
+    Call<ResponseWrapper<CompanyDetailEnt>> getCompanyDetail(@Path("id") int id);
 
+    @FormUrlEncoded
+    @POST("company/MarkFavorite")
+    Call<ResponseWrapper> markFavorite(@Field("UserId") String UserId,
+                                       @Field("CompanyId") int  CompanyId,
+                                       @Field("IsMarkedFavorite") boolean IsMarkedFavorite);
+
+    @GET("company/GetAllMyFavorites/{id}")
+    Call<ResponseWrapper<ArrayList<FavoritesEnt>>> getFavouriteList(@Path("id") String id);
+
+    @GET("review/GetAllByCompany/{id}")
+    Call<ResponseWrapper<ArrayList<ReviewsEnt>>> getReviewList(@Path("id") int id);
+
+    @FormUrlEncoded
+    @POST("review/CreateReview")
+    Call<ResponseWrapper> createReview(@Field("UserId") String UserId,
+                                       @Field("CompanyId") int  CompanyId,
+                                       @Field("Points") int  Points,
+                                       @Field("Analysis") String  Analysis,
+                                       @Field("IsAnonymous") boolean IsAnonymous);
 
 }

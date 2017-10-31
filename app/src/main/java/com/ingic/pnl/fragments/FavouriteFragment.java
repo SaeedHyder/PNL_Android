@@ -8,8 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.ingic.pnl.R;
+import com.ingic.pnl.entities.CompanyDetailEnt;
+import com.ingic.pnl.entities.CompanyModel;
 import com.ingic.pnl.entities.FavoritesEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.WebServiceConstants;
+import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.ui.adapters.ArrayListAdapter;
 import com.ingic.pnl.ui.viewbinders.abstracts.FavoritesItemBinder;
 import com.ingic.pnl.ui.views.AnyTextView;
@@ -31,6 +35,8 @@ public class FavouriteFragment extends BaseFragment {
     @BindView(R.id.lv_notifications)
     ListView lvNotifications;
     Unbinder unbinder;
+
+    private ArrayList<FavoritesEnt> favoritesEnt;
 
     private ArrayListAdapter<FavoritesEnt> adapter;
     private ArrayList<FavoritesEnt> userCollection;
@@ -63,8 +69,24 @@ public class FavouriteFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        setFavouriteData();
+        serviceHelper.enqueueCall(webService.getFavouriteList(prefHelper.getUserID()), WebServiceConstants.FAVOURITELIST);
+
+        //setFavouriteData();
         listner();
+    }
+
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.FAVOURITELIST:
+                favoritesEnt = (ArrayList<FavoritesEnt>) result;
+                userCollection=favoritesEnt;
+                bindData(favoritesEnt);
+
+                break;
+
+
+        }
     }
 
     private void listner() {
@@ -72,21 +94,11 @@ public class FavouriteFragment extends BaseFragment {
         lvNotifications.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(),"CompanyDetailFragment");
+                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(userCollection.get(position).getId()),"CompanyDetailFragment");
             }
         });
     }
 
-    private void setFavouriteData() {
-        userCollection = new ArrayList<>();
-
-        userCollection.add(new FavoritesEnt("drawable://"+R.drawable.company,"AA Company",getString(R.string.lorem_ipsum),"22 street,France","+422 123456789"));
-        userCollection.add(new FavoritesEnt("drawable://"+R.drawable.company,"AA Company",getString(R.string.lorem_ipsum),"22 street,France","+422 123456789"));
-        userCollection.add(new FavoritesEnt("drawable://"+R.drawable.company,"AA Company",getString(R.string.lorem_ipsum),"22 street,France","+422 123456789"));
-        userCollection.add(new FavoritesEnt("drawable://"+R.drawable.company,"AA Company",getString(R.string.lorem_ipsum),"22 street,France","+422 123456789"));
-
-        bindData(userCollection);
-    }
 
     private void bindData(ArrayList<FavoritesEnt> userCollection) {
 

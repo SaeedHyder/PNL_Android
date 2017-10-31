@@ -5,10 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ToggleButton;
 
 import com.ingic.pnl.R;
+import com.ingic.pnl.entities.CompanyDetailEnt;
 import com.ingic.pnl.entities.ReviewsEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.WebServiceConstants;
+import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.ui.adapters.ArrayListAdapter;
 import com.ingic.pnl.ui.viewbinders.abstracts.ReviewsItemBinder;
 import com.ingic.pnl.ui.views.AnyTextView;
@@ -30,6 +34,10 @@ public class ReviewsFragment extends BaseFragment {
     ListView lvReviews;
     Unbinder unbinder;
 
+    private static String COMPANYIDKEY = "companyidkey";
+    private int companyId;
+    private ArrayList<ReviewsEnt> reviewsEnts;
+
     private ArrayListAdapter<ReviewsEnt> adapter;
     private ArrayList<ReviewsEnt> userCollection;
 
@@ -41,10 +49,20 @@ public class ReviewsFragment extends BaseFragment {
         return fragment;
     }
 
+    public static ReviewsFragment newInstance(int companyId) {
+        Bundle args = new Bundle();
+        args.putInt(COMPANYIDKEY,companyId);
+        ReviewsFragment fragment = new ReviewsFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            companyId = getArguments().getInt(COMPANYIDKEY);
         }
         adapter = new ArrayListAdapter<ReviewsEnt>(getDockActivity(), new ReviewsItemBinder(getDockActivity(), prefHelper));
     }
@@ -59,18 +77,21 @@ public class ReviewsFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setReviewsData();
+
+        serviceHelper.enqueueCall(webService.getReviewList(companyId), WebServiceConstants.REVIEWSLIST);
+
     }
 
-    private void setReviewsData() {
-        userCollection = new ArrayList<>();
-
-        userCollection.add(new ReviewsEnt("Garry Smith",getString(R.string.small_ipsum),4));
-        userCollection.add(new ReviewsEnt("Garry Smith",getString(R.string.small_ipsum),4));
-        userCollection.add(new ReviewsEnt("Garry Smith",getString(R.string.small_ipsum),4));
-
-        bindData(userCollection);
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.REVIEWSLIST:
+                reviewsEnts=(ArrayList<ReviewsEnt>)result;
+                bindData(reviewsEnts);
+                break;
+        }
     }
+
 
     private void bindData(ArrayList<ReviewsEnt> userCollection) {
 

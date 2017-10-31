@@ -42,9 +42,9 @@ public class ReviewsItemBinder extends ViewBinder<ReviewsEnt> {
         final ViewHolder viewHolder = (ViewHolder) view.getTag();
         imageLoader = ImageLoader.getInstance();
 
-        viewHolder.tvName.setText(entity.getTitle()+"");
-        viewHolder.tvMsgNotification.setText(entity.getDescription()+"");
-        viewHolder.rbReview.setScore(entity.getRating());
+        viewHolder.tvName.setText(entity.getUserName()+"");
+        viewHolder.tvMsgNotification.setText(entity.getAnalysis()+"");
+        viewHolder.rbReview.setScore(Float.parseFloat(entity.getStatus()));
 
     }
 
