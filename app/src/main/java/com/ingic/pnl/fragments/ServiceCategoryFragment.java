@@ -94,11 +94,11 @@ public class ServiceCategoryFragment extends BaseFragment implements RecyclerVie
 
     private void BindData() {
         userCollections = new ArrayList<>();
+     /*   userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
-        userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
-        lvCompanies.BindRecyclerView(new PopularBinder(this), userCollections,
+       */ lvCompanies.BindRecyclerView(new PopularBinder(this), userCollections,
                 new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false), new DefaultItemAnimator());
 
         if (userCollections.size() <= 0) {

@@ -14,7 +14,7 @@ public class CompanyDetailEnt {
     private CompanyModel companyModel;
     @SerializedName("reviewModel")
     @Expose
-    private Object reviewModel;
+    private ReviewModel reviewModel;
 
     public CompanyModel getCompanyModel() {
         return companyModel;
@@ -24,11 +24,11 @@ public class CompanyDetailEnt {
         this.companyModel = companyModel;
     }
 
-    public Object getReviewModel() {
+    public ReviewModel getReviewModel() {
         return reviewModel;
     }
 
-    public void setReviewModel(Object reviewModel) {
+    public void setReviewModel(ReviewModel reviewModel) {
         this.reviewModel = reviewModel;
     }
 }

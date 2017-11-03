@@ -1,38 +1,50 @@
 package com.ingic.pnl.entities;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created on 10/19/2017.
  */
 
 public class PopularEnt {
-    Integer image;
-    String companyName;
-    String description;
-    String location;
-    String phone;
+    @SerializedName("Name")
+    @Expose
+    private String name;
+    @SerializedName("Description")
+    @Expose
+    private String description;
+    @SerializedName("Phone")
+    @Expose
+    private String phone;
+    @SerializedName("Address")
+    @Expose
+    private String address;
+    @SerializedName("Latitude")
+    @Expose
+    private Double latitude;
+    @SerializedName("Longitude")
+    @Expose
+    private Double longitude;
+    @SerializedName("ImageUrl")
+    @Expose
+    private String imageUrl;
+    @SerializedName("WebUrl")
+    @Expose
+    private String webUrl;
+    @SerializedName("IsMarkedFavorite")
+    @Expose
+    private Boolean isMarkedFavorite;
+    @SerializedName("Id")
+    @Expose
+    private Integer id;
 
-    public PopularEnt(Integer image, String companyName, String description, String location, String phone) {
-        this.image = image;
-        this.companyName = companyName;
-        this.description = description;
-        this.location = location;
-        this.phone = phone;
+    public String getName() {
+        return name;
     }
 
-    public Integer getImage() {
-        return image;
-    }
-
-    public void setImage(Integer image) {
-        this.image = image;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -43,19 +55,67 @@ public class PopularEnt {
         this.description = description;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getPhone() {
         return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getWebUrl() {
+        return webUrl;
+    }
+
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl;
+    }
+
+    public Boolean getIsMarkedFavorite() {
+        return isMarkedFavorite;
+    }
+
+    public void setIsMarkedFavorite(Boolean isMarkedFavorite) {
+        this.isMarkedFavorite = isMarkedFavorite;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

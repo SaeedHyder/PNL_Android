@@ -43,6 +43,11 @@ public class SortingByItemBinder extends ViewBinder<SortingByEnt> {
 
         final ViewHolder viewHolder = (ViewHolder) view.getTag();
         imageLoader = ImageLoader.getInstance();
+        viewHolder.tvCompanyName.setText(entity.getName()+"");
+        viewHolder.tvCompanyDescription.setText(entity.getDescription()+"");
+        viewHolder.tvLocation.setText(entity.getAddress()+"");
+        viewHolder.tvPhone.setText(entity.getPhone()+"");
+
     }
 
     static class ViewHolder extends BaseViewHolder {

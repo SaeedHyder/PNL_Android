@@ -1,5 +1,6 @@
 package com.ingic.pnl.entities;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,63 +11,113 @@ public class SortingByEnt {
 
 
     @SerializedName("Name")
-    private String Name;
+    @Expose
+    private String name;
     @SerializedName("Description")
-    private String Description;
+    @Expose
+    private String description;
+    @SerializedName("Phone")
+    @Expose
+    private String phone;
+    @SerializedName("Address")
+    @Expose
+    private String address;
+    @SerializedName("Latitude")
+    @Expose
+    private Double latitude;
+    @SerializedName("Longitude")
+    @Expose
+    private Double longitude;
     @SerializedName("ImageUrl")
-    private String ImageUrl;
+    @Expose
+    private String imageUrl;
     @SerializedName("WebUrl")
-    private String WebUrl;
-    @SerializedName("LocationUrl")
-    private String LocationUrl;
+    @Expose
+    private String webUrl;
+    @SerializedName("IsMarkedFavorite")
+    @Expose
+    private Boolean isMarkedFavorite;
     @SerializedName("Id")
-    private int Id;
+    @Expose
+    private Integer id;
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public String getImageUrl() {
-        return ImageUrl;
+        return imageUrl;
     }
 
-    public void setImageUrl(String ImageUrl) {
-        this.ImageUrl = ImageUrl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getWebUrl() {
-        return WebUrl;
+        return webUrl;
     }
 
-    public void setWebUrl(String WebUrl) {
-        this.WebUrl = WebUrl;
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl;
     }
 
-    public String getLocationUrl() {
-        return LocationUrl;
+    public Boolean getIsMarkedFavorite() {
+        return isMarkedFavorite;
     }
 
-    public void setLocationUrl(String LocationUrl) {
-        this.LocationUrl = LocationUrl;
+    public void setIsMarkedFavorite(Boolean isMarkedFavorite) {
+        this.isMarkedFavorite = isMarkedFavorite;
     }
 
-    public int getId() {
-        return Id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

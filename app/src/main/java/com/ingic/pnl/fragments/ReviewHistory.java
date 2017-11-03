@@ -62,7 +62,7 @@ public class ReviewHistory extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        serviceHelper.enqueueCall(webService.getReviewList(1), WebServiceConstants.REVIEWSLIST);
+        serviceHelper.enqueueCall(webService.getAllReviewsOnProfile(prefHelper.getUserID()), WebServiceConstants.REVIEWSLIST);
        // setReviewsData();
 
     }

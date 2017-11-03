@@ -9,9 +9,11 @@ public class WebServiceConstants {
     public static final String COMPANYDETAIL ="COMPANYDETAIL" ;
     public static final String MARKFAVORITE ="MARKFAVORITE" ;
     public static final String FAVOURITELIST ="FAVOURITELIST" ;
+    public static final String MOSTPOPULARLIST ="MOSTPOPULARLIST" ;
     public static final String REVIEWSLIST ="REVIEWSLIST" ;
     public static final String CREATEREVIEW ="CREATEREVIEW" ;
     public static final String Register ="Register" ;
+    public static final String FAVOURITECOUNT ="FAVOURITECOUNT" ;
     public static final String LIST_CATEGORY ="LIST_CATEGORY" ;
     public static final String CATEGORY_SHOWCASE ="CATEGORY_SHOWCASE" ;
     public static final String LIST_COMPANY_BY_CARACTER ="LIST_COMPANY_BY_CARACTER" ;

@@ -9,21 +9,34 @@ import com.google.gson.annotations.SerializedName;
 
 public class CompanyModel {
 
+
     @SerializedName("Name")
     @Expose
     private String name;
     @SerializedName("Description")
     @Expose
     private String description;
+    @SerializedName("Phone")
+    @Expose
+    private String phone;
+    @SerializedName("Address")
+    @Expose
+    private String address;
+    @SerializedName("Latitude")
+    @Expose
+    private Double latitude;
+    @SerializedName("Longitude")
+    @Expose
+    private Double longitude;
     @SerializedName("ImageUrl")
     @Expose
     private String imageUrl;
     @SerializedName("WebUrl")
     @Expose
     private String webUrl;
-    @SerializedName("LocationUrl")
+    @SerializedName("IsMarkedFavorite")
     @Expose
-    private String locationUrl;
+    private Boolean isMarkedFavorite;
     @SerializedName("Id")
     @Expose
     private Integer id;
@@ -44,6 +57,38 @@ public class CompanyModel {
         this.description = description;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
     public String getImageUrl() {
         return imageUrl;
     }
@@ -60,12 +105,12 @@ public class CompanyModel {
         this.webUrl = webUrl;
     }
 
-    public String getLocationUrl() {
-        return locationUrl;
+    public Boolean getIsMarkedFavorite() {
+        return isMarkedFavorite;
     }
 
-    public void setLocationUrl(String locationUrl) {
-        this.locationUrl = locationUrl;
+    public void setIsMarkedFavorite(Boolean isMarkedFavorite) {
+        this.isMarkedFavorite = isMarkedFavorite;
     }
 
     public Integer getId() {

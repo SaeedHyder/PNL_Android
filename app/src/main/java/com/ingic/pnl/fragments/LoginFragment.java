@@ -167,7 +167,7 @@ public class LoginFragment extends BaseFragment implements GoogleHelper.GoogleHe
                 googleHelper.intentGoogleSign();
                 break;
             case R.id.btn_forgot_password:
-                UIHelper.showShortToastInCenter(getDockActivity(), "Will be implemented in Beta Version");
+                getDockActivity().replaceDockableFragment(ForgotPasswordFragment.newInstance(), "ForgotPasswordFragment");
                 break;
         }
     }

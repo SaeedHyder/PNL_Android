@@ -13,6 +13,7 @@ import android.widget.ToggleButton;
 
 import com.ingic.pnl.R;
 import com.ingic.pnl.entities.CompanyDetailEnt;
+import com.ingic.pnl.entities.CompanyModel;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
 import com.ingic.pnl.global.WebServiceConstants;
 import com.ingic.pnl.helpers.DialogHelper;
@@ -63,15 +64,30 @@ public class CompanyDetailFragment extends BaseFragment {
     AnyTextView tvAllPosts;
     @BindView(R.id.ll_all_posts)
     LinearLayout llAllPosts;
+    @BindView(R.id.review_layout)
+    LinearLayout llReviewLayout;
+    @BindView(R.id.txt_no_data)
+    AnyTextView NoReviewTxt;
+    @BindView(R.id.mainFrame)
+    LinearLayout mainFrame;
+
+
+
     Unbinder unbinder;
 
     private static String COMPANYIDKEY = "companyidkey";
+    private static String COMPANYIDNAME = "COMPANYIDNAME";
     @BindView(R.id.toggleFavourite)
     ToggleButton toggleFavourite;
     private int companyId;
+    private String companyName = "Travel Company";
     private CompanyDetailEnt companyDetailEnt;
     private ImageLoader imageLoader;
     private String websiteURL;
+    private String latitude;
+    private String longitude;
+    private String phoneNumber;
+    private boolean isFavorite;
 
     public static CompanyDetailFragment newInstance() {
         Bundle args = new Bundle();
@@ -81,9 +97,10 @@ public class CompanyDetailFragment extends BaseFragment {
         return fragment;
     }
 
-    public static CompanyDetailFragment newInstance(int companyId) {
+    public static CompanyDetailFragment newInstance(int companyId, String companyName) {
         Bundle args = new Bundle();
         args.putInt(COMPANYIDKEY, companyId);
+        args.putString(COMPANYIDNAME, companyName);
         CompanyDetailFragment fragment = new CompanyDetailFragment();
         fragment.setArguments(args);
         return fragment;
@@ -94,6 +111,7 @@ public class CompanyDetailFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             companyId = getArguments().getInt(COMPANYIDKEY);
+            companyName = getArguments().getString(COMPANYIDNAME);
         }
         imageLoader = ImageLoader.getInstance();
 
@@ -109,8 +127,15 @@ public class CompanyDetailFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mainFrame.setVisibility(View.GONE);
         serviceHelper.enqueueCall(webService.getCompanyDetail(companyId), WebServiceConstants.COMPANYDETAIL);
         listners();
+
+        if (isFavorite) {
+            toggleFavourite.setChecked(true);
+        } else {
+            toggleFavourite.setChecked(false);
+        }
 
     }
 
@@ -119,6 +144,10 @@ public class CompanyDetailFragment extends BaseFragment {
         toggleFavourite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                CompanyModel companyModel = new CompanyModel();
+                companyModel.setIsMarkedFavorite(isChecked);
+
                 serviceHelper.enqueueCall(webService.markFavorite(prefHelper.getUserID(), companyId, isChecked), WebServiceConstants.MARKFAVORITE);
 
             }
@@ -129,9 +158,14 @@ public class CompanyDetailFragment extends BaseFragment {
     public void ResponseSuccess(Object result, String Tag, String message) {
         switch (Tag) {
             case WebServiceConstants.COMPANYDETAIL:
+                mainFrame.setVisibility(View.VISIBLE);
                 companyDetailEnt = (CompanyDetailEnt) result;
                 setComapanyDetail(companyDetailEnt);
-                websiteURL=companyDetailEnt.getCompanyModel().getWebUrl();
+                websiteURL = companyDetailEnt.getCompanyModel().getWebUrl();
+                latitude = String.valueOf(companyDetailEnt.getCompanyModel().getLatitude() + "");
+                longitude = String.valueOf(companyDetailEnt.getCompanyModel().getLongitude() + "");
+                phoneNumber = String.valueOf(companyDetailEnt.getCompanyModel().getPhone() + "");
+                isFavorite = companyDetailEnt.getCompanyModel().getIsMarkedFavorite();
                 break;
 
             case WebServiceConstants.MARKFAVORITE:
@@ -142,10 +176,26 @@ public class CompanyDetailFragment extends BaseFragment {
     }
 
     private void setComapanyDetail(CompanyDetailEnt companyDetailEnt) {
-        tvCompanyDetail.setText(companyDetailEnt.getCompanyModel().getDescription() + " ");
-        tvHeading1.setText(companyDetailEnt.getCompanyModel().getName() + "");
-        //  imageLoader.displayImage(companyDetailEnt.getCompanyModel().getImageUrl(),ivMain);
+        if (companyDetailEnt != null) {
+            tvCompanyDetail.setText(companyDetailEnt.getCompanyModel().getDescription() + " ");
+            tvHeading1.setText(companyDetailEnt.getCompanyModel().getName() + "");
+            //  imageLoader.displayImage(companyDetailEnt.getCompanyModel().getImageUrl(),ivMain);
 
+            //Review
+            if (companyDetailEnt.getReviewModel() != null) {
+                NoReviewTxt.setVisibility(View.GONE);
+                llReviewLayout.setVisibility(View.VISIBLE);
+                if (companyDetailEnt.getReviewModel().getUserName() != null)
+                    tvName.setText(companyDetailEnt.getReviewModel().getUserName() + " ");
+                tvMsgNotification.setText(companyDetailEnt.getReviewModel().getAnalysis() + "");
+                rbReview2.setScore(Float.parseFloat(companyDetailEnt.getReviewModel().getStatus()));
+            }
+            else {
+                NoReviewTxt.setVisibility(View.VISIBLE);
+                llReviewLayout.setVisibility(View.GONE);
+
+            }
+        }
     }
 
     @Override
@@ -158,50 +208,43 @@ public class CompanyDetailFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_address_details:
-               // UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.beta));
                 openMapDialoge();
                 break;
             case R.id.tv_mark_favourite:
-                //  UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.beta));
-              if(toggleFavourite.isChecked()){
-                    toggleFavourite.setChecked(false);
-                  serviceHelper.enqueueCall(webService.markFavorite(prefHelper.getUserID(), companyId, true), WebServiceConstants.MARKFAVORITE);
-              }
-              else{
-                  toggleFavourite.setChecked(true);
-                  serviceHelper.enqueueCall(webService.markFavorite(prefHelper.getUserID(), companyId, false), WebServiceConstants.MARKFAVORITE);
-              }
-             break;
+
+                break;
             case R.id.tv_contact_details:
-                UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.beta));
+                openDialerIntent();
                 break;
             case R.id.tv_share_favourite:
                 UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.beta));
                 break;
             case R.id.tv_website:
-               // UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.beta));
                 openWebsite();
                 break;
             case R.id.tv_write_review:
                 getDockActivity().replaceDockableFragment(RateAndWriteFragment.newInstance(companyId), "RateAndWriteFragment");
-                //write review fragment
                 break;
             case R.id.ll_all_posts:
                 getDockActivity().replaceDockableFragment(ReviewsFragment.newInstance(companyId), "ReviewsFragment");
-                //reviews listing fragment
                 break;
         }
     }
 
+    private void openDialerIntent() {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phoneNumber));
+        startActivity(intent);
+    }
+
     private void openMapDialoge() {
         final DialogHelper dialog = new DialogHelper(getDockActivity());
-        dialog.mapDialoge(R.layout.map_dialoge,getDockActivity());
+        dialog.mapDialoge(R.layout.map_dialoge, getDockActivity(), latitude, longitude);
         dialog.showDialog();
     }
 
     private void openWebsite() {
-        //Uri uriUrl = Uri.parse(websiteURL);
-        Uri uriUrl = Uri.parse("http://www.google.com");
+        Uri uriUrl = Uri.parse(websiteURL);
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
     }
@@ -210,7 +253,7 @@ public class CompanyDetailFragment extends BaseFragment {
     public void setTitleBar(TitleBar titleBar) {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
-        titleBar.setSubHeading(getString(R.string.travel));
+        titleBar.setSubHeading(companyName);
         titleBar.showBackButton();
     }
 }

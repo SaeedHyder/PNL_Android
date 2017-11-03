@@ -94,7 +94,7 @@ public class FavouriteFragment extends BaseFragment {
         lvNotifications.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(userCollection.get(position).getId()),"CompanyDetailFragment");
+                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(userCollection.get(position).getId(),userCollection.get(position).getName()),"CompanyDetailFragment");
             }
         });
     }

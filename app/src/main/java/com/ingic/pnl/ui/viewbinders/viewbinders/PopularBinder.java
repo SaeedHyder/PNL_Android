@@ -33,11 +33,11 @@ public class PopularBinder extends RecyclerViewBinder<PopularEnt> {
     @Override
     public void bindView(final PopularEnt entity, final int position, Object viewHolder, Context context) {
         ViewHolder holder = (ViewHolder) viewHolder;
-        holder.ivMain.setImageResource(entity.getImage());
+      /*  holder.ivMain.setImageResource(entity.getImage());
         holder.tvCompanyDescription.setText(entity.getDescription());
         holder.tvCompanyName.setText(entity.getCompanyName());
         holder.tvLocation.setText(entity.getLocation());
-        holder.tvPhone.setText(entity.getPhone());
+        holder.tvPhone.setText(entity.getPhone());*/
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

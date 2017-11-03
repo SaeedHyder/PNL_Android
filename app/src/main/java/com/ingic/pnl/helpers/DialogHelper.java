@@ -40,14 +40,14 @@ public class DialogHelper {
         return this.dialog;
     }
 
-    public Dialog mapDialoge(int layoutID,Context contextt) {
+    public Dialog mapDialoge(int layoutID,Context contextt,String lat,String lng) {
         imageLoader=ImageLoader.getInstance();
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         this.dialog.setContentView(layoutID);
         ImageView mapImage=(ImageView)dialog.findViewById(R.id.mapView);
-        String mapURL="https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=14&" +
-                "&scale=2&size=500x300&maptype=roadmap&markers=color:blue|40.714728,-73.998672&key=AIzaSyCDylplefNyWlLDoBL_n2VFjwlMWvq3sBg";
+        String mapURL="https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&zoom=14&" +
+                "&scale=2&size=500x300&maptype=roadmap&markers=color:blue|"+lat+","+lng+"&key=AIzaSyCDylplefNyWlLDoBL_n2VFjwlMWvq3sBg";
         imageLoader.displayImage(mapURL,mapImage);
         return this.dialog;
     }

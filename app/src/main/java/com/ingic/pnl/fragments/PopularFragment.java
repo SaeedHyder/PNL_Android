@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ingic.pnl.R;
+import com.ingic.pnl.entities.FavoritesEnt;
 import com.ingic.pnl.entities.PopularEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.WebServiceConstants;
 import com.ingic.pnl.interfaces.RecyclerViewItemListener;
 import com.ingic.pnl.ui.viewbinders.viewbinders.PopularBinder;
 import com.ingic.pnl.ui.views.AnyTextView;
@@ -30,6 +32,7 @@ public class PopularFragment extends BaseFragment implements RecyclerViewItemLis
     @BindView(R.id.lv_companies)
     CustomRecyclerView lvCompanies;
     private ArrayList<PopularEnt> userCollections;
+    private ArrayList<PopularEnt> popularEnts;
 
     public static PopularFragment newInstance() {
         Bundle args = new Bundle();
@@ -57,16 +60,33 @@ public class PopularFragment extends BaseFragment implements RecyclerViewItemLis
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        BindData();
+
+        serviceHelper.enqueueCall(webService.getMostPopularList(prefHelper.getUserID()), WebServiceConstants.MOSTPOPULARLIST);
+
+
     }
 
-    private void BindData() {
-        userCollections = new ArrayList<>();
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.FAVOURITELIST:
+                popularEnts = (ArrayList<PopularEnt>) result;
+                userCollections=popularEnts;
+                BindData(popularEnts);
+
+                break;
+
+
+        }
+    }
+
+    private void BindData(ArrayList<PopularEnt> popularEnts) {
+       /*  userCollections = new ArrayList<>();
+       userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
-        userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
-        lvCompanies.BindRecyclerView(new PopularBinder(this), userCollections,
+      */  lvCompanies.BindRecyclerView(new PopularBinder(this), userCollections,
                 new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false), new DefaultItemAnimator());
 
         if (userCollections.size() <= 0) {
