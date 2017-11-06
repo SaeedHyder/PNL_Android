@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.ingic.pnl.R;
 import com.ingic.pnl.activities.DockActivity;
+import com.ingic.pnl.entities.ServiceEnt;
 import com.ingic.pnl.entities.ViewAllServicesEnt;
 import com.ingic.pnl.helpers.BasePreferenceHelper;
 import com.ingic.pnl.ui.views.AnyTextView;
@@ -17,7 +18,7 @@ import butterknife.ButterKnife;
  * Created by saeedhyder on 10/19/2017.
  */
 
-public class ViewAllServicesItemBinder extends ViewBinder<ViewAllServicesEnt> {
+public class ViewAllServicesItemBinder extends ViewBinder<ServiceEnt> {
 
     private DockActivity dockActivity;
     private BasePreferenceHelper prefHelper;
@@ -36,12 +37,12 @@ public class ViewAllServicesItemBinder extends ViewBinder<ViewAllServicesEnt> {
     }
 
     @Override
-    public void bindView(ViewAllServicesEnt entity, int position, int grpPosition, View view, Activity activity) {
+    public void bindView(ServiceEnt entity, int position, int grpPosition, View view, Activity activity) {
 
         final ViewHolder viewHolder = (ViewHolder) view.getTag();
         imageLoader = ImageLoader.getInstance();
 
-        viewHolder.companiesSorting.setText(entity.getCompaniesSorting() + "");
+        viewHolder.companiesSorting.setText(entity.getName() + "");
     }
 
 

@@ -2,13 +2,14 @@ package com.ingic.pnl.retrofit;
 
 
 import com.ingic.pnl.entities.CompanyDetailEnt;
-import com.ingic.pnl.entities.CompanyModel;
 import com.ingic.pnl.entities.FavoritesEnt;
 import com.ingic.pnl.entities.PopularEnt;
 import com.ingic.pnl.entities.ResponseWrapper;
 import com.ingic.pnl.entities.ReviewsEnt;
+import com.ingic.pnl.entities.ServiceEnt;
 import com.ingic.pnl.entities.SortingByEnt;
 import com.ingic.pnl.entities.UserIDEnt;
+import com.ingic.pnl.entities.ViewAllServicesEnt;
 
 import java.util.ArrayList;
 
@@ -79,6 +80,19 @@ public interface WebService {
 
     @GET("company/getallmostpopular/{id}")
     Call<ResponseWrapper<ArrayList<PopularEnt>>> getMostPopularList(@Path("id") String id);
+
+    @GET("category/getallinshowcase")
+    Call<ResponseWrapper<ArrayList<ServiceEnt>>> getSerivesList();
+
+    @GET("category/getall")
+    Call<ResponseWrapper<ArrayList<ServiceEnt>>> getAllServices();
+
+    @GET("company/getallbycategory/{id}")
+    Call<ResponseWrapper<ArrayList<PopularEnt>>> getCategoryDetail(@Path("id") String id);
+
+
+
+
 
 
 

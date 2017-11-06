@@ -20,11 +20,12 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-
+        <item name="colorAccent">@color/app_blue</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="android:textColorHint">@color/white</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
     <style name="edittextlabel" parent="TextAppearance.AppCompat">
         <!-- Hint color and label color in FALSE state -->
         <item name="android:textColorHint">@color/white</item>

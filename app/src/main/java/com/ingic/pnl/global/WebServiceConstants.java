@@ -10,6 +10,8 @@ public class WebServiceConstants {
     public static final String MARKFAVORITE ="MARKFAVORITE" ;
     public static final String FAVOURITELIST ="FAVOURITELIST" ;
     public static final String MOSTPOPULARLIST ="MOSTPOPULARLIST" ;
+    public static final String CATEGORYDETAIL ="CATEGORYDETAIL" ;
+    public static final String SERVICESLIST ="SERVICESLIST" ;
     public static final String REVIEWSLIST ="REVIEWSLIST" ;
     public static final String CREATEREVIEW ="CREATEREVIEW" ;
     public static final String Register ="Register" ;

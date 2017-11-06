@@ -1,22 +1,45 @@
 package com.ingic.pnl.entities;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by saeedhyder on 10/19/2017.
  */
 
 public class ViewAllServicesEnt {
 
-    String companiesSorting;
+    @SerializedName("Name")
+    @Expose
+    private String name;
+    @SerializedName("ImageUrl")
+    @Expose
+    private String imageUrl;
+    @SerializedName("Id")
+    @Expose
+    private Integer id;
 
-    public ViewAllServicesEnt(String companiesSorting) {
-        this.companiesSorting = companiesSorting;
+    public String getName() {
+        return name;
     }
 
-    public String getCompaniesSorting() {
-        return companiesSorting;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setCompaniesSorting(String companiesSorting) {
-        this.companiesSorting = companiesSorting;
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

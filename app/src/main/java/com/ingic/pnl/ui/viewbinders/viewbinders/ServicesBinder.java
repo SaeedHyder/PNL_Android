@@ -33,8 +33,8 @@ public class ServicesBinder extends RecyclerViewBinder<ServiceEnt> {
     @Override
     public void bindView(final ServiceEnt entity, final int position, Object viewHolder, Context context) {
         ViewHolder holder = (ViewHolder) viewHolder;
-        holder.imgService.setImageResource(entity.getImageResID());
-        holder.txtService.setText(entity.getText() + "");
+       // holder.imgService.setImageResource(entity.getImageResID());
+        holder.txtService.setText(entity.getName() + "");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

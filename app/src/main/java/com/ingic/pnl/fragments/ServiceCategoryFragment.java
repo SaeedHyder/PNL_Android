@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 
 import com.ingic.pnl.R;
 import com.ingic.pnl.entities.PopularEnt;
+import com.ingic.pnl.entities.ServiceEnt;
 import com.ingic.pnl.entities.servicesGridViewEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.WebServiceConstants;
 import com.ingic.pnl.interfaces.RecyclerViewItemListener;
 import com.ingic.pnl.ui.viewbinders.viewbinders.PopularBinder;
 import com.ingic.pnl.ui.views.AnyTextView;
@@ -35,8 +37,10 @@ public class ServiceCategoryFragment extends BaseFragment implements RecyclerVie
     CustomRecyclerView lvCompanies;
     Unbinder unbinder;
     private ArrayList<PopularEnt> userCollections;
-    private servicesGridViewEnt entity;
+    private ArrayList<PopularEnt> popularEnts;
+    private ServiceEnt entity;
     private String titleName = "Hospital";
+    private String id="";
 
     public static ServiceCategoryFragment newInstance() {
         Bundle args = new Bundle();
@@ -46,7 +50,7 @@ public class ServiceCategoryFragment extends BaseFragment implements RecyclerVie
         return fragment;
     }
 
-    public static ServiceCategoryFragment newInstance(servicesGridViewEnt servicesGridViewEnt) {
+    public static ServiceCategoryFragment newInstance(ServiceEnt servicesGridViewEnt) {
         Bundle args = new Bundle();
         args.putString(ServiceName, new Gson().toJson(servicesGridViewEnt));
         ServiceCategoryFragment fragment = new ServiceCategoryFragment();
@@ -62,7 +66,7 @@ public class ServiceCategoryFragment extends BaseFragment implements RecyclerVie
             ServiceName = getArguments().getString(ServiceName);
         }
         if (ServiceName != null && !ServiceName.equals("")) {
-            entity = new Gson().fromJson(ServiceName, servicesGridViewEnt.class);
+            entity = new Gson().fromJson(ServiceName, ServiceEnt.class);
         }
 
     }
@@ -85,20 +89,38 @@ public class ServiceCategoryFragment extends BaseFragment implements RecyclerVie
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        BindData();
-        if (entity != null)
-            titleName = entity.getText();
+
+        if (entity != null){
+            titleName = entity.getName();
+            id= String.valueOf(entity.getId());
+
+        }
+
+        serviceHelper.enqueueCall(webService.getCategoryDetail(id), WebServiceConstants.CATEGORYDETAIL);
 
 
     }
 
-    private void BindData() {
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.CATEGORYDETAIL:
+                popularEnts = (ArrayList<PopularEnt>) result;
+                BindData(popularEnts);
+
+                break;
+
+
+        }
+    }
+
+    private void BindData(ArrayList<PopularEnt> popularEnts) {
         userCollections = new ArrayList<>();
-     /*   userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
+       /* userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
-        userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
-       */ lvCompanies.BindRecyclerView(new PopularBinder(this), userCollections,
+        userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));*/
+        lvCompanies.BindRecyclerView(new PopularBinder(this), popularEnts,
                 new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false), new DefaultItemAnimator());
 
         if (userCollections.size() <= 0) {

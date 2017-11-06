@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import com.ingic.pnl.R;
 import com.ingic.pnl.activities.DockActivity;
 import com.ingic.pnl.activities.MainActivity;
+import com.ingic.pnl.entities.ServiceEnt;
 import com.ingic.pnl.entities.servicesGridViewEnt;
 import com.ingic.pnl.helpers.BasePreferenceHelper;
 import com.ingic.pnl.ui.viewbinders.abstracts.ViewBinder;
@@ -22,7 +23,7 @@ import butterknife.ButterKnife;
  * Created by saeedhyder on 10/20/2017.
  */
 
-public class ServicesGridViewItemBinder extends ViewBinder<servicesGridViewEnt> {
+public class ServicesGridViewItemBinder extends ViewBinder<ServiceEnt> {
 
     private DockActivity dockActivity;
     private BasePreferenceHelper prefHelper;
@@ -41,7 +42,7 @@ public class ServicesGridViewItemBinder extends ViewBinder<servicesGridViewEnt> 
     }
 
     @Override
-    public void bindView(servicesGridViewEnt entity, int position, int grpPosition, View view, Activity activity) {
+    public void bindView(ServiceEnt entity, int position, int grpPosition, View view, Activity activity) {
         LinearLayout gridView = (LinearLayout) view;
         int screenHeight = activity.getWindowManager()
                 .getDefaultDisplay().getHeight();
@@ -50,10 +51,11 @@ public class ServicesGridViewItemBinder extends ViewBinder<servicesGridViewEnt> 
         // gridView.setMinimumHeight(screenHeight / 4);
         gridView.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.MATCH_PARENT, screenHeight / 4));
         final ViewHolder viewHolder = (ViewHolder) view.getTag();
-        viewHolder.imgService.setImageResource(entity.getImageint());
-        /*imageLoader = ImageLoader.getInstance();
-        imageLoader.displayImage(entity.getImage(), viewHolder.imgService);*/
-        viewHolder.txtService.setText(entity.getText() + "");
+      //  viewHolder.imgService.setImageResource(entity.getImageUrl());
+
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.displayImage(entity.getImageUrl(), viewHolder.imgService);
+      //  viewHolder.txtService.setText(entity.getText() + "");
     }
 
     static class ViewHolder extends BaseViewHolder {

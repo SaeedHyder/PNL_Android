@@ -1,46 +1,47 @@
 package com.ingic.pnl.entities;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by saeedhyder on 10/20/2017.
  */
 
 public class servicesGridViewEnt {
 
-    private String image;
-    private String text;
-    private Integer imageint;
+    @SerializedName("Name")
+    @Expose
+    private String name;
+    @SerializedName("ImageUrl")
+    @Expose
+    private String imageUrl;
+    @SerializedName("Id")
+    @Expose
+    private Integer id;
 
-    public servicesGridViewEnt(String image, String text, Integer imageint) {
-        this.image = image;
-        this.text = text;
-        this.imageint = imageint;
-    }
-    public servicesGridViewEnt(String image, String text) {
-        this.image = image;
-        this.text = text;
-    }
-
-    public Integer getImageint() {
-        return imageint;
+    public String getName() {
+        return name;
     }
 
-    public void setImageint(Integer imageint) {
-        this.imageint = imageint;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    public String getText() {
-        return text;
+    public Integer getId() {
+        return id;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setId(Integer id) {
+        this.id = id;
     }
+
+
 }

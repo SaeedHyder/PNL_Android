@@ -33,6 +33,7 @@ public class PopularFragment extends BaseFragment implements RecyclerViewItemLis
     CustomRecyclerView lvCompanies;
     private ArrayList<PopularEnt> userCollections;
     private ArrayList<PopularEnt> popularEnts;
+    private PopularEnt popularEnt=new PopularEnt();
 
     public static PopularFragment newInstance() {
         Bundle args = new Bundle();
@@ -69,9 +70,8 @@ public class PopularFragment extends BaseFragment implements RecyclerViewItemLis
     @Override
     public void ResponseSuccess(Object result, String Tag, String message) {
         switch (Tag) {
-            case WebServiceConstants.FAVOURITELIST:
+            case WebServiceConstants.MOSTPOPULARLIST:
                 popularEnts = (ArrayList<PopularEnt>) result;
-                userCollections=popularEnts;
                 BindData(popularEnts);
 
                 break;
@@ -86,10 +86,9 @@ public class PopularFragment extends BaseFragment implements RecyclerViewItemLis
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
-      */  lvCompanies.BindRecyclerView(new PopularBinder(this), userCollections,
-                new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false), new DefaultItemAnimator());
+      */
 
-        if (userCollections.size() <= 0) {
+        if (popularEnts.size() <= 0) {
             txtNoData.setVisibility(View.VISIBLE);
             lvCompanies.setVisibility(View.GONE);
         } else {
@@ -97,6 +96,10 @@ public class PopularFragment extends BaseFragment implements RecyclerViewItemLis
             lvCompanies.setVisibility(View.VISIBLE);
 
         }
+
+       lvCompanies.BindRecyclerView(new PopularBinder(this), popularEnts,
+                new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false), new DefaultItemAnimator());
+
     }
     @Override
     public void setTitleBar(TitleBar titleBar) {
@@ -107,7 +110,8 @@ public class PopularFragment extends BaseFragment implements RecyclerViewItemLis
     }
     @Override
     public void onRecyclerItemClicked(Object Ent, int position) {
-        getDockActivity().replaceDockableFragment(CompanyDetailFragment.newInstance(), "CompanyDetailFragment");
+        popularEnt=(PopularEnt)Ent;
+        getDockActivity().replaceDockableFragment(CompanyDetailFragment.newInstance(popularEnt.getId(),popularEnt.getName()), "CompanyDetailFragment");
     }
 
 
