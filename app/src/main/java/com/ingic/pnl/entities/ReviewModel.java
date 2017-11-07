@@ -9,6 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ReviewModel {
 
+
     @SerializedName("CompanyId")
     @Expose
     private Integer companyId;
@@ -21,6 +22,9 @@ public class ReviewModel {
     @SerializedName("Status")
     @Expose
     private String status;
+    @SerializedName("Points")
+    @Expose
+    private Integer points;
     @SerializedName("Id")
     @Expose
     private Integer id;
@@ -55,6 +59,14 @@ public class ReviewModel {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
     }
 
     public Integer getId() {

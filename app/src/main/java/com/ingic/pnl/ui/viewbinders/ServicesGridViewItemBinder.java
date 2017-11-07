@@ -55,7 +55,7 @@ public class ServicesGridViewItemBinder extends ViewBinder<ServiceEnt> {
 
         imageLoader = ImageLoader.getInstance();
         imageLoader.displayImage(entity.getImageUrl(), viewHolder.imgService);
-      //  viewHolder.txtService.setText(entity.getText() + "");
+        viewHolder.txtService.setText(entity.getName() + "");
     }
 
     static class ViewHolder extends BaseViewHolder {

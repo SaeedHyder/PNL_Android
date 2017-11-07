@@ -11,10 +11,8 @@ import android.widget.ListView;
 
 import com.ingic.pnl.R;
 import com.ingic.pnl.entities.ServiceEnt;
-import com.ingic.pnl.entities.ViewAllServicesEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
 import com.ingic.pnl.global.WebServiceConstants;
-import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.helpers.Utils;
 import com.ingic.pnl.ui.adapters.ArrayListAdapter;
 import com.ingic.pnl.ui.viewbinders.abstracts.ViewAllServicesItemBinder;
@@ -22,6 +20,7 @@ import com.ingic.pnl.ui.views.AnyTextView;
 import com.ingic.pnl.ui.views.TitleBar;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +39,6 @@ public class ViewAllServicesFragment extends BaseFragment {
 
     private ArrayListAdapter<ServiceEnt> adapter;
     private ArrayList<ServiceEnt> userCollection;
-    private ArrayList<ServiceEnt> servicesEnt = new ArrayList<>();
 
     public static ViewAllServicesFragment newInstance() {
         Bundle args = new Bundle();
@@ -78,28 +76,20 @@ public class ViewAllServicesFragment extends BaseFragment {
     public void ResponseSuccess(Object result, String Tag, String message) {
         switch (Tag) {
             case WebServiceConstants.SERVICESLIST:
-                servicesEnt = (ArrayList<ServiceEnt>) result;
-                setViewAllServicesData(servicesEnt);
+                bindData((ArrayList<ServiceEnt>) result);
                 break;
 
         }
     }
 
-    private void setViewAllServicesData(ArrayList<ServiceEnt> servicesEnt) {
+
+    private void bindData(ArrayList<ServiceEnt> data) {
 
         userCollection = new ArrayList<>();
-        userCollection=servicesEnt;
-      /*  userCollection.add(new ViewAllServicesEnt("Service Category 1"));
-        userCollection.add(new ViewAllServicesEnt("Service Category 2"));
-        userCollection.add(new ViewAllServicesEnt("Service Category 3"));
-        userCollection.add(new ViewAllServicesEnt("Service Category 4"));*/
 
-        bindData(userCollection);
-    }
+        userCollection = data;
 
-    private void bindData(ArrayList<ServiceEnt> userCollection) {
-
-        if (userCollection.size() <= 0) {
+        if (data.size() <= 0) {
             txtNoData.setVisibility(View.VISIBLE);
             lvAllServices.setVisibility(View.GONE);
         } else {
@@ -110,7 +100,7 @@ public class ViewAllServicesFragment extends BaseFragment {
 
         adapter.clearList();
         lvAllServices.setAdapter(adapter);
-        adapter.addAll(userCollection);
+        adapter.addAll(data);
         adapter.notifyDataSetChanged();
 
     }
@@ -129,7 +119,6 @@ public class ViewAllServicesFragment extends BaseFragment {
             }
         });
     }
-
 
 
     @Override
@@ -152,15 +141,46 @@ public class ViewAllServicesFragment extends BaseFragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                localSearch(getSearchedArray(s.toString()));
             }
         }, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.beta));
+                //   UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.beta));
                 Utils.HideKeyBoard(getDockActivity());
             }
         }, getString(R.string.search_category));
+    }
+
+    public ArrayList<ServiceEnt> getSearchedArray(String keyword) {
+        if (userCollection.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        ArrayList<ServiceEnt> arrayList = new ArrayList<>();
+
+        for (ServiceEnt item : userCollection) {
+            String UserName = "";
+            if (item != null) {
+                UserName = item.getName();
+            }
+            if (Pattern.compile(Pattern.quote(keyword), Pattern.CASE_INSENSITIVE).matcher(UserName).find()) {
+                /*UserName.contains(keyword)*/
+                arrayList.add(item);
+            }
+        }
+        return arrayList;
+
+    }
+
+    private void localSearch(ArrayList<ServiceEnt> data) {
+
+        userCollection = new ArrayList<>();
+        userCollection = data;
+        adapter.clearList();
+        adapter.addAll(data);
+        adapter.notifyDataSetChanged();
+
     }
 
 }

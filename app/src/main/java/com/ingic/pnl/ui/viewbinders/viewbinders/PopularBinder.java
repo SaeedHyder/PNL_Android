@@ -9,6 +9,8 @@ import com.ingic.pnl.entities.PopularEnt;
 import com.ingic.pnl.interfaces.RecyclerViewItemListener;
 import com.ingic.pnl.ui.viewbinders.abstracts.RecyclerViewBinder;
 import com.ingic.pnl.ui.views.AnyTextView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,6 +21,7 @@ import butterknife.ButterKnife;
 
 public class PopularBinder extends RecyclerViewBinder<PopularEnt> {
     private RecyclerViewItemListener listener;
+    private ImageLoader imageLoader;
 
     public PopularBinder(RecyclerViewItemListener viewItemListener) {
         super(R.layout.items_favourite);
@@ -33,7 +36,10 @@ public class PopularBinder extends RecyclerViewBinder<PopularEnt> {
     @Override
     public void bindView(final PopularEnt entity, final int position, Object viewHolder, Context context) {
         ViewHolder holder = (ViewHolder) viewHolder;
+        imageLoader=ImageLoader.getInstance();
+     //   Picasso.with(context).load(entity.getImageUrl()).into(holder.ivMain);
        // holder.ivMain.setImageResource(entity.getImage());
+        imageLoader.displayImage(entity.getImageUrl(),holder.ivMain);
         holder.tvCompanyDescription.setText(entity.getDescription());
         holder.tvCompanyName.setText(entity.getName());
         holder.tvLocation.setText(entity.getAddress());

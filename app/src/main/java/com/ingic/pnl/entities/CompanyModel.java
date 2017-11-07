@@ -37,6 +37,9 @@ public class CompanyModel {
     @SerializedName("IsMarkedFavorite")
     @Expose
     private Boolean isMarkedFavorite;
+    @SerializedName("Rating")
+    @Expose
+    private Integer rating;
     @SerializedName("Id")
     @Expose
     private Integer id;
@@ -111,6 +114,14 @@ public class CompanyModel {
 
     public void setIsMarkedFavorite(Boolean isMarkedFavorite) {
         this.isMarkedFavorite = isMarkedFavorite;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
     public Integer getId() {

@@ -131,11 +131,6 @@ public class CompanyDetailFragment extends BaseFragment {
         serviceHelper.enqueueCall(webService.getCompanyDetail(companyId), WebServiceConstants.COMPANYDETAIL);
         listners();
 
-        if (isFavorite) {
-            toggleFavourite.setChecked(true);
-        } else {
-            toggleFavourite.setChecked(false);
-        }
 
     }
 
@@ -166,6 +161,7 @@ public class CompanyDetailFragment extends BaseFragment {
                 longitude = String.valueOf(companyDetailEnt.getCompanyModel().getLongitude() + "");
                 phoneNumber = String.valueOf(companyDetailEnt.getCompanyModel().getPhone() + "");
                 isFavorite = companyDetailEnt.getCompanyModel().getIsMarkedFavorite();
+                toggleFavourite.setChecked(isFavorite);
                 break;
 
             case WebServiceConstants.MARKFAVORITE:
@@ -179,7 +175,9 @@ public class CompanyDetailFragment extends BaseFragment {
         if (companyDetailEnt != null) {
             tvCompanyDetail.setText(companyDetailEnt.getCompanyModel().getDescription() + " ");
             tvHeading1.setText(companyDetailEnt.getCompanyModel().getName() + "");
-            //  imageLoader.displayImage(companyDetailEnt.getCompanyModel().getImageUrl(),ivMain);
+            rbReview.setScore(companyDetailEnt.getCompanyModel().getRating());
+            tvRatingText.setText(companyDetailEnt.getCompanyModel().getRating()+"");
+            imageLoader.displayImage(companyDetailEnt.getCompanyModel().getImageUrl(),ivMain);
 
             //Review
             if (companyDetailEnt.getReviewModel() != null) {
@@ -188,7 +186,7 @@ public class CompanyDetailFragment extends BaseFragment {
                 if (companyDetailEnt.getReviewModel().getUserName() != null)
                     tvName.setText(companyDetailEnt.getReviewModel().getUserName() + " ");
                 tvMsgNotification.setText(companyDetailEnt.getReviewModel().getAnalysis() + "");
-                rbReview2.setScore(Float.parseFloat(companyDetailEnt.getReviewModel().getStatus()));
+                rbReview2.setScore(companyDetailEnt.getReviewModel().getPoints());
             }
             else {
                 NoReviewTxt.setVisibility(View.VISIBLE);
@@ -211,7 +209,7 @@ public class CompanyDetailFragment extends BaseFragment {
                 openMapDialoge();
                 break;
             case R.id.tv_mark_favourite:
-
+                toggleFavourite.setChecked(!toggleFavourite.isChecked());
                 break;
             case R.id.tv_contact_details:
                 openDialerIntent();

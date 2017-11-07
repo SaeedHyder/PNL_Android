@@ -47,7 +47,7 @@ public class FavoritesItemBinder extends ViewBinder<FavoritesEnt> {
         viewHolder.tvCompanyDescription.setText(entity.getDescription()+"");
         viewHolder.tvLocation.setText(entity.getAddress()+"");
         viewHolder.tvPhone.setText(entity.getPhone()+"");
-
+        imageLoader.displayImage(entity.getImageUrl(),viewHolder.ivMain);
 
     }
 

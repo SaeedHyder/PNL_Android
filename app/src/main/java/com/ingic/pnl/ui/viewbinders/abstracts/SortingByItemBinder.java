@@ -47,6 +47,7 @@ public class SortingByItemBinder extends ViewBinder<SortingByEnt> {
         viewHolder.tvCompanyDescription.setText(entity.getDescription()+"");
         viewHolder.tvLocation.setText(entity.getAddress()+"");
         viewHolder.tvPhone.setText(entity.getPhone()+"");
+        imageLoader.displayImage(entity.getImageUrl(),viewHolder.ivMain);
 
     }
 
