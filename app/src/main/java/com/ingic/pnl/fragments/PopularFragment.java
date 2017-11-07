@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ingic.pnl.R;
-import com.ingic.pnl.entities.FavoritesEnt;
 import com.ingic.pnl.entities.PopularEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
 import com.ingic.pnl.global.WebServiceConstants;
@@ -33,7 +32,7 @@ public class PopularFragment extends BaseFragment implements RecyclerViewItemLis
     CustomRecyclerView lvCompanies;
     private ArrayList<PopularEnt> userCollections;
     private ArrayList<PopularEnt> popularEnts;
-    private PopularEnt popularEnt=new PopularEnt();
+    private PopularEnt popularEnt = new PopularEnt();
 
     public static PopularFragment newInstance() {
         Bundle args = new Bundle();
@@ -52,6 +51,40 @@ public class PopularFragment extends BaseFragment implements RecyclerViewItemLis
     }
 
     @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.MOSTPOPULARLIST:
+                popularEnts = (ArrayList<PopularEnt>) result;
+                BindData(popularEnts);
+
+                break;
+
+
+        }
+    }
+
+    @Override
+    public void ResponseFailure(String tag) {
+        switch (tag) {
+            case WebServiceConstants.MOSTPOPULARLIST:
+                txtNoData.setVisibility(View.VISIBLE);
+                lvCompanies.setVisibility(View.GONE);
+
+                break;
+
+
+        }
+    }
+
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.setSubHeading(getString(R.string.most_popular));
+        titleBar.showBackButton();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_popular, container, false);
         ButterKnife.bind(this, view);
@@ -65,19 +98,6 @@ public class PopularFragment extends BaseFragment implements RecyclerViewItemLis
         serviceHelper.enqueueCall(webService.getMostPopularList(prefHelper.getUserID()), WebServiceConstants.MOSTPOPULARLIST);
 
 
-    }
-
-    @Override
-    public void ResponseSuccess(Object result, String Tag, String message) {
-        switch (Tag) {
-            case WebServiceConstants.MOSTPOPULARLIST:
-                popularEnts = (ArrayList<PopularEnt>) result;
-                BindData(popularEnts);
-
-                break;
-
-
-        }
     }
 
     private void BindData(ArrayList<PopularEnt> popularEnts) {
@@ -97,21 +117,15 @@ public class PopularFragment extends BaseFragment implements RecyclerViewItemLis
 
         }
 
-       lvCompanies.BindRecyclerView(new PopularBinder(this), popularEnts,
+        lvCompanies.BindRecyclerView(new PopularBinder(this), popularEnts,
                 new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false), new DefaultItemAnimator());
 
     }
-    @Override
-    public void setTitleBar(TitleBar titleBar) {
-        super.setTitleBar(titleBar);
-        titleBar.hideButtons();
-        titleBar.setSubHeading(getString(R.string.most_popular));
-        titleBar.showBackButton();
-    }
+
     @Override
     public void onRecyclerItemClicked(Object Ent, int position) {
-        popularEnt=(PopularEnt)Ent;
-        getDockActivity().replaceDockableFragment(CompanyDetailFragment.newInstance(popularEnt.getId(),popularEnt.getName()), "CompanyDetailFragment");
+        popularEnt = (PopularEnt) Ent;
+        getDockActivity().replaceDockableFragment(CompanyDetailFragment.newInstance(popularEnt.getId(), popularEnt.getName()), "CompanyDetailFragment");
     }
 
 

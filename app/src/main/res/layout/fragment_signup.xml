@@ -138,7 +138,7 @@
                 android:background="@color/transparent"
                 android:gravity="center_vertical"
                 android:hint="@string/password"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                 android:inputType="textPassword"
                 android:maxLength="30"
                 android:maxLines="1"

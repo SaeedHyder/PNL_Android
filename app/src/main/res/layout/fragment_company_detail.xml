@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fillViewport="true"
-    android:scrollbars="none">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fillViewport="true"
+            android:scrollbars="none">
 
     <LinearLayout
         android:id="@+id/mainFrame"
@@ -18,8 +18,8 @@
             android:id="@+id/iv_main"
             android:layout_width="match_parent"
             android:layout_height="@dimen/x160"
-            android:scaleType="fitXY"
-            android:background="@drawable/company" />
+            android:background="@drawable/company"
+            android:scaleType="fitXY"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 android:text="@string/travel_company"
                 android:textColor="@color/white"
                 android:textSize="@dimen/x14"
-                app:typeface="@string/Roboto" />
+                app:typeface="@string/Roboto"/>
         </LinearLayout>
 
         <com.ingic.pnl.ui.views.AnyTextView
@@ -48,7 +48,7 @@
             android:text="@string/lorem_ipsum"
             android:textColor="@color/black"
             android:textSize="@dimen/x10"
-            app:typeface="@string/Roboto" />
+            app:typeface="@string/Roboto"/>
 
         <View
             android:layout_width="match_parent"
@@ -56,7 +56,7 @@
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginRight="@dimen/x10"
             android:alpha="0.3"
-            android:background="@color/light_grey" />
+            android:background="@color/light_grey"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,7 +77,7 @@
                 android:text="@string/address_details"
                 android:textColor="@color/black"
                 android:textSize="@dimen/x12"
-                app:typeface="@string/Roboto" />
+                app:typeface="@string/Roboto"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -93,18 +93,18 @@
                     android:background="@drawable/favorite_toggle"
                     android:text="@string/mark_favourites"
                     android:textOff=""
-                    android:textOn="" />
+                    android:textOn=""/>
 
                 <com.ingic.pnl.ui.views.AnyTextView
                     android:id="@+id/tv_mark_favourite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/x10"
                     android:text="@string/mark_favourites"
                     android:textColor="@color/black"
-                    android:paddingLeft="@dimen/x10"
                     android:textSize="@dimen/x12"
                     android:visibility="visible"
-                    app:typeface="@string/Roboto" />
+                    app:typeface="@string/Roboto"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -115,7 +115,7 @@
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginRight="@dimen/x10"
             android:alpha="0.2"
-            android:background="@color/light_grey" />
+            android:background="@color/light_grey"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,7 +136,7 @@
                 android:text="@string/conatct_details"
                 android:textColor="@color/black"
                 android:textSize="@dimen/x12"
-                app:typeface="@string/Roboto" />
+                app:typeface="@string/Roboto"/>
 
             <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_share_favourite"
@@ -148,7 +148,7 @@
                 android:text="@string/share"
                 android:textColor="@color/black"
                 android:textSize="@dimen/x12"
-                app:typeface="@string/Roboto" />
+                app:typeface="@string/Roboto"/>
         </LinearLayout>
 
         <View
@@ -157,7 +157,7 @@
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginRight="@dimen/x10"
             android:alpha="0.2"
-            android:background="@color/light_grey" />
+            android:background="@color/light_grey"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -178,7 +178,7 @@
                 android:text="@string/website"
                 android:textColor="@color/black"
                 android:textSize="@dimen/x12"
-                app:typeface="@string/Roboto" />
+                app:typeface="@string/Roboto"/>
 
         </LinearLayout>
 
@@ -188,7 +188,7 @@
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginRight="@dimen/x10"
             android:alpha="0.3"
-            android:background="@color/light_grey" />
+            android:background="@color/light_grey"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -208,7 +208,7 @@
                 android:layout_weight="0.3"
                 app:maxStars="5"
                 app:onlyForDisplay="true"
-                app:starPadding="@dimen/x2" />
+                app:starPadding="@dimen/x2"/>
 
             <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_rating_text"
@@ -219,7 +219,7 @@
                 android:text="@string/_4_5"
                 android:textColor="@color/black"
                 android:textSize="@dimen/x12"
-                app:typeface="@string/Roboto" />
+                app:typeface="@string/Roboto"/>
 
             <com.ingic.pnl.ui.views.AnyTextView
                 android:id="@+id/tv_write_review"
@@ -229,7 +229,7 @@
                 android:text="@string/write_a_review"
                 android:textColor="@color/blue_notifications"
                 android:textSize="@dimen/x12"
-                app:typeface="@string/Roboto" />
+                app:typeface="@string/Roboto"/>
 
         </LinearLayout>
 
@@ -248,7 +248,7 @@
                 android:text="@string/reviews"
                 android:textColor="@color/white"
                 android:textSize="@dimen/x12"
-                app:typeface="@string/Roboto" />
+                app:typeface="@string/Roboto"/>
         </LinearLayout>
 
         <com.ingic.pnl.ui.views.AnyTextView
@@ -272,120 +272,121 @@
             android:visibility="visible">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/x5"
-            android:layout_marginLeft="@dimen/x10"
-            android:layout_marginRight="@dimen/x10"
-            android:layout_marginTop="@dimen/x5"
-            android:orientation="vertical"
-            android:visibility="visible">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginBottom="@dimen/x5"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_marginTop="@dimen/x5"
+                android:orientation="vertical"
+                android:visibility="visible">
 
-                <com.ingic.pnl.ui.views.AnyTextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="0.6"
-                    android:gravity="center_vertical"
-                    android:text="@string/garry_smith"
-                    android:textColor="@color/blue_notifications"
-                    android:textSize="@dimen/x14"
-                    app:typeface="@string/Roboto" />
-
-                <com.ingic.pnl.ui.views.CustomRatingBar
-                    android:id="@+id/rb_review_2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:padding="@dimen/x5"
-                    app:maxStars="5"
-                    app:onlyForDisplay="true"
-                    app:paddingStart="@dimen/x5"
-                    app:starPadding="@dimen/x1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.2"
-                android:weightSum="1">
-
-                <com.ingic.pnl.ui.views.AnyTextView
-                    android:id="@+id/tv_msg_notification"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/x10"
-                    android:maxLines="2"
-                    android:text="@string/lorem_ipsum"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/x12"
-                    app:typeface="@string/Roboto" />
+                    android:orientation="horizontal">
 
+                    <com.ingic.pnl.ui.views.AnyTextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="0.6"
+                        android:gravity="center_vertical"
+                        android:text="@string/garry_smith"
+                        android:textColor="@color/blue_notifications"
+                        android:textSize="@dimen/x14"
+                        app:typeface="@string/Roboto"/>
+
+                    <com.ingic.pnl.ui.views.CustomRatingBar
+                        android:id="@+id/rb_review_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
+                        android:padding="@dimen/x5"
+                        app:maxStars="5"
+                        app:onlyForDisplay="true"
+                        app:paddingStart="@dimen/x5"
+                        app:starPadding="@dimen/x1"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.2"
+                    android:weightSum="1">
+
+                    <com.ingic.pnl.ui.views.AnyTextView
+                        android:id="@+id/tv_msg_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/x10"
+                        android:maxLines="2"
+                        android:text="@string/lorem_ipsum"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/x12"
+                        app:typeface="@string/Roboto"/>
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/x10"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/x1"
-                android:layout_marginLeft="@dimen/x10"
-                android:layout_marginRight="@dimen/x10"
-                android:layout_weight="0.4"
-                android:alpha="0.3"
-                android:background="@color/light_grey" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.05"
-                android:src="@drawable/arrow" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/x1"
-                android:layout_marginLeft="@dimen/x10"
-                android:layout_marginRight="@dimen/x10"
-                android:layout_weight="0.4"
-                android:alpha="0.3"
-                android:background="@color/light_grey" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_all_posts"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x60"
-            android:layout_gravity="center"
-            android:gravity="center">
-
-            <com.ingic.pnl.ui.views.AnyTextView
-                android:id="@+id/tv_all_posts"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/x10"
                 android:gravity="center"
-                android:text="@string/view_all_posts"
-                android:textColor="@color/dark_grey"
+                android:orientation="horizontal">
 
-                android:textSize="@dimen/x16"
-                app:typeface="@string/Roboto_bold" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/x1"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:layout_weight="0.4"
+                    android:alpha="0.3"
+                    android:background="@color/light_grey"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.05"
+                    android:src="@drawable/arrow"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/x1"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:layout_weight="0.4"
+                    android:alpha="0.3"
+                    android:background="@color/light_grey"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_all_posts"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x60"
+                android:layout_marginBottom="@dimen/x5"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <com.ingic.pnl.ui.views.AnyTextView
+                    android:id="@+id/tv_all_posts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/view_all_posts"
+                    android:textColor="@color/dark_grey"
+
+                    android:textSize="@dimen/x16"
+                    app:typeface="@string/Roboto_bold"/>
+            </LinearLayout>
+
         </LinearLayout>
-
-    </LinearLayout>
     </LinearLayout>
 </ScrollView>

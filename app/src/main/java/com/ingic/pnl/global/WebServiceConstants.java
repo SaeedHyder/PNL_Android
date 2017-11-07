@@ -1,7 +1,7 @@
 package com.ingic.pnl.global;
 
 public class WebServiceConstants {
-    public static final String SERVICE_URL = "http://webserver-01:8001/PNL/api/";
+    public static final String SERVICE_URL = "http://34.208.45.194/pnl/api/";
     public static final String SUCCESS_RESPONSE_CODE = "Success";
     public static final String LOGIN ="LOGIN" ;
     public static final String CHANGEPASSWORD ="CHANGEPASSWORD" ;

@@ -18,6 +18,7 @@
             android:layout_gravity="center"
             android:background="@color/white"
             android:gravity="center"
+            android:layout_above="@+id/button_container"
             android:text="@string/no_data"
             android:textColor="@color/dark_grey"
             android:textSize="@dimen/x15"
@@ -43,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/x80"
             android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/txt_no_data">
+            >
 
             <Button
                 android:id="@+id/btn_all_services"

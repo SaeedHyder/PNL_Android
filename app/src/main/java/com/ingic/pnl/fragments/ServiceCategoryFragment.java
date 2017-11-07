@@ -114,6 +114,18 @@ public class ServiceCategoryFragment extends BaseFragment implements RecyclerVie
         }
     }
 
+    @Override
+    public void ResponseFailure(String tag) {
+        switch (tag) {
+            case WebServiceConstants.CATEGORYDETAIL:
+                txtNoData.setVisibility(View.VISIBLE);
+                lvCompanies.setVisibility(View.GONE);
+                break;
+
+
+        }
+    }
+
     private void BindData(ArrayList<PopularEnt> popularEnts) {
         userCollections = new ArrayList<>();
        /* userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));

@@ -88,7 +88,15 @@ public class FavouriteFragment extends BaseFragment {
 
         }
     }
-
+    @Override
+    public void ResponseFailure(String tag) {
+        switch (tag){
+            case WebServiceConstants.FAVOURITELIST:
+                txtNoData.setVisibility(View.VISIBLE);
+                lvNotifications.setVisibility(View.GONE);
+                break;
+        }
+    }
     private void listner() {
 
         lvNotifications.setOnItemClickListener(new AdapterView.OnItemClickListener() {

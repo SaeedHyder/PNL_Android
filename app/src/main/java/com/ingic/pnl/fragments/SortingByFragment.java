@@ -119,6 +119,16 @@ public class SortingByFragment extends BaseFragment {
     }
 
     @Override
+    public void ResponseFailure(String tag) {
+        switch (tag) {
+            case WebServiceConstants.LIST_COMPANY_BY_CARACTER:
+                txtNoData.setVisibility(View.VISIBLE);
+                lvSortingBy.setVisibility(View.GONE);
+                break;
+        }
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();

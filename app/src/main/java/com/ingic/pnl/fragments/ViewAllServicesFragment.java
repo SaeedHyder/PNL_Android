@@ -82,6 +82,16 @@ public class ViewAllServicesFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void ResponseFailure(String tag) {
+        switch (tag){
+            case WebServiceConstants.SERVICESLIST:
+                txtNoData.setVisibility(View.VISIBLE);
+                lvAllServices.setVisibility(View.GONE);
+                break;
+        }
+
+    }
 
     private void bindData(ArrayList<ServiceEnt> data) {
 

@@ -75,10 +75,15 @@ public abstract class DockActivity extends AppCompatActivity implements
                 .beginTransaction();
         transaction.setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit, R.anim.fragment_popenter, R.anim.fragment_pop_exit);
         transaction.replace(getDockFrameLayoutId(), frag);
-        transaction
-                .addToBackStack(
-                        getSupportFragmentManager().getBackStackEntryCount() == 0 ? KEY_FRAG_FIRST
-                                : null).commit();
+        try {
+            transaction
+                    .addToBackStack(
+                            getSupportFragmentManager().getBackStackEntryCount() == 0 ? KEY_FRAG_FIRST
+                                    : null).commit();
+        }
+       catch (Exception e){
+            e.printStackTrace();
+       }
 
 
     }

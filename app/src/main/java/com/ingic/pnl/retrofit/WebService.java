@@ -9,7 +9,6 @@ import com.ingic.pnl.entities.ReviewsEnt;
 import com.ingic.pnl.entities.ServiceEnt;
 import com.ingic.pnl.entities.SortingByEnt;
 import com.ingic.pnl.entities.UserIDEnt;
-import com.ingic.pnl.entities.ViewAllServicesEnt;
 
 import java.util.ArrayList;
 
@@ -30,7 +29,9 @@ public interface WebService {
     @POST("account/signup")
     Call<ResponseWrapper<UserIDEnt>> makeUserSignup(@Field("name") String Name, @Field("email") String Email,
                                                     @Field("password") String Password,
-                                                    @Field("ConfirmPassword") String ConfirmPassword);
+                                                    @Field("ConfirmPassword") String ConfirmPassword,
+                                                    @Field("FacebookAuthToken") String facebookToken,
+                                                    @Field("GoogleAuthToken") String googleToken);
 
 
     @FormUrlEncoded
@@ -39,7 +40,6 @@ public interface WebService {
                                          @Field("OldPassword") String OldPassword,
                                          @Field("Password") String Password,
                                          @Field("ConfirmPassword") String ConfirmPassword);
-
 
 
     @GET("account/forgotpassword")
@@ -54,7 +54,7 @@ public interface WebService {
     @FormUrlEncoded
     @POST("company/MarkFavorite")
     Call<ResponseWrapper> markFavorite(@Field("UserId") String UserId,
-                                       @Field("CompanyId") int  CompanyId,
+                                       @Field("CompanyId") int CompanyId,
                                        @Field("IsMarkedFavorite") boolean IsMarkedFavorite);
 
     @GET("company/GetAllMyFavorites/{id}")
@@ -66,9 +66,9 @@ public interface WebService {
     @FormUrlEncoded
     @POST("review/CreateReview")
     Call<ResponseWrapper> createReview(@Field("UserId") String UserId,
-                                       @Field("CompanyId") int  CompanyId,
-                                       @Field("Points") int  Points,
-                                       @Field("Analysis") String  Analysis,
+                                       @Field("CompanyId") int CompanyId,
+                                       @Field("Points") int Points,
+                                       @Field("Analysis") String Analysis,
                                        @Field("IsAnonymous") boolean IsAnonymous);
 
 
@@ -89,11 +89,6 @@ public interface WebService {
 
     @GET("company/getallbycategory/{id}")
     Call<ResponseWrapper<ArrayList<PopularEnt>>> getCategoryDetail(@Path("id") String id);
-
-
-
-
-
 
 
 }

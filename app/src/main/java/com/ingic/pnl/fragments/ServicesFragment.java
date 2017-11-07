@@ -92,6 +92,16 @@ public class ServicesFragment extends BaseFragment implements RecyclerViewItemLi
         }
     }
 
+    @Override
+    public void ResponseFailure(String tag) {
+        switch (tag){
+            case WebServiceConstants.SERVICESLIST:
+                txtNoData.setVisibility(View.VISIBLE);
+                rcyServices.setVisibility(View.GONE);
+                break;
+        }
+    }
+
     private void listner() {
 
         rcyServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -2,7 +2,6 @@ package com.ingic.pnl.helpers;
 
 import android.util.Log;
 
-
 import com.ingic.pnl.activities.DockActivity;
 import com.ingic.pnl.entities.ResponseWrapper;
 import com.ingic.pnl.global.WebServiceConstants;
@@ -27,6 +26,7 @@ public class ServiceHelper<T> {
         this.context = conttext;
         this.webService = webService;
     }
+
     public void enqueueCall(Call<ResponseWrapper<T>> call, final String tag) {
         if (InternetHelper.CheckInternetConectivityandShowToast(context)) {
             context.onLoadingStarted();
@@ -35,9 +35,12 @@ public class ServiceHelper<T> {
                 public void onResponse(Call<ResponseWrapper<T>> call, Response<ResponseWrapper<T>> response) {
                     context.onLoadingFinished();
                     if (response.body().getResponse().equals(WebServiceConstants.SUCCESS_RESPONSE_CODE)) {
-                        serviceResponseLisener.ResponseSuccess(response.body().getResult(), tag,response.body().getMessage());
+                        serviceResponseLisener.ResponseSuccess(response.body().getResult(), tag, response.body().getMessage());
                     } else {
-                        UIHelper.showShortToastInCenter(context, response.body().getMessage());
+                        if (response.body().getMessage().contains("found"))
+                            serviceResponseLisener.ResponseFailure(tag);
+                        else
+                            UIHelper.showShortToastInCenter(context, response.body().getMessage() + "");
                     }
 
                 }
@@ -46,7 +49,7 @@ public class ServiceHelper<T> {
                 public void onFailure(Call<ResponseWrapper<T>> call, Throwable t) {
                     context.onLoadingFinished();
                     t.printStackTrace();
-                    Log.e(ServiceHelper.class.getSimpleName()+" by tag: " + tag, t.toString());
+                    Log.e(ServiceHelper.class.getSimpleName() + " by tag: " + tag, t.toString());
                 }
             });
         }

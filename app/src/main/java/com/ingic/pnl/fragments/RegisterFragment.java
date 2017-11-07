@@ -54,7 +54,8 @@ public class RegisterFragment extends BaseFragment implements GoogleHelper.Googl
     private CallbackManager callbackManager;
     private GoogleHelper googleHelper;
     private String mSocialMediaPlatform = "";
-    private String mSocialMediaID = "";
+    private String mFacebookSocialMediaID = "";
+    private String mGoogleSocialMediaID = "";
 
     public static RegisterFragment newInstance() {
         Bundle args = new Bundle();
@@ -157,7 +158,8 @@ public class RegisterFragment extends BaseFragment implements GoogleHelper.Googl
                     serviceHelper.enqueueCall(webService.makeUserSignup(edtName.getText().toString(),
                             edtEmail.getText().toString(),
                             edtPassword.getText().toString(),
-                            edtComfirmPassword.getText().toString()), WebServiceConstants.Register);
+                            edtComfirmPassword.getText().toString(),
+                            mFacebookSocialMediaID,mGoogleSocialMediaID ), WebServiceConstants.Register);
 
                 }
                 break;
@@ -220,7 +222,7 @@ public class RegisterFragment extends BaseFragment implements GoogleHelper.Googl
         edtName.setText(result.getDisplayName());
         edtEmail.setText(result.getEmail());
         mSocialMediaPlatform = WebServiceConstants.PLATFORM_GOOGLE;
-        mSocialMediaID = result.getId();
+        mGoogleSocialMediaID = result.getId();
     }
 
     @Override
@@ -229,6 +231,6 @@ public class RegisterFragment extends BaseFragment implements GoogleHelper.Googl
         edtName.setText(LoginEnt.getFacebookFullName());
         edtEmail.setText(LoginEnt.getFacebookEmail() == null ? "" : LoginEnt.getFacebookEmail());
         mSocialMediaPlatform = WebServiceConstants.PLATFORM_FACEBOOK;
-        mSocialMediaID = LoginEnt.getFacebookUID();
+        mFacebookSocialMediaID = LoginEnt.getFacebookUID();
     }
 }
