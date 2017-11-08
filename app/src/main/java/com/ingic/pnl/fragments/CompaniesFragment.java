@@ -90,14 +90,6 @@ public class CompaniesFragment extends BaseFragment {
 
     private void bindData(ArrayList<String> userCollection) {
 
-        if (userCollection.size() <= 0) {
-            txtNoData.setVisibility(View.VISIBLE);
-            lvCompanies.setVisibility(View.GONE);
-        } else {
-            txtNoData.setVisibility(View.GONE);
-            lvCompanies.setVisibility(View.VISIBLE);
-
-        }
 
         adapter.clearList();
         lvCompanies.setAdapter(adapter);

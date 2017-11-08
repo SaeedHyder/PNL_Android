@@ -18,8 +18,8 @@ public class BaseApplication extends Application {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-		FacebookSdk.sdkInitialize(getApplicationContext());
 		MultiDex.install(this);
+		FacebookSdk.sdkInitialize(getApplicationContext());
 		initImageLoader();
 	}
 	

@@ -2,6 +2,7 @@ package com.ingic.pnl.helpers;
 
 import android.util.Log;
 
+import com.ingic.pnl.R;
 import com.ingic.pnl.activities.DockActivity;
 import com.ingic.pnl.entities.ResponseWrapper;
 import com.ingic.pnl.global.WebServiceConstants;
@@ -34,13 +35,17 @@ public class ServiceHelper<T> {
                 @Override
                 public void onResponse(Call<ResponseWrapper<T>> call, Response<ResponseWrapper<T>> response) {
                     context.onLoadingFinished();
-                    if (response.body().getResponse().equals(WebServiceConstants.SUCCESS_RESPONSE_CODE)) {
-                        serviceResponseLisener.ResponseSuccess(response.body().getResult(), tag, response.body().getMessage());
+                    if (response.body() != null) {
+                        if (response.body().getResponse().equals(WebServiceConstants.SUCCESS_RESPONSE_CODE)) {
+                            serviceResponseLisener.ResponseSuccess(response.body().getResult(), tag, response.body().getMessage());
+                        } else {
+                            if ((response.body().getMessage() + "").contains("found"))
+                                serviceResponseLisener.ResponseFailure(tag);
+                            else
+                                UIHelper.showShortToastInCenter(context, response.body().getMessage() + "");
+                        }
                     } else {
-                        if (response.body().getMessage().contains("found"))
-                            serviceResponseLisener.ResponseFailure(tag);
-                        else
-                            UIHelper.showShortToastInCenter(context, response.body().getMessage() + "");
+                        UIHelper.showShortToastInCenter(context, context.getResources().getString(R.string.server_response_error));
                     }
 
                 }

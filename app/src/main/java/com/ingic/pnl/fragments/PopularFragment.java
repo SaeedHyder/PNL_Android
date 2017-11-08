@@ -108,14 +108,6 @@ public class PopularFragment extends BaseFragment implements RecyclerViewItemLis
         userCollections.add(new PopularEnt(R.drawable.company, "AA Company", getString(R.string.lorem_ipsum), "22 street,France", "+422 123456789"));
       */
 
-        if (popularEnts.size() <= 0) {
-            txtNoData.setVisibility(View.VISIBLE);
-            lvCompanies.setVisibility(View.GONE);
-        } else {
-            txtNoData.setVisibility(View.GONE);
-            lvCompanies.setVisibility(View.VISIBLE);
-
-        }
 
         lvCompanies.BindRecyclerView(new PopularBinder(this), popularEnts,
                 new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false), new DefaultItemAnimator());

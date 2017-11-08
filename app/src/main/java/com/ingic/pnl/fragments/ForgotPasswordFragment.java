@@ -82,7 +82,7 @@ public class ForgotPasswordFragment extends BaseFragment {
     public void ResponseSuccess(Object result, String Tag, String message) {
         switch (Tag) {
             case WebServiceConstants.FORGOTPASSWORD:
-                UIHelper.showShortToastInCenter(getDockActivity(),(String)result);
+                UIHelper.showShortToastInCenter(getDockActivity(),message);
                 getDockActivity().popBackStackTillEntry(0);
                 getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
                 break;

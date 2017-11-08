@@ -73,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:drawableLeft="@drawable/address"
+                android:paddingRight="@dimen/x20"
                 android:drawablePadding="@dimen/x10"
                 android:text="@string/address_details"
                 android:textColor="@color/black"
@@ -92,6 +93,7 @@
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/favorite_toggle"
                     android:text="@string/mark_favourites"
+
                     android:textOff=""
                     android:textOn=""/>
 

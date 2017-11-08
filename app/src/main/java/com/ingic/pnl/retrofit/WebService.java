@@ -90,5 +90,12 @@ public interface WebService {
     @GET("company/getallbycategory/{id}")
     Call<ResponseWrapper<ArrayList<PopularEnt>>> getCategoryDetail(@Path("id") String id);
 
+    @FormUrlEncoded
+    @POST("account/updateprofile")
+    Call<ResponseWrapper> editProfile(@Field("UserId") String UserId,
+                                       @Field("Name") String  Name,
+                                       @Field("Phone") String Phone,
+                                       @Field("City") String City);
+
 
 }

@@ -130,14 +130,6 @@ public class ServicesFragment extends BaseFragment implements RecyclerViewItemLi
 
         dataCollection = servicesEnt;
 
-        if (dataCollection.size() <= 0) {
-            txtNoData.setVisibility(View.VISIBLE);
-            rcyServices.setVisibility(View.GONE);
-        } else {
-            txtNoData.setVisibility(View.GONE);
-            rcyServices.setVisibility(View.VISIBLE);
-
-        }
 
         adapter.clearList();
         rcyServices.setAdapter(adapter);
@@ -164,7 +156,7 @@ public class ServicesFragment extends BaseFragment implements RecyclerViewItemLi
         titleBar.setSubHeading(getString(R.string.services));
         titleBar.showBackButton();
         titleBar.getEditTextViewSearch(R.id.edt_search).setText("");
-        titleBar.showSearchBar(new TextWatcher() {
+      /*  titleBar.showSearchBar(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -185,7 +177,7 @@ public class ServicesFragment extends BaseFragment implements RecyclerViewItemLi
                 UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.beta));
                 Utils.HideKeyBoard(getDockActivity());
             }
-        }, getString(R.string.search_category));
+        }, getString(R.string.search_category));*/
     }
 
 

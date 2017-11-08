@@ -35,6 +35,9 @@ public class PopularEnt {
     @SerializedName("IsMarkedFavorite")
     @Expose
     private Boolean isMarkedFavorite;
+    @SerializedName("Rating")
+    @Expose
+    private Integer rating;
     @SerializedName("Id")
     @Expose
     private Integer id;
@@ -111,6 +114,14 @@ public class PopularEnt {
         this.isMarkedFavorite = isMarkedFavorite;
     }
 
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -118,4 +129,5 @@ public class PopularEnt {
     public void setId(Integer id) {
         this.id = id;
     }
+
 }

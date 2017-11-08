@@ -135,18 +135,11 @@ public class ServiceCategoryFragment extends BaseFragment implements RecyclerVie
         lvCompanies.BindRecyclerView(new PopularBinder(this), popularEnts,
                 new LinearLayoutManager(getDockActivity(), LinearLayoutManager.VERTICAL, false), new DefaultItemAnimator());
 
-        if (userCollections.size() <= 0) {
-            txtNoData.setVisibility(View.VISIBLE);
-            lvCompanies.setVisibility(View.GONE);
-        } else {
-            txtNoData.setVisibility(View.GONE);
-            lvCompanies.setVisibility(View.VISIBLE);
-
-        }
     }
 
     @Override
     public void onRecyclerItemClicked(Object Ent, int position) {
-        getDockActivity().replaceDockableFragment(CompanyDetailFragment.newInstance(), "CompanyDetailFragment");
+        PopularEnt ent = (PopularEnt)Ent;
+        getDockActivity().replaceDockableFragment(CompanyDetailFragment.newInstance(ent.getId(),ent.getName()), "CompanyDetailFragment");
     }
 }

@@ -12,10 +12,14 @@ import android.widget.LinearLayout;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.vision.text.Line;
 import com.ingic.pnl.R;
+import com.ingic.pnl.entities.SortingByEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.WebServiceConstants;
 import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.ui.views.AnyEditTextView;
 import com.ingic.pnl.ui.views.TitleBar;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -82,9 +86,21 @@ public class EditProfileFragment extends BaseFragment {
     @OnClick(R.id.btn_update)
     public void onViewClicked() {
         if (isvalidated()) {
-            UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.profile_update_message));
+           // UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.profie_update_message));
+            serviceHelper.enqueueCall(webService.editProfile(prefHelper.getUserID(),edtFullName.getText().toString(),edtPhone.getText().toString(),edtPhone.getText().toString()), WebServiceConstants.UPDATEPROFILE);
         }
     }
+
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.LIST_COMPANY_BY_CARACTER:
+                UIHelper.showShortToastInCenter(getDockActivity(),message);
+                getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
+                break;
+        }
+    }
+
 
     @Override
     public void setTitleBar(TitleBar titleBar) {
