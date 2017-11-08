@@ -1,7 +1,6 @@
 package com.ingic.pnl.interfaces;
 
 public interface LoadingListener {
-
 	public void onLoadingStarted();
 
 	public void onLoadingFinished();

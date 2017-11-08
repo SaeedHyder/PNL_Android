@@ -191,7 +191,6 @@ public class CompanyDetailFragment extends BaseFragment {
             else {
                 NoReviewTxt.setVisibility(View.VISIBLE);
                 llReviewLayout.setVisibility(View.GONE);
-
             }
         }
     }
