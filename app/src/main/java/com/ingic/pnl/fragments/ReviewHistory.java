@@ -78,6 +78,18 @@ public class ReviewHistory extends BaseFragment {
     }
 
     @Override
+    public void ResponseFailure(String tag) {
+        switch (tag) {
+            case WebServiceConstants.REVIEWSLIST:
+                txtNoData.setVisibility(View.VISIBLE);
+                lvReviewHistory.setVisibility(View.GONE);
+                break;
+
+
+        }
+    }
+
+    @Override
     public void setTitleBar(TitleBar titleBar) {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
@@ -85,16 +97,10 @@ public class ReviewHistory extends BaseFragment {
         titleBar.showBackButton();
     }
 
+
+
     private void bindData(ArrayList<ReviewsEnt> userCollection) {
 
-        if (userCollection.size() <= 0) {
-            txtNoData.setVisibility(View.VISIBLE);
-            lvReviewHistory.setVisibility(View.GONE);
-        } else {
-            txtNoData.setVisibility(View.GONE);
-            lvReviewHistory.setVisibility(View.VISIBLE);
-
-        }
 
         adapter.clearList();
         lvReviewHistory.setAdapter(adapter);

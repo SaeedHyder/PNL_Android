@@ -92,17 +92,21 @@ public class ReviewsFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void ResponseFailure(String tag) {
+        switch (tag) {
+            case WebServiceConstants.REVIEWSLIST:
+                txtNoData.setVisibility(View.VISIBLE);
+                lvReviews.setVisibility(View.GONE);
+                break;
+
+
+        }
+    }
+
 
     private void bindData(ArrayList<ReviewsEnt> userCollection) {
 
-        if (userCollection.size() <= 0) {
-            txtNoData.setVisibility(View.VISIBLE);
-            lvReviews.setVisibility(View.GONE);
-        } else {
-            txtNoData.setVisibility(View.GONE);
-            lvReviews.setVisibility(View.VISIBLE);
-
-        }
 
         adapter.clearList();
         lvReviews.setAdapter(adapter);

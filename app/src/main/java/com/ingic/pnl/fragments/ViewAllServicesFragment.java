@@ -99,14 +99,6 @@ public class ViewAllServicesFragment extends BaseFragment {
 
         userCollection = data;
 
-        if (data.size() <= 0) {
-            txtNoData.setVisibility(View.VISIBLE);
-            lvAllServices.setVisibility(View.GONE);
-        } else {
-            txtNoData.setVisibility(View.GONE);
-            lvAllServices.setVisibility(View.VISIBLE);
-
-        }
 
         adapter.clearList();
         lvAllServices.setAdapter(adapter);
@@ -146,12 +138,12 @@ public class ViewAllServicesFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                localSearch(getSearchedArray(s.toString()));
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                localSearch(getSearchedArray(s.toString()));
+
             }
         }, new View.OnClickListener() {
             @Override
@@ -185,8 +177,6 @@ public class ViewAllServicesFragment extends BaseFragment {
 
     private void localSearch(ArrayList<ServiceEnt> data) {
 
-        userCollection = new ArrayList<>();
-        userCollection = data;
         adapter.clearList();
         adapter.addAll(data);
         adapter.notifyDataSetChanged();

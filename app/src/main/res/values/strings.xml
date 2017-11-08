@@ -180,6 +180,7 @@
     <string name="confrim">Confirm</string>
     <string name="please_wait">Please Wait...</string>
     <string name="no_review">No Review Found</string>
+    <string name="server_response_error">No Response From Server</string>
     <array name="sortedalphabet">
         <item>A</item>
         <item>B</item>

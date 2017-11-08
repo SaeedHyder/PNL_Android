@@ -44,7 +44,7 @@ public class ReviewsItemBinder extends ViewBinder<ReviewsEnt> {
 
         viewHolder.tvName.setText(entity.getUserName()+"");
         viewHolder.tvMsgNotification.setText(entity.getAnalysis()+"");
-        viewHolder.rbReview.setScore(4);
+        viewHolder.rbReview.setScore(entity.getPoints());
 
     }
 

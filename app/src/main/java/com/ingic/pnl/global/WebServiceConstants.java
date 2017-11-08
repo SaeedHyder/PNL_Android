@@ -14,6 +14,7 @@ public class WebServiceConstants {
     public static final String SERVICESLIST ="SERVICESLIST" ;
     public static final String REVIEWSLIST ="REVIEWSLIST" ;
     public static final String CREATEREVIEW ="CREATEREVIEW" ;
+    public static final String UPDATEPROFILE ="UPDATEPROFILE" ;
     public static final String Register ="Register" ;
     public static final String FAVOURITECOUNT ="FAVOURITECOUNT" ;
     public static final String LIST_CATEGORY ="LIST_CATEGORY" ;

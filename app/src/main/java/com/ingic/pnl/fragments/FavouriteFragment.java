@@ -110,14 +110,7 @@ public class FavouriteFragment extends BaseFragment {
 
     private void bindData(ArrayList<FavoritesEnt> userCollection) {
 
-        if (userCollection.size() <= 0) {
-            txtNoData.setVisibility(View.VISIBLE);
-            lvNotifications.setVisibility(View.GONE);
-        } else {
-            txtNoData.setVisibility(View.GONE);
-            lvNotifications.setVisibility(View.VISIBLE);
 
-        }
 
         adapter.clearList();
         lvNotifications.setAdapter(adapter);
