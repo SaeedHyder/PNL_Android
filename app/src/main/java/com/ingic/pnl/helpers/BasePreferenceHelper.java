@@ -10,6 +10,10 @@ public class BasePreferenceHelper extends PreferenceHelper {
     protected static final String KEY_LOGIN_STATUS = "islogin";
     private static final String FILENAME = "preferences";
     private static final String KEY_USERID = "USERID";
+    private static final String KEY_USERNAME= "KEY_USERNAME";
+    private static final String KEY_USEREMAIL= "KEY_USEREMAIL";
+    private static final String KEY_CITY= "KEY_CITY";
+    private static final String KEY_PHONE= "KEY_PHONE";
     private Context context;
 
 
@@ -27,6 +31,38 @@ public class BasePreferenceHelper extends PreferenceHelper {
 
     public void setUserID(String userID) {
         putStringPreference(context, FILENAME, KEY_USERID, userID);
+    }
+
+    public void setUserName(String userName) {
+        putStringPreference(context, FILENAME, KEY_USERNAME, userName);
+    }
+
+    public String getUserName() {
+        return getStringPreference(context, FILENAME, KEY_USERNAME);
+    }
+
+    public void setUserEmail(String userEmail) {
+        putStringPreference(context, FILENAME, KEY_USEREMAIL, userEmail);
+    }
+
+    public String getUserEmail() {
+        return getStringPreference(context, FILENAME, KEY_USEREMAIL);
+    }
+
+    public void setPhoneNum(String userPhone) {
+        putStringPreference(context, FILENAME, KEY_PHONE, userPhone);
+    }
+
+    public String getPhoneNum() {
+        return getStringPreference(context, FILENAME, KEY_PHONE);
+    }
+
+    public void setCity(String userCity) {
+        putStringPreference(context, FILENAME, KEY_CITY, userCity);
+    }
+
+    public String getCity() {
+        return getStringPreference(context, FILENAME, KEY_CITY);
     }
 
     public void setLoginStatus(boolean isLogin) {
