@@ -19,7 +19,6 @@ import com.ingic.pnl.fragments.abstracts.BaseFragment;
 import com.ingic.pnl.global.WebServiceConstants;
 import com.ingic.pnl.helpers.FacebookLoginHelper;
 import com.ingic.pnl.helpers.GoogleHelper;
-import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.interfaces.FacebookLoginListener;
 import com.ingic.pnl.ui.views.AnyEditTextView;
 import com.ingic.pnl.ui.views.AnyTextView;
@@ -147,6 +146,10 @@ public class LoginFragment extends BaseFragment implements GoogleHelper.GoogleHe
         googleHelper.DisconnectGoogleApi();
     }
 
+    private void setSocialmediaLogin(String id) {
+        serviceHelper.enqueueCall(webService.makeUserSocialMediaLogin(id), WebServiceConstants.LOGIN);
+    }
+
     @OnClick({R.id.btn_login, R.id.btn_login_facebook, R.id.txt_signUp, R.id.btn_login_google, R.id.btn_forgot_password})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -192,11 +195,13 @@ public class LoginFragment extends BaseFragment implements GoogleHelper.GoogleHe
     public void onSuccessfulFacebookLogin(FacebookLoginEnt LoginEnt) {
         mSocialMediaPlatform = WebServiceConstants.PLATFORM_FACEBOOK;
         mSocialMediaID = LoginEnt.getFacebookUID();
+        setSocialmediaLogin(mSocialMediaID);
     }
 
     @Override
     public void onGoogleSignInResult(GoogleSignInAccount result) {
         mSocialMediaPlatform = WebServiceConstants.PLATFORM_GOOGLE;
         mSocialMediaID = result.getId();
+        setSocialmediaLogin(mSocialMediaID);
     }
 }

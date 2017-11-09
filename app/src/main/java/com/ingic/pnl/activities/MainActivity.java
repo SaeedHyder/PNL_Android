@@ -54,8 +54,7 @@ public class MainActivity extends DockActivity implements OnClickListener {
         setContentView(R.layout.activity_dock);
         ButterKnife.bind(this);
         titleBar = header_main;
-
-        // setBehindContentView(R.layout.fragment_frame);
+       //setBehindContentView(R.layout.fragment_frame);
         mContext = this;
         Log.i("Screen Density", ScreenHelper.getDensity(this) + "");
 

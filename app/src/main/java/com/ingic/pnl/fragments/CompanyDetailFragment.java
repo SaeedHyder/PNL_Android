@@ -30,6 +30,8 @@ import butterknife.Unbinder;
 
 
 public class CompanyDetailFragment extends BaseFragment {
+    private static String COMPANYIDKEY = "companyidkey";
+    private static String COMPANYIDNAME = "COMPANYIDNAME";
     @BindView(R.id.iv_main)
     ImageView ivMain;
     @BindView(R.id.tv_heading_1)
@@ -70,13 +72,7 @@ public class CompanyDetailFragment extends BaseFragment {
     AnyTextView NoReviewTxt;
     @BindView(R.id.mainFrame)
     LinearLayout mainFrame;
-
-
-
     Unbinder unbinder;
-
-    private static String COMPANYIDKEY = "companyidkey";
-    private static String COMPANYIDNAME = "COMPANYIDNAME";
     @BindView(R.id.toggleFavourite)
     ToggleButton toggleFavourite;
     private int companyId;
@@ -118,38 +114,6 @@ public class CompanyDetailFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_company_detail, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        mainFrame.setVisibility(View.GONE);
-        serviceHelper.enqueueCall(webService.getCompanyDetail(companyId), WebServiceConstants.COMPANYDETAIL);
-        listners();
-
-
-    }
-
-    private void listners() {
-
-        toggleFavourite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                CompanyModel companyModel = new CompanyModel();
-                companyModel.setIsMarkedFavorite(isChecked);
-
-                serviceHelper.enqueueCall(webService.markFavorite(prefHelper.getUserID(), companyId, isChecked), WebServiceConstants.MARKFAVORITE);
-
-            }
-        });
-    }
-
-    @Override
     public void ResponseSuccess(Object result, String Tag, String message) {
         switch (Tag) {
             case WebServiceConstants.COMPANYDETAIL:
@@ -171,13 +135,59 @@ public class CompanyDetailFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.setSubHeading(companyName);
+        titleBar.showBackButton();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_company_detail, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mainFrame.setVisibility(View.GONE);
+        serviceHelper.enqueueCall(webService.getCompanyDetail(companyId), WebServiceConstants.COMPANYDETAIL);
+        listners();
+
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    private void listners() {
+
+        toggleFavourite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                CompanyModel companyModel = new CompanyModel();
+                companyModel.setIsMarkedFavorite(isChecked);
+
+                serviceHelper.enqueueCall(webService.markFavorite(prefHelper.getUserID(), companyId, isChecked), WebServiceConstants.MARKFAVORITE);
+
+            }
+        });
+    }
+
     private void setComapanyDetail(CompanyDetailEnt companyDetailEnt) {
         if (companyDetailEnt != null) {
             tvCompanyDetail.setText(companyDetailEnt.getCompanyModel().getDescription() + " ");
             tvHeading1.setText(companyDetailEnt.getCompanyModel().getName() + "");
             rbReview.setScore(companyDetailEnt.getCompanyModel().getRating());
-            tvRatingText.setText(companyDetailEnt.getCompanyModel().getRating()+"");
-            imageLoader.displayImage(companyDetailEnt.getCompanyModel().getImageUrl(),ivMain);
+            tvRatingText.setText(companyDetailEnt.getCompanyModel().getRating() + "");
+            imageLoader.displayImage(companyDetailEnt.getCompanyModel().getImageUrl(), ivMain);
 
             //Review
             if (companyDetailEnt.getReviewModel() != null) {
@@ -187,18 +197,23 @@ public class CompanyDetailFragment extends BaseFragment {
                     tvName.setText(companyDetailEnt.getReviewModel().getUserName() + " ");
                 tvMsgNotification.setText(companyDetailEnt.getReviewModel().getAnalysis() + "");
                 rbReview2.setScore(companyDetailEnt.getReviewModel().getPoints());
-            }
-            else {
+            } else {
                 NoReviewTxt.setVisibility(View.VISIBLE);
                 llReviewLayout.setVisibility(View.GONE);
             }
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    private void ShareMyCompany(String message) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.setType("text/plain");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, message);
+
+
+        if (sendIntent.resolveActivity(getMainActivity().getPackageManager()) != null)
+            startActivity(Intent.createChooser(sendIntent, getString(R.string.share_via)));
+//        startActivity(sendIntent);
     }
 
     @OnClick({R.id.tv_address_details, R.id.tv_mark_favourite, R.id.tv_contact_details, R.id.tv_share_favourite, R.id.tv_website, R.id.tv_write_review, R.id.ll_all_posts})
@@ -214,7 +229,7 @@ public class CompanyDetailFragment extends BaseFragment {
                 openDialerIntent();
                 break;
             case R.id.tv_share_favourite:
-                UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.beta));
+                ShareMyCompany(tvCompanyDetail.getText().toString() + " " + websiteURL);
                 break;
             case R.id.tv_website:
                 openWebsite();
@@ -244,13 +259,5 @@ public class CompanyDetailFragment extends BaseFragment {
         Uri uriUrl = Uri.parse(websiteURL);
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
-    }
-
-    @Override
-    public void setTitleBar(TitleBar titleBar) {
-        super.setTitleBar(titleBar);
-        titleBar.hideButtons();
-        titleBar.setSubHeading(companyName);
-        titleBar.showBackButton();
     }
 }

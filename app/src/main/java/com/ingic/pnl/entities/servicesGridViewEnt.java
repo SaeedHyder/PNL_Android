@@ -18,6 +18,15 @@ public class servicesGridViewEnt {
     @SerializedName("Id")
     @Expose
     private Integer id;
+    private String drawable;
+
+
+
+    public servicesGridViewEnt(String imageUrl,String name,  Integer id) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.id = id;
+    }
 
     public String getName() {
         return name;

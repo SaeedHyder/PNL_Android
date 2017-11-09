@@ -1,6 +1,7 @@
 package com.ingic.pnl.ui.viewbinders;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -10,7 +11,6 @@ import com.ingic.pnl.R;
 import com.ingic.pnl.activities.DockActivity;
 import com.ingic.pnl.activities.MainActivity;
 import com.ingic.pnl.entities.ServiceEnt;
-import com.ingic.pnl.entities.servicesGridViewEnt;
 import com.ingic.pnl.helpers.BasePreferenceHelper;
 import com.ingic.pnl.ui.viewbinders.abstracts.ViewBinder;
 import com.ingic.pnl.ui.views.AnyTextView;
@@ -44,15 +44,13 @@ public class ServicesGridViewItemBinder extends ViewBinder<ServiceEnt> {
     @Override
     public void bindView(ServiceEnt entity, int position, int grpPosition, View view, Activity activity) {
         LinearLayout gridView = (LinearLayout) view;
-        int screenHeight = activity.getWindowManager()
-                .getDefaultDisplay().getHeight();
+        Point size = new Point();
+        activity.getWindowManager().getDefaultDisplay().getSize(size);
+        int screenHeight = size.y;
         screenHeight = screenHeight - (int) activity.getResources().getDimension(R.dimen.x100) - (int)
                 (((MainActivity) activity).titleBar.getHeight());
-        // gridView.setMinimumHeight(screenHeight / 4);
         gridView.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.MATCH_PARENT, screenHeight / 4));
         final ViewHolder viewHolder = (ViewHolder) view.getTag();
-      //  viewHolder.imgService.setImageResource(entity.getImageUrl());
-
         imageLoader = ImageLoader.getInstance();
         imageLoader.displayImage(entity.getImageUrl(), viewHolder.imgService);
         viewHolder.txtService.setText(entity.getName() + "");

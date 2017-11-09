@@ -26,6 +26,10 @@ public interface WebService {
     Call<ResponseWrapper<UserIDEnt>> makeUserLogin(@Field("email") String Email, @Field("password") String Password);
 
     @FormUrlEncoded
+    @POST("account/signinwithsocialmedia")
+    Call<UserIDEnt> makeUserSocialMediaLogin(@Field("AuthToken") String authToken);
+
+    @FormUrlEncoded
     @POST("account/signup")
     Call<ResponseWrapper<UserIDEnt>> makeUserSignup(@Field("name") String Name, @Field("email") String Email,
                                                     @Field("password") String Password,
@@ -93,9 +97,9 @@ public interface WebService {
     @FormUrlEncoded
     @POST("account/updateprofile")
     Call<ResponseWrapper> editProfile(@Field("UserId") String UserId,
-                                       @Field("Name") String  Name,
-                                       @Field("Phone") String Phone,
-                                       @Field("City") String City);
+                                      @Field("Name") String Name,
+                                      @Field("Phone") String Phone,
+                                      @Field("City") String City);
 
 
 }

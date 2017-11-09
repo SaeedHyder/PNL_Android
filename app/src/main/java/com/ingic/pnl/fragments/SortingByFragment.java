@@ -11,11 +11,9 @@ import android.widget.ListView;
 
 import com.ingic.pnl.R;
 import com.ingic.pnl.entities.CompaniesEnt;
-import com.ingic.pnl.entities.ServiceEnt;
 import com.ingic.pnl.entities.SortingByEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
 import com.ingic.pnl.global.WebServiceConstants;
-import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.helpers.Utils;
 import com.ingic.pnl.ui.adapters.ArrayListAdapter;
 import com.ingic.pnl.ui.viewbinders.abstracts.SortingByItemBinder;
@@ -63,28 +61,12 @@ public class SortingByFragment extends BaseFragment {
         adapter = new ArrayListAdapter<SortingByEnt>(getDockActivity(), new SortingByItemBinder(getDockActivity(), prefHelper));
     }
 
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sortign_by, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        serviceHelper.enqueueCall(webService.getCompaniesByCaracter(SortingNmae), WebServiceConstants.LIST_COMPANY_BY_CARACTER);
-        listners();
-    }
-
     @Override
     public void ResponseSuccess(Object result, String Tag, String message) {
         switch (Tag) {
             case WebServiceConstants.LIST_COMPANY_BY_CARACTER:
                 bindData((ArrayList<SortingByEnt>) result);
-                userCollection=((ArrayList<SortingByEnt>) result);
+                userCollection = ((ArrayList<SortingByEnt>) result);
                 break;
         }
     }
@@ -98,33 +80,6 @@ public class SortingByFragment extends BaseFragment {
                 break;
         }
     }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    private void listners() {
-
-        lvSortingBy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(userCollection.get(position).getId(),userCollection.get(position).getName()), "CompanyDetailFragment");
-            }
-        });
-    }
-
-    private void bindData(ArrayList<SortingByEnt> userCollection) {
-
-
-        adapter.clearList();
-        lvSortingBy.setAdapter(adapter);
-        adapter.addAll(userCollection);
-        adapter.notifyDataSetChanged();
-    }
-
-
 
     @Override
     public void setTitleBar(TitleBar titleBar) {
@@ -158,21 +113,55 @@ public class SortingByFragment extends BaseFragment {
         titleBar.showBackButton();
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_sortign_by, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        serviceHelper.enqueueCall(webService.getCompaniesByCaracter(SortingNmae), WebServiceConstants.LIST_COMPANY_BY_CARACTER);
+        listners();
+    }
+
+    private void listners() {
+
+        lvSortingBy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(userCollection.get(position).getId(), userCollection.get(position).getName()), "CompanyDetailFragment");
+            }
+        });
+    }
+
+    private void bindData(ArrayList<SortingByEnt> userCollection) {
+
+
+        adapter.clearList();
+        lvSortingBy.setAdapter(adapter);
+        adapter.addAll(userCollection);
+        adapter.notifyDataSetChanged();
+    }
+
     public ArrayList<SortingByEnt> getSearchedArray(String keyword) {
-        if (userCollection.isEmpty()) {
+        if (userCollection != null && userCollection.isEmpty()) {
             return new ArrayList<>();
         }
 
         ArrayList<SortingByEnt> arrayList = new ArrayList<>();
-
-        for (SortingByEnt item : userCollection) {
-            String UserName = "";
-            if (item != null) {
-                UserName = item.getName();
-            }
-            if (Pattern.compile(Pattern.quote(keyword), Pattern.CASE_INSENSITIVE).matcher(UserName).find()) {
+        if (userCollection != null) {
+            for (SortingByEnt item : userCollection) {
+                String UserName = "";
+                if (item != null) {
+                    UserName = item.getName();
+                }
+                if (Pattern.compile(Pattern.quote(keyword), Pattern.CASE_INSENSITIVE).matcher(UserName).find()) {
                 /*UserName.contains(keyword)*/
-                arrayList.add(item);
+                    arrayList.add(item);
+                }
             }
         }
         return arrayList;
