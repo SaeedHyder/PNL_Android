@@ -1,5 +1,6 @@
 package com.ingic.pnl.entities;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -8,20 +9,20 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserIDEnt {
 
-    @SerializedName("UserId")
-    private int UserId;
+    @SerializedName("User")
+    @Expose
+    private User user;
 
     @SerializedName("AuthToken")
     private String AuthToken;
 
 
-
-    public int getUserId() {
-        return UserId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int UserId) {
-        this.UserId = UserId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getAuthToken() {

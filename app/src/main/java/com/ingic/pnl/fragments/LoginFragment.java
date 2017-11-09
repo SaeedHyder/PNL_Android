@@ -75,7 +75,10 @@ public class LoginFragment extends BaseFragment implements GoogleHelper.GoogleHe
                 googleHelper.googleRevokeAccess();
                 googleHelper.googleSignOut();
                 UserIDEnt userID = (UserIDEnt) result;
-                prefHelper.setUserID(userID.getUserId() + "");
+                prefHelper.setUserID(userID.getUser().getUserId() + "");
+                prefHelper.setUserName(userID.getUser().getName()+"");
+                prefHelper.setCity(userID.getUser().getCity()+"");
+                prefHelper.setPhoneNum(userID.getUser().getPhone()+"");
                 getDockActivity().popBackStackTillEntry(0);
                 prefHelper.setLoginStatus(true);
                 getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
