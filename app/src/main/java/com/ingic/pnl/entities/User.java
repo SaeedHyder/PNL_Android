@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class User {
 
-    @SerializedName("UserId")
+    @SerializedName("Id")
     @Expose
     private Integer userId;
     @SerializedName("Name")
@@ -21,7 +21,17 @@ public class User {
     @SerializedName("City")
     @Expose
     private String city;
+    @SerializedName("Email")
+    @Expose
+    private String Email;
 
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
 
     public Integer getUserId() {
         return userId;

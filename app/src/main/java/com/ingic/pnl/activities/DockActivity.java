@@ -53,6 +53,8 @@ public abstract class DockActivity extends AppCompatActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         prefHelper = new BasePreferenceHelper(this);
+      
+
     }
 
     public void replaceDockableFragment(BaseFragment frag) {
@@ -175,6 +177,7 @@ public abstract class DockActivity extends AppCompatActivity implements
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             DockActivity.this.finish();
+
 
                         }
                     }, R.string.message_quit).show();

@@ -16,6 +16,8 @@ import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.ui.views.AnyEditTextView;
 import com.ingic.pnl.ui.views.TitleBar;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -52,6 +54,30 @@ public class EditProfileFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
+
+    }
+
+    @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.UPDATEPROFILE:
+                prefHelper.setPhoneNum(edtPhone.getText().toString());
+                prefHelper.setCity(edtCity.getText().toString());
+                prefHelper.setUserName(edtFullName.getText().toString());
+                prefHelper.setUserName(edtEmail.getText().toString());
+                UIHelper.showShortToastInCenter(getDockActivity(), message);
+                getDockActivity().popBackStackTillEntry(0);
+                getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
+                break;
+        }
+    }
+
+    @Override
+    public void setTitleBar(TitleBar titleBar) {
+        super.setTitleBar(titleBar);
+        titleBar.hideButtons();
+        titleBar.setSubHeading(getString(R.string.edit_profile));
+        titleBar.showBackButton();
     }
 
     @Override
@@ -66,11 +92,12 @@ public class EditProfileFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         edtFullName.setText(prefHelper.getUserName() + "");
-        if (prefHelper.getCity() != null)
+        if (!prefHelper.getCity().equals("null"))
             edtCity.setText(prefHelper.getCity() + "");
-        if (prefHelper.getPhoneNum() != null)
+        if (!prefHelper.getPhoneNum().equals("null"))
             edtPhone.setText(prefHelper.getPhoneNum() + "");
-
+        if (!prefHelper.getUserEmail().equals("null"))
+            edtEmail.setText(prefHelper.getUserEmail() + "");
         main_parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,27 +116,9 @@ public class EditProfileFragment extends BaseFragment {
     public void onViewClicked() {
         if (isvalidated()) {
             // UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.profie_update_message));
-            serviceHelper.enqueueCall(webService.editProfile(prefHelper.getUserID(), edtFullName.getText().toString(), edtPhone.getText().toString(), edtPhone.getText().toString()), WebServiceConstants.UPDATEPROFILE);
+            serviceHelper.enqueueCall(webService.editProfile(prefHelper.getUserID(), edtFullName.getText().toString(),
+                    edtPhone.getText().toString(), edtPhone.getText().toString()), WebServiceConstants.UPDATEPROFILE);
         }
-    }
-
-    @Override
-    public void ResponseSuccess(Object result, String Tag, String message) {
-        switch (Tag) {
-            case WebServiceConstants.LIST_COMPANY_BY_CARACTER:
-                UIHelper.showShortToastInCenter(getDockActivity(), message);
-                getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
-                break;
-        }
-    }
-
-
-    @Override
-    public void setTitleBar(TitleBar titleBar) {
-        super.setTitleBar(titleBar);
-        titleBar.hideButtons();
-        titleBar.setSubHeading(getString(R.string.edit_profile));
-        titleBar.showBackButton();
     }
 
     private boolean isvalidated() {

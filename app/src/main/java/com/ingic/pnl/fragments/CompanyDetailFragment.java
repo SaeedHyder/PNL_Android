@@ -120,12 +120,7 @@ public class CompanyDetailFragment extends BaseFragment {
                 mainFrame.setVisibility(View.VISIBLE);
                 companyDetailEnt = (CompanyDetailEnt) result;
                 setComapanyDetail(companyDetailEnt);
-                websiteURL = companyDetailEnt.getCompanyModel().getWebUrl();
-                latitude = String.valueOf(companyDetailEnt.getCompanyModel().getLatitude() + "");
-                longitude = String.valueOf(companyDetailEnt.getCompanyModel().getLongitude() + "");
-                phoneNumber = String.valueOf(companyDetailEnt.getCompanyModel().getPhone() + "");
-                isFavorite = companyDetailEnt.getCompanyModel().getIsMarkedFavorite();
-                toggleFavourite.setChecked(isFavorite);
+
                 break;
 
             case WebServiceConstants.MARKFAVORITE:
@@ -154,8 +149,7 @@ public class CompanyDetailFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mainFrame.setVisibility(View.GONE);
-        serviceHelper.enqueueCall(webService.getCompanyDetail(companyId), WebServiceConstants.COMPANYDETAIL);
-        listners();
+        serviceHelper.enqueueCall(webService.getCompanyDetail(companyId,prefHelper.getUserID()), WebServiceConstants.COMPANYDETAIL);
 
 
     }
@@ -183,6 +177,13 @@ public class CompanyDetailFragment extends BaseFragment {
 
     private void setComapanyDetail(CompanyDetailEnt companyDetailEnt) {
         if (companyDetailEnt != null) {
+            websiteURL = companyDetailEnt.getCompanyModel().getWebUrl();
+            latitude = String.valueOf(companyDetailEnt.getCompanyModel().getLatitude() + "");
+            longitude = String.valueOf(companyDetailEnt.getCompanyModel().getLongitude() + "");
+            phoneNumber = String.valueOf(companyDetailEnt.getCompanyModel().getPhone() + "");
+            isFavorite = companyDetailEnt.getCompanyModel().getIsMarkedFavorite();
+            toggleFavourite.setChecked(isFavorite);
+            listners();
             tvCompanyDetail.setText(companyDetailEnt.getCompanyModel().getDescription() + " ");
             tvHeading1.setText(companyDetailEnt.getCompanyModel().getName() + "");
             rbReview.setScore(companyDetailEnt.getCompanyModel().getRating());

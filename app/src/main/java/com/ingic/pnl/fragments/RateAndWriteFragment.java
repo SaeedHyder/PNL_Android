@@ -75,6 +75,7 @@ public class RateAndWriteFragment extends BaseFragment {
         switch (Tag) {
             case WebServiceConstants.CREATEREVIEW:
                 UIHelper.showShortToastInCenter(getDockActivity(), message);
+                getDockActivity().popBackStackTillEntry(0);
                 getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
                 break;
         }
@@ -115,7 +116,7 @@ public class RateAndWriteFragment extends BaseFragment {
                     companyId,
                     (int) (rbReview.getScore() + 1),
                     editWriteReview.getText().toString(),
-                    tbRating.isChecked()),
+                    !tbRating.isChecked()),
                     WebServiceConstants.CREATEREVIEW);
             //
         }

@@ -11,6 +11,7 @@ import android.widget.ToggleButton;
 
 import com.ingic.pnl.R;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.ui.views.AnyTextView;
 import com.ingic.pnl.ui.views.TitleBar;
 
@@ -64,7 +65,7 @@ public class SettingFragment extends BaseFragment {
         toggleLanguage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                UIHelper.showShortToastInCenter(getDockActivity(),"Will be implemented in Future Version");
             }
         });
     }
@@ -99,6 +100,7 @@ public class SettingFragment extends BaseFragment {
                 getDockActivity().addDockableFragment(EditProfileFragment.newInstance(),EditProfileFragment.class.getSimpleName());
                 break;
             case R.id.btn_update:
+                getDockActivity().popBackStackTillEntry(0);
                 getDockActivity().addDockableFragment(HomeFragment.newInstance(),HomeFragment.class.getSimpleName());
 
                 break;
