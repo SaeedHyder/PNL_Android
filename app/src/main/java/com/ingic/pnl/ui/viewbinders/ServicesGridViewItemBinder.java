@@ -15,6 +15,7 @@ import com.ingic.pnl.helpers.BasePreferenceHelper;
 import com.ingic.pnl.ui.viewbinders.abstracts.ViewBinder;
 import com.ingic.pnl.ui.views.AnyTextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,12 +29,15 @@ public class ServicesGridViewItemBinder extends ViewBinder<ServiceEnt> {
     private DockActivity dockActivity;
     private BasePreferenceHelper prefHelper;
     private ImageLoader imageLoader;
+    private Picasso picasso;
 
 
     public ServicesGridViewItemBinder(DockActivity dockActivity, BasePreferenceHelper prefHelper) {
         super(R.layout.row_item_services);
         this.dockActivity = dockActivity;
         this.prefHelper = prefHelper;
+        imageLoader = ImageLoader.getInstance();
+        picasso = Picasso.with(dockActivity);
     }
 
     @Override
@@ -44,16 +48,20 @@ public class ServicesGridViewItemBinder extends ViewBinder<ServiceEnt> {
     @Override
     public void bindView(ServiceEnt entity, int position, int grpPosition, View view, Activity activity) {
         LinearLayout gridView = (LinearLayout) view;
+        gridView.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.MATCH_PARENT, getScreenHeight(activity) / 4));
+        final ViewHolder viewHolder = (ViewHolder) view.getTag();
+        viewHolder.txtService.setText(entity.getName() + "");
+        picasso.load(entity.getImageUrl()).into(viewHolder.imgService);
+//        imageLoader.displayImage(entity.getImageUrl(), viewHolder.imgService);
+    }
+
+    private int getScreenHeight(Activity activity) {
         Point size = new Point();
         activity.getWindowManager().getDefaultDisplay().getSize(size);
         int screenHeight = size.y;
         screenHeight = screenHeight - (int) activity.getResources().getDimension(R.dimen.x100) - (int)
                 (((MainActivity) activity).titleBar.getHeight());
-        gridView.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.MATCH_PARENT, screenHeight / 4));
-        final ViewHolder viewHolder = (ViewHolder) view.getTag();
-        imageLoader = ImageLoader.getInstance();
-        imageLoader.displayImage(entity.getImageUrl(), viewHolder.imgService);
-        viewHolder.txtService.setText(entity.getName() + "");
+        return screenHeight;
     }
 
     static class ViewHolder extends BaseViewHolder {

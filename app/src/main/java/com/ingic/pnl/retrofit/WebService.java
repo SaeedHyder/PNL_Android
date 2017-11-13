@@ -27,7 +27,7 @@ public interface WebService {
 
     @FormUrlEncoded
     @POST("account/signinwithsocialmedia")
-    Call<UserIDEnt> makeUserSocialMediaLogin(@Field("AuthToken") String authToken);
+    Call<ResponseWrapper<UserIDEnt>> makeUserSocialMediaLogin(@Field("AuthToken") String authToken);
 
     @FormUrlEncoded
     @POST("account/signup")
@@ -52,8 +52,8 @@ public interface WebService {
     @GET("company/GetAllStartsWith/{c}")
     Call<ResponseWrapper<ArrayList<SortingByEnt>>> getCompaniesByCaracter(@Path("c") String caracter);
 
-    @GET("company/get/{id}")
-    Call<ResponseWrapper<CompanyDetailEnt>> getCompanyDetail(@Path("id") int id);
+    @GET("company/get/{id}/{userid}")
+    Call<ResponseWrapper<CompanyDetailEnt>> getCompanyDetail(@Path("id") int id, @Path("userid") String userid);
 
     @FormUrlEncoded
     @POST("company/MarkFavorite")

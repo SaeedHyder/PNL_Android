@@ -114,6 +114,7 @@ public class ChangePasswordFragment extends BaseFragment {
         switch (Tag) {
             case WebServiceConstants.CHANGEPASSWORD:
                 UIHelper.showShortToastInCenter(getDockActivity(),message);
+                getDockActivity().popBackStackTillEntry(0);
                 getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
                 break;
         }

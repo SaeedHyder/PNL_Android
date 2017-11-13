@@ -87,6 +87,11 @@ public class RegisterFragment extends BaseFragment implements GoogleHelper.Googl
                 googleHelper.googleRevokeAccess();
                 googleHelper.googleSignOut();
                 prefHelper.setUserID(((UserIDEnt) result).getUser().getUserId() + "");
+                UserIDEnt userID = (UserIDEnt) result;
+                prefHelper.setUserName(userID.getUser().getName() + "");
+                prefHelper.setCity(userID.getUser().getCity() + "");
+                prefHelper.setPhoneNum(userID.getUser().getPhone() + "");
+                prefHelper.setUserEmail(userID.getUser().getEmail() + "");
                 getDockActivity().popBackStackTillEntry(0);
                 getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
                 break;

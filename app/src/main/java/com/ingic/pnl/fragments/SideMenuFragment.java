@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.ingic.pnl.R;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
 import com.ingic.pnl.helpers.DialogHelper;
+import com.ingic.pnl.helpers.UIHelper;
 import com.ingic.pnl.ui.views.TitleBar;
 
 import butterknife.BindView;
@@ -75,7 +76,8 @@ public class SideMenuFragment extends BaseFragment {
                 getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
                 break;
             case R.id.btn_notifications:
-                getDockActivity().replaceDockableFragment(NotificationFragment.newInstance(), "NotificationFragment");
+//                getDockActivity().replaceDockableFragment(NotificationFragment.newInstance(), "NotificationFragment");
+                UIHelper.showShortToastInCenter(getDockActivity(),"Will be implemented in Future Version");
                 break;
             case R.id.btn_favourites:
                 getDockActivity().replaceDockableFragment(FavouriteFragment.newInstance(), "FavouriteFragment");
