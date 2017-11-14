@@ -148,7 +148,7 @@ public class RateAndWriteFragment extends BaseFragment {
             serviceHelper.enqueueCall(webService.createReview(
                     prefHelper.getUserID(),
                     companyId,
-                    (int) (rbReview.getScore()),
+                    Math.round(rbReview.getScore()),
                     editWriteReview.getText().toString(),
                     !tbRating.isChecked()),
                     WebServiceConstants.CREATEREVIEW);

@@ -82,7 +82,7 @@ public abstract class BaseFragment extends Fragment implements webServiceRespons
 	public void onResume() {
 		super.onResume();
 	//	setTitleBar( ((MainActivity) getDockActivity()).titleBar );
-
+		hideKeyboard();
 		if(getDockActivity().getDrawerLayout() != null){
 			getDockActivity().releaseDrawer();
 		}
@@ -103,6 +103,7 @@ public abstract class BaseFragment extends Fragment implements webServiceRespons
 	
 	@Override
 	public void onPause() {
+		hideKeyboard();
 		super.onPause();
 		
 		if ( getDockActivity().getWindow() != null )

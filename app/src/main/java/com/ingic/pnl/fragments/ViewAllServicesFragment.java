@@ -3,7 +3,6 @@ package com.ingic.pnl.fragments;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import android.widget.ListView;
 import com.ingic.pnl.R;
 import com.ingic.pnl.entities.ServiceEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.AppConstants;
 import com.ingic.pnl.global.WebServiceConstants;
 import com.ingic.pnl.helpers.Utils;
 import com.ingic.pnl.ui.adapters.ArrayListAdapter;
@@ -25,7 +25,6 @@ import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Created by saeedhyder on 10/19/2017.
@@ -85,7 +84,7 @@ public class ViewAllServicesFragment extends BaseFragment {
 
     @Override
     public void ResponseFailure(String tag) {
-        switch (tag){
+        switch (tag) {
             case WebServiceConstants.SERVICESLIST:
                 txtNoData.setVisibility(View.VISIBLE);
                 lvAllServices.setVisibility(View.GONE);
@@ -109,12 +108,13 @@ public class ViewAllServicesFragment extends BaseFragment {
     }
 
 
-
     private void listners() {
         lvAllServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getDockActivity().replaceDockableFragment(ServiceCategoryFragment.newInstance(userCollection.get(position)), "SortingByFragment");
+                getDockActivity().replaceDockableFragment(
+                        ServiceCategoryFragment.newInstance((ServiceEnt) view.getTag(R.integer.key_item_at_position)),
+                        "SortingByFragment");
             }
         });
     }
@@ -174,13 +174,11 @@ public class ViewAllServicesFragment extends BaseFragment {
 
     private void localSearch(ArrayList<ServiceEnt> data) {
 
-        if(data.size()<=0){
-          //  txtNoData.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
+        if (data.size() <= 0) {
+            //  txtNoData.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
             txtNoData.setVisibility(View.VISIBLE);
             lvAllServices.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             txtNoData.setVisibility(View.GONE);
             lvAllServices.setVisibility(View.VISIBLE);
         }

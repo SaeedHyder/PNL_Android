@@ -6,7 +6,6 @@ import android.view.View;
 import com.ingic.pnl.R;
 import com.ingic.pnl.activities.DockActivity;
 import com.ingic.pnl.entities.ServiceEnt;
-import com.ingic.pnl.entities.ViewAllServicesEnt;
 import com.ingic.pnl.helpers.BasePreferenceHelper;
 import com.ingic.pnl.ui.views.AnyTextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -41,12 +40,12 @@ public class ViewAllServicesItemBinder extends ViewBinder<ServiceEnt> {
 
         final ViewHolder viewHolder = (ViewHolder) view.getTag();
         imageLoader = ImageLoader.getInstance();
-
+        view.setTag(R.integer.key_item_at_position, entity);
         viewHolder.companiesSorting.setText(entity.getName() + "");
     }
 
 
-    static class ViewHolder extends BaseViewHolder{
+    static class ViewHolder extends BaseViewHolder {
         @BindView(R.id.companies_sorting)
         AnyTextView companiesSorting;
 

@@ -133,7 +133,9 @@ public class SortingByFragment extends BaseFragment {
         lvSortingBy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(userCollection.get(position).getId(), userCollection.get(position).getName()), "CompanyDetailFragment");
+                SortingByEnt ent = (SortingByEnt) view.getTag(R.integer.key_item_at_position);
+                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(ent.getId(),
+                        ent.getName()), "CompanyDetailFragment");
             }
         });
     }
@@ -171,13 +173,11 @@ public class SortingByFragment extends BaseFragment {
 
     private void localSearch(ArrayList<SortingByEnt> data) {
 
-        if(data.size()<=0){
+        if (data.size() <= 0) {
             txtNoData.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
             txtNoData.setVisibility(View.VISIBLE);
             lvSortingBy.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             txtNoData.setVisibility(View.GONE);
             lvSortingBy.setVisibility(View.VISIBLE);
         }

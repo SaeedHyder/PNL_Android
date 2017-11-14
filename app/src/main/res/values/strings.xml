@@ -191,6 +191,7 @@
     <string name="city">City</string>
     <string name="poor">Poor</string>
     <string name="excellent">Excellent</string>
+    <integer name="key_item_at_position">512</integer>
     <string name="same_password_error">New password should not be same as previous password</string>
     <array name="sortedalphabet">
         <item>A</item>

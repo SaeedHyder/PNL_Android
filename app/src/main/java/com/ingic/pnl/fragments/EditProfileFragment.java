@@ -115,9 +115,10 @@ public class EditProfileFragment extends BaseFragment {
     @OnClick(R.id.btn_update)
     public void onViewClicked() {
         if (isvalidated()) {
+            hideKeyboard();
             // UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.profie_update_message));
             serviceHelper.enqueueCall(webService.editProfile(prefHelper.getUserID(), edtFullName.getText().toString(),
-                    edtPhone.getText().toString(), edtPhone.getText().toString()), WebServiceConstants.UPDATEPROFILE);
+                    edtPhone.getText().toString(), edtCity.getText().toString()), WebServiceConstants.UPDATEPROFILE);
         }
     }
 

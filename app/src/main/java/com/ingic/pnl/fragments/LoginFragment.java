@@ -130,6 +130,7 @@ public class LoginFragment extends BaseFragment implements GoogleHelper.GoogleHe
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onViewCreated(view, savedInstanceState);
+        hideKeyboard();
         setupGoogleSignup();
         setupFacebookLogin();
         setListeners();

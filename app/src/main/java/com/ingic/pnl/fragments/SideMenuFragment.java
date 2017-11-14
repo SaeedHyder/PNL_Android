@@ -89,6 +89,7 @@ public class SideMenuFragment extends BaseFragment {
                 getDockActivity().replaceDockableFragment(SettingFragment.newInstance(), "SettingFragment");
                 break;
             case R.id.btn_logout:
+                hideKeyboard();
                 final DialogHelper dialog = new DialogHelper(getDockActivity());
                 dialog.initlogout(R.layout.logout_dialog, new View.OnClickListener() {
                     @Override
