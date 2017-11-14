@@ -69,8 +69,7 @@ public class FavouriteFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        serviceHelper.enqueueCall(webService.getFavouriteList(prefHelper.getUserID()), WebServiceConstants.FAVOURITELIST);
-
+        //serviceHelper.enqueueCall(webService.getFavouriteList(prefHelper.getUserID()), WebServiceConstants.FAVOURITELIST);
         //setFavouriteData();
         listner();
     }
@@ -97,12 +96,23 @@ public class FavouriteFragment extends BaseFragment {
                 break;
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        serviceHelper.enqueueCall(webService.getFavouriteList(prefHelper.getUserID()), WebServiceConstants.FAVOURITELIST);
+    }
+
+
+
+
+
     private void listner() {
 
         lvNotifications.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getDockActivity().addDockableFragment(CompanyDetailFragment.newInstance(userCollection.get(position).getId(),userCollection.get(position).getName()),"CompanyDetailFragment");
+                getDockActivity().replaceDockableFragment(CompanyDetailFragment.newInstance(userCollection.get(position).getId(),userCollection.get(position).getName()),"CompanyDetailFragment");
             }
         });
     }

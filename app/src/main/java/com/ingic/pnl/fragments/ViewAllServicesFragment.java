@@ -3,6 +3,7 @@ package com.ingic.pnl.fragments;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class ViewAllServicesFragment extends BaseFragment {
     AnyTextView txtNoData;
     @BindView(R.id.lv_all_services)
     ListView lvAllServices;
-    Unbinder unbinder;
+
 
     private ArrayListAdapter<ServiceEnt> adapter;
     private ArrayList<ServiceEnt> userCollection;
@@ -60,7 +61,7 @@ public class ViewAllServicesFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_all_services, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -107,17 +108,13 @@ public class ViewAllServicesFragment extends BaseFragment {
 
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
 
     private void listners() {
         lvAllServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getDockActivity().addDockableFragment(ServiceCategoryFragment.newInstance(userCollection.get(position)), "SortingByFragment");
+                getDockActivity().replaceDockableFragment(ServiceCategoryFragment.newInstance(userCollection.get(position)), "SortingByFragment");
             }
         });
     }
@@ -176,6 +173,17 @@ public class ViewAllServicesFragment extends BaseFragment {
     }
 
     private void localSearch(ArrayList<ServiceEnt> data) {
+
+        if(data.size()<=0){
+          //  txtNoData.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
+            txtNoData.setVisibility(View.VISIBLE);
+            lvAllServices.setVisibility(View.GONE);
+        }
+        else
+        {
+            txtNoData.setVisibility(View.GONE);
+            lvAllServices.setVisibility(View.VISIBLE);
+        }
 
         adapter.clearList();
         adapter.addAll(data);

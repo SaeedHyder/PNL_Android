@@ -152,6 +152,7 @@
                         android:maxLength="2"
                         android:padding="@dimen/x3"
                         android:text="0"
+                        android:visibility="gone"
                         android:textColor="@color/white"
                         android:textSize="@dimen/x10"
                         app:typeface="@string/Roboto" />

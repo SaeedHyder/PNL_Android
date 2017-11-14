@@ -83,7 +83,10 @@ public class ChangePasswordFragment extends BaseFragment {
         } else if (!edtConfirmPassword.getText().toString().equals(edtNewPassword.getText().toString())) {
             edtConfirmPassword.setError(getString(R.string.does_not_match));
             return false;
-        } else {
+        } else if(edtCurrentPassword.getText().toString().equals(edtNewPassword.getText().toString())){
+            UIHelper.showShortToastInCenter(getDockActivity(),getString(R.string.same_password_error));
+            return false;
+        }else {
             return true;
         }
     }

@@ -1,10 +1,12 @@
 package com.ingic.pnl.fragments;
 
+import android.media.Rating;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.ToggleButton;
 
 import com.ingic.pnl.R;
@@ -77,6 +79,7 @@ public class RateAndWriteFragment extends BaseFragment {
                 UIHelper.showShortToastInCenter(getDockActivity(), message);
                 getDockActivity().popBackStackTillEntry(0);
                 getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
+                loadingFinished();
                 break;
         }
     }
@@ -99,6 +102,36 @@ public class RateAndWriteFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (!prefHelper.getUserName().equals("null")){
+            edtName.setText(prefHelper.getUserName() + "");}
+        
+            RatingListners();
+
+
+    }
+
+    private void RatingListners() {
+        rbReview.setOnScoreChanged(new CustomRatingBar.IRatingBarCallbacks() {
+            @Override
+            public void scoreChanged(float score) {
+                if(score<1.0f)
+                    rbReview.setScore(1.0f);
+
+                if(score<=2){
+                    tvGood.setText(R.string.poor);
+                }
+                else if(score>2 && score<=4){
+                    tvGood.setText(R.string.good);
+                }
+                else if(score>4){
+                    tvGood.setText(R.string.excellent);
+                }
+                else {
+                    tvGood.setText(R.string.good);
+                }
+            }
+        });
+
 
     }
 
@@ -111,10 +144,11 @@ public class RateAndWriteFragment extends BaseFragment {
     @OnClick(R.id.btn_login)
     public void onViewClicked() {
         if (validate()) {
+            loadingStarted();
             serviceHelper.enqueueCall(webService.createReview(
                     prefHelper.getUserID(),
                     companyId,
-                    (int) (rbReview.getScore() + 1),
+                    (int) (rbReview.getScore()),
                     editWriteReview.getText().toString(),
                     !tbRating.isChecked()),
                     WebServiceConstants.CREATEREVIEW);

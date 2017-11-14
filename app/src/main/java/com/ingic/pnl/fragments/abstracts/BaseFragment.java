@@ -13,6 +13,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -112,7 +113,9 @@ public abstract class BaseFragment extends Fragment implements webServiceRespons
 	}
 
 	public void loadingStarted() {
-		
+
+		getDockActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+				WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 		if ( getParentFragment() != null )
 			((LoadingListener) getParentFragment()).onLoadingStarted();
 		else
@@ -122,7 +125,9 @@ public abstract class BaseFragment extends Fragment implements webServiceRespons
 	}
 	
 	public void loadingFinished() {
-		
+
+		getDockActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
 		if ( getParentFragment() != null )
 			((LoadingListener) getParentFragment()).onLoadingFinished();
 		else if ( getDockActivity() != null )

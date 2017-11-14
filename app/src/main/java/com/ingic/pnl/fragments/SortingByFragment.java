@@ -3,6 +3,7 @@ package com.ingic.pnl.fragments;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -169,6 +170,17 @@ public class SortingByFragment extends BaseFragment {
     }
 
     private void localSearch(ArrayList<SortingByEnt> data) {
+
+        if(data.size()<=0){
+            txtNoData.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
+            txtNoData.setVisibility(View.VISIBLE);
+            lvSortingBy.setVisibility(View.GONE);
+        }
+        else
+        {
+            txtNoData.setVisibility(View.GONE);
+            lvSortingBy.setVisibility(View.VISIBLE);
+        }
 
         adapter.clearList();
         adapter.addAll(data);

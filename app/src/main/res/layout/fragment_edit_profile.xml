@@ -23,14 +23,14 @@
             android:layout_gravity="center_vertical"
             android:background="@color/transparent"
             android:gravity="center_vertical"
-            android:hint="Full Name"
+            android:hint="@string/full_name"
             android:imeOptions="actionNext"
             android:inputType="textPersonName"
             android:maxLength="30"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/gray_dark"
             android:textSize="@dimen/x15"
             app:typeface="@string/Roboto"/>
 
@@ -49,7 +49,7 @@
             android:layout_gravity="center_vertical"
             android:background="@color/transparent"
             android:gravity="center_vertical"
-            android:text="test@gmail.com"
+            android:hint="@string/email"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:imeOptions="actionNext"
@@ -58,7 +58,7 @@
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/gray_dark"
             android:textSize="@dimen/x15"
             app:typeface="@string/Roboto"/>
 
@@ -77,14 +77,14 @@
             android:layout_gravity="center_vertical"
             android:background="@color/transparent"
             android:gravity="center_vertical"
-            android:hint="Phone"
+            android:hint="@string/phone"
             android:imeOptions="actionNext"
             android:inputType="phone"
             android:maxLength="30"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/gray_dark"
             android:textSize="@dimen/x15"
             app:typeface="@string/Roboto"/>
 
@@ -103,14 +103,15 @@
             android:layout_gravity="center_vertical"
             android:background="@color/transparent"
             android:gravity="center_vertical"
-            android:hint="City"
+            android:hint="@string/city"
             android:imeOptions="actionDone"
-            android:inputType="text"
+
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
             android:maxLength="30"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/gray_dark"
             android:textSize="@dimen/x15"
             app:typeface="@string/Roboto"/>
 

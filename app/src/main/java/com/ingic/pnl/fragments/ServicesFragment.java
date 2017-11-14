@@ -107,7 +107,7 @@ public class ServicesFragment extends BaseFragment implements RecyclerViewItemLi
         rcyServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getDockActivity().addDockableFragment(ServiceCategoryFragment.newInstance(dataCollection.get(position)), "ServiceCategoryFragment");
+                getDockActivity().replaceDockableFragment(ServiceCategoryFragment.newInstance(dataCollection.get(position)), "ServiceCategoryFragment");
             }
         });
     }

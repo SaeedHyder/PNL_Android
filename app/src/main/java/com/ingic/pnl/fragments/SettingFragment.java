@@ -94,15 +94,14 @@ public class SettingFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_change_password:
-                getDockActivity().addDockableFragment(ChangePasswordFragment.newInstance(),ChangePasswordFragment.class.getSimpleName());
+                getDockActivity().replaceDockableFragment(ChangePasswordFragment.newInstance(),ChangePasswordFragment.class.getSimpleName());
                 break;
             case R.id.edt_rate_app:
-                getDockActivity().addDockableFragment(EditProfileFragment.newInstance(),EditProfileFragment.class.getSimpleName());
+                getDockActivity().replaceDockableFragment(EditProfileFragment.newInstance(),EditProfileFragment.class.getSimpleName());
                 break;
             case R.id.btn_update:
                 getDockActivity().popBackStackTillEntry(0);
-                getDockActivity().addDockableFragment(HomeFragment.newInstance(),HomeFragment.class.getSimpleName());
-
+                getDockActivity().replaceDockableFragment(HomeFragment.newInstance(),HomeFragment.class.getSimpleName());
                 break;
         }
     }

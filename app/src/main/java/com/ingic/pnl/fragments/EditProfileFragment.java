@@ -64,7 +64,7 @@ public class EditProfileFragment extends BaseFragment {
                 prefHelper.setPhoneNum(edtPhone.getText().toString());
                 prefHelper.setCity(edtCity.getText().toString());
                 prefHelper.setUserName(edtFullName.getText().toString());
-                prefHelper.setUserName(edtEmail.getText().toString());
+                prefHelper.setUserEmail(edtEmail.getText().toString());
                 UIHelper.showShortToastInCenter(getDockActivity(), message);
                 getDockActivity().popBackStackTillEntry(0);
                 getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
@@ -135,17 +135,17 @@ public class EditProfileFragment extends BaseFragment {
             }
             edtEmail.setError(getString(R.string.enter_valid_email));
             return false;
-        } else if (edtPhone.getText().toString().isEmpty()) {
+        } else if (!edtPhone.getText().toString().equals("") && edtPhone.getText().toString().length() <11) {
             if (edtPhone.requestFocus()) {
                 getMainActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
             }
-            edtPhone.setError(getString(R.string.enter_phone));
+            edtPhone.setError(getString(R.string.numberLength));
             return false;
-        } else if (edtCity.getText().toString().equals("")) {
+        } else if (!edtCity.getText().toString().equals("") && edtCity.getText().toString().length() <2) {
             if (edtCity.requestFocus()) {
                 getMainActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
             }
-            edtCity.setError(getString(R.string.city_error));
+            edtCity.setError(getString(R.string.cityLength));
             return false;
         } else {
             return true;

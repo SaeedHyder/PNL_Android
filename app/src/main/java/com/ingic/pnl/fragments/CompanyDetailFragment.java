@@ -113,22 +113,6 @@ public class CompanyDetailFragment extends BaseFragment {
 
     }
 
-    @Override
-    public void ResponseSuccess(Object result, String Tag, String message) {
-        switch (Tag) {
-            case WebServiceConstants.COMPANYDETAIL:
-                mainFrame.setVisibility(View.VISIBLE);
-                companyDetailEnt = (CompanyDetailEnt) result;
-                setComapanyDetail(companyDetailEnt);
-
-                break;
-
-            case WebServiceConstants.MARKFAVORITE:
-                UIHelper.showShortToastInCenter(getDockActivity(), message);
-                break;
-
-        }
-    }
 
     @Override
     public void setTitleBar(TitleBar titleBar) {
@@ -155,6 +139,24 @@ public class CompanyDetailFragment extends BaseFragment {
     }
 
     @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.COMPANYDETAIL:
+                mainFrame.setVisibility(View.VISIBLE);
+                companyDetailEnt = (CompanyDetailEnt) result;
+                setComapanyDetail(companyDetailEnt);
+
+                break;
+
+            case WebServiceConstants.MARKFAVORITE:
+                UIHelper.showShortToastInCenter(getDockActivity(), message);
+                break;
+
+        }
+    }
+
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
@@ -177,6 +179,11 @@ public class CompanyDetailFragment extends BaseFragment {
 
     private void setComapanyDetail(CompanyDetailEnt companyDetailEnt) {
         if (companyDetailEnt != null) {
+
+            float floatRating = companyDetailEnt.getCompanyModel().getRating();
+            int rating = (int) Math.ceil(floatRating);
+            tvRatingText.setText(rating+ "");
+
             websiteURL = companyDetailEnt.getCompanyModel().getWebUrl();
             latitude = String.valueOf(companyDetailEnt.getCompanyModel().getLatitude() + "");
             longitude = String.valueOf(companyDetailEnt.getCompanyModel().getLongitude() + "");
@@ -187,7 +194,7 @@ public class CompanyDetailFragment extends BaseFragment {
             tvCompanyDetail.setText(companyDetailEnt.getCompanyModel().getDescription() + " ");
             tvHeading1.setText(companyDetailEnt.getCompanyModel().getName() + "");
             rbReview.setScore(companyDetailEnt.getCompanyModel().getRating());
-            tvRatingText.setText(companyDetailEnt.getCompanyModel().getRating() + "");
+
             imageLoader.displayImage(companyDetailEnt.getCompanyModel().getImageUrl(), ivMain);
 
             //Review

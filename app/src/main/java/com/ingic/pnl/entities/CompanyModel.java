@@ -39,7 +39,7 @@ public class CompanyModel {
     private Boolean isMarkedFavorite;
     @SerializedName("Rating")
     @Expose
-    private Integer rating;
+    private Float rating;
     @SerializedName("Id")
     @Expose
     private Integer id;
@@ -116,11 +116,11 @@ public class CompanyModel {
         this.isMarkedFavorite = isMarkedFavorite;
     }
 
-    public Integer getRating() {
+    public Float getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Float rating) {
         this.rating = rating;
     }
 

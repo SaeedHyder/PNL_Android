@@ -94,6 +94,7 @@ public class SideMenuFragment extends BaseFragment {
                     @Override
                     public void onClick(View v) {
                         prefHelper.setLoginStatus(false);
+                        hideKeyboard();
                         getDockActivity().popBackStackTillEntry(0);
                         getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
                         dialog.hideDialog();

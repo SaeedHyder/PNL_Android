@@ -143,7 +143,7 @@
     <string name="submit">Submit</string>
     <string name="travel_company">Travel Company</string>
     <string name="address_details">Address details</string>
-    <string name="mark_favourites">Mark Favourites</string>
+    <string name="mark_favourites">Mark Favorites</string>
     <string name="conatct_details">Contact details</string>
     <string name="share">Share</string>
     <string name="website">Website</string>
@@ -170,10 +170,12 @@
     <string name="search_category">Search Category</string>
     <string name="profile_update_message">Profile Updated</string>
     <string name="enter_phone">Enter Phone Number</string>
+    <string name="numberLength">Number should be more than 10</string>
+    <string name="cityLength">City length should be more than 1</string>
     <string name="city_error">Enter City</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="turn_notification_on_off">Turn Notification On/Off</string>
-    <string name="forgot_password_message">Your Password will be \n deliverd at the following email</string>
+    <string name="forgot_password_message">Your Password will be \n delivered at the following email</string>
     <string name="send">Send</string>
     <string name="re_enter_password">Re-enter Password</string>
     <string name="re_enter_password_message">Enter your new Password here</string>
@@ -182,6 +184,14 @@
     <string name="no_review">No Review Found</string>
     <string name="server_response_error">No Response From Server</string>
     <string name="share_via">Share Via</string>
+    <string name="good">Good</string>
+    <string name="full_name">Full Name</string>
+
+    <string name="phone">Phone</string>
+    <string name="city">City</string>
+    <string name="poor">Poor</string>
+    <string name="excellent">Excellent</string>
+    <string name="same_password_error">New password should not be same as previous password</string>
     <array name="sortedalphabet">
         <item>A</item>
         <item>B</item>

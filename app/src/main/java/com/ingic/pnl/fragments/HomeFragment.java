@@ -10,13 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.ingic.pnl.R;
-import com.ingic.pnl.entities.SortingByEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
 import com.ingic.pnl.global.WebServiceConstants;
 import com.ingic.pnl.ui.views.AnyTextView;
 import com.ingic.pnl.ui.views.TitleBar;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,7 +66,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        txtFavouriteCount.setVisibility(View.GONE);
         serviceHelper.enqueueCall(webService.getFavouriteCount(prefHelper.getUserID()), WebServiceConstants.FAVOURITECOUNT);
 
     }
@@ -78,8 +75,12 @@ public class HomeFragment extends BaseFragment {
     public void ResponseSuccess(Object result, String Tag, String message) {
         switch (Tag) {
             case WebServiceConstants.FAVOURITECOUNT:
-                String count=(String)result;
-                txtFavouriteCount.setText(count);
+                String count = (String) result;
+                if (!count.equals("0")){
+                    txtFavouriteCount.setVisibility(View.VISIBLE);
+                    txtFavouriteCount.setText(count);
+                }
+
                 break;
         }
     }
