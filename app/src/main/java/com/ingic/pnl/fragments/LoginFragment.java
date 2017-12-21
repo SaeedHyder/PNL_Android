@@ -165,6 +165,7 @@ public class LoginFragment extends BaseFragment implements GoogleHelper.GoogleHe
                 }
                 break;
             case R.id.btn_login_facebook:
+                LoginManager.getInstance().logOut();
                 LoginManager.getInstance().logInWithReadPermissions(LoginFragment.this, facebookLoginHelper.getPermissionNeeds());
 
                 break;
@@ -172,6 +173,8 @@ public class LoginFragment extends BaseFragment implements GoogleHelper.GoogleHe
                 getDockActivity().replaceDockableFragment(RegisterFragment.newInstance(), "RegisterFragment");
                 break;
             case R.id.btn_login_google:
+                googleHelper.googleRevokeAccess();
+                googleHelper.googleSignOut();
                 googleHelper.intentGoogleSign();
                 break;
             case R.id.btn_forgot_password:

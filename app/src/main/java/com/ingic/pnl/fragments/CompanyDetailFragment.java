@@ -18,6 +18,7 @@ import com.ingic.pnl.fragments.abstracts.BaseFragment;
 import com.ingic.pnl.global.WebServiceConstants;
 import com.ingic.pnl.helpers.DialogHelper;
 import com.ingic.pnl.helpers.UIHelper;
+import com.ingic.pnl.ui.adapters.RecyclerViewAdapter;
 import com.ingic.pnl.ui.views.AnyTextView;
 import com.ingic.pnl.ui.views.CustomRatingBar;
 import com.ingic.pnl.ui.views.TitleBar;
@@ -181,7 +182,7 @@ public class CompanyDetailFragment extends BaseFragment {
         if (companyDetailEnt != null) {
 
             float floatRating = companyDetailEnt.getCompanyModel().getRating();
-            int rating = (int) Math.ceil(floatRating);
+            int rating = Math.round(floatRating);
             tvRatingText.setText(rating+ "");
 
             websiteURL = companyDetailEnt.getCompanyModel().getWebUrl();
@@ -193,7 +194,7 @@ public class CompanyDetailFragment extends BaseFragment {
             listners();
             tvCompanyDetail.setText(companyDetailEnt.getCompanyModel().getDescription() + " ");
             tvHeading1.setText(companyDetailEnt.getCompanyModel().getName() + "");
-            rbReview.setScore(companyDetailEnt.getCompanyModel().getRating());
+            rbReview.setScore(rating);
 
             imageLoader.displayImage(companyDetailEnt.getCompanyModel().getImageUrl(), ivMain);
 
@@ -258,8 +259,9 @@ public class CompanyDetailFragment extends BaseFragment {
     }
 
     private void openMapDialoge() {
-        final DialogHelper dialog = new DialogHelper(getDockActivity());
+        final DialogHelper dialog = new DialogHelper(getMainActivity());
         dialog.mapDialoge(R.layout.map_dialoge, getDockActivity(), latitude, longitude);
+        hideKeyboard();
         dialog.showDialog();
     }
 

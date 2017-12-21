@@ -193,6 +193,7 @@
     <string name="excellent">Excellent</string>
     <integer name="key_item_at_position">512</integer>
     <string name="same_password_error">New password should not be same as previous password</string>
+    <string name="user_not_exist_error">User not exist.Please Signup to Login</string>
     <array name="sortedalphabet">
         <item>A</item>
         <item>B</item>

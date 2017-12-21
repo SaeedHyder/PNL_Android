@@ -169,9 +169,12 @@ public class RegisterFragment extends BaseFragment implements GoogleHelper.Googl
                 }
                 break;
             case R.id.btn_facebook:
+                LoginManager.getInstance().logOut();
                 LoginManager.getInstance().logInWithReadPermissions(RegisterFragment.this, facebookLoginHelper.getPermissionNeeds());
                 break;
             case R.id.btn_google:
+                googleHelper.googleRevokeAccess();
+                googleHelper.googleSignOut();
                 googleHelper.intentGoogleSign();
                 break;
         }
