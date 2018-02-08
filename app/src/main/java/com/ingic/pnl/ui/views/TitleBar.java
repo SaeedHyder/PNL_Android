@@ -20,6 +20,7 @@ public class TitleBar extends RelativeLayout {
     private LinearLayout iv_search;
     private LinearLayout llSearch;
     private AnyEditTextView edt_search;
+    private AnyTextView btnClear;
 
 
     private View.OnClickListener menuButtonListener;
@@ -67,6 +68,7 @@ public class TitleBar extends RelativeLayout {
     private void bindViews() {
 
         txtTitle = (TextView) this.findViewById(R.id.txt_subHead);
+        btnClear = (AnyTextView) this.findViewById(R.id.btn_clear);
         btnRight = (ImageView) this.findViewById(R.id.btnRight);
         btnLeft = (ImageView) this.findViewById(R.id.btnLeft);
         llSearch = (LinearLayout) this.findViewById(R.id.llSearch);
@@ -87,8 +89,8 @@ public class TitleBar extends RelativeLayout {
         txtTitle.setVisibility(View.GONE);
         btnLeft.setVisibility(View.GONE);
         btnRight.setVisibility(View.GONE);
-        llSearch.setVisibility(GONE);
-
+        llSearch.setVisibility(View.GONE);
+        btnClear.setVisibility(View.GONE);
     }
 
     public void showBackButton() {
@@ -103,7 +105,10 @@ public class TitleBar extends RelativeLayout {
         btnLeft.setOnClickListener(menuButtonListener);
         btnLeft.setImageResource(R.drawable.dropdown);
     }
-
+    public void showClearButton(OnClickListener listener) {
+        btnClear.setVisibility(View.VISIBLE);
+        btnClear.setOnClickListener(listener);
+    }
     public void setSubHeading(String heading) {
         txtTitle.setVisibility(View.VISIBLE);
         txtTitle.setText(heading);

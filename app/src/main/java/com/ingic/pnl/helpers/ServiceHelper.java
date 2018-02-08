@@ -41,7 +41,9 @@ public class ServiceHelper<T> {
                         } else {
                             if ((response.body().getMessage() + "").contains("found"))
                                 serviceResponseLisener.ResponseFailure(tag);
-                            else
+                            else if (response.body().getMessage().contains("Invalid")) {
+                                UIHelper.showShortToastInCenter(context, response.body().getMessage());
+                            } else
                                 UIHelper.showShortToastInCenter(context, response.body().getMessage() + "");
                         }
                     } else {

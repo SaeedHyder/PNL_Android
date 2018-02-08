@@ -71,7 +71,7 @@ public abstract class BaseFragment extends Fragment implements webServiceRespons
 
 	public void hideKeyboard() {
 		InputMethodManager imm = (InputMethodManager) getDockActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-		View view = getDockActivity().getCurrentFocus();
+		View view = getMainActivity().getCurrentFocus();
 		if (view == null) {
 			view = new View(getDockActivity());
 		}

@@ -3,6 +3,7 @@ package com.ingic.pnl.retrofit;
 
 import com.ingic.pnl.entities.CompanyDetailEnt;
 import com.ingic.pnl.entities.FavoritesEnt;
+import com.ingic.pnl.entities.NotificationEnt;
 import com.ingic.pnl.entities.PopularEnt;
 import com.ingic.pnl.entities.ResponseWrapper;
 import com.ingic.pnl.entities.ReviewsEnt;
@@ -16,7 +17,9 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -101,5 +104,18 @@ public interface WebService {
                                       @Field("Phone") String Phone,
                                       @Field("City") String City);
 
+    @GET("PushNotification/GetAllByUser/{id}")
+    Call<ResponseWrapper<NotificationEnt>> getNotificationList(@Path("id") String userID);
 
+    @FormUrlEncoded
+    @POST("Account/UpdateDeviceToken")
+    Call<ResponseWrapper> updateToken(@Field("UserId") String userid, @Field("Token") String token,
+                                      @Field("DeviceType") String deviceType);
+    @Headers("Connection:close")
+    @FormUrlEncoded
+    @POST("Account/UpdateUserNotificationStatus")
+    Call<ResponseWrapper> changeNotificationStatus(@Field("UserId") String userid, @Field("status") boolean status);
+
+    @POST("PushNotification/RemoveUserNotifications")
+    Call<ResponseWrapper> clearAllNotification(@Query("id") String userid);
 }

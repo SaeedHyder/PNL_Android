@@ -33,12 +33,23 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:maxLength="22"
-            android:text="Templsadsadasdasdasdasdasdasdasdasdate"
+            android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="@dimen/x22"
             app:typeface="OpenSans-Regular.ttf"/>
 
-
+        <com.ingic.pnl.ui.views.AnyTextView
+            android:id="@+id/btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x10"
+            android:text="@string/clear"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x14"
+            android:visibility="gone"
+            app:typeface="OpenSans-Regular.ttf"/>
         <ImageView
             android:id="@+id/btnRight"
             android:layout_width="wrap_content"

@@ -1,42 +1,37 @@
 package com.ingic.pnl.entities;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by saeedhyder on 10/19/2017.
  */
 
 public class NotificationEnt {
 
-    String title;
-    String description;
-    String time;
 
-    public NotificationEnt(String title, String description, String time) {
-        this.title = title;
-        this.description = description;
-        this.time = time;
+    @SerializedName("UnReadCount")
+    private int UnReadCount;
+    @SerializedName("Notifications")
+    private ArrayList<NotificationItemEnt> Notifications;
+
+    public int getUnReadCount() {
+        return UnReadCount;
     }
 
-    public String getTitle() {
-        return title;
+    public void setUnReadCount(int UnReadCount) {
+        this.UnReadCount = UnReadCount;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public ArrayList<NotificationItemEnt> getNotifications() {
+        return Notifications;
     }
 
-    public String getDescription() {
-        return description;
+    public void setNotifications(ArrayList<NotificationItemEnt> Notifications) {
+        this.Notifications = Notifications;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
 }

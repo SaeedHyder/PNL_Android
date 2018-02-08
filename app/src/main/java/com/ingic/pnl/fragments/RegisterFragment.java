@@ -14,13 +14,16 @@ import android.widget.FrameLayout;
 import com.facebook.CallbackManager;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.ingic.pnl.R;
 import com.ingic.pnl.entities.FacebookLoginEnt;
 import com.ingic.pnl.entities.UserIDEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.AppConstants;
 import com.ingic.pnl.global.WebServiceConstants;
 import com.ingic.pnl.helpers.FacebookLoginHelper;
 import com.ingic.pnl.helpers.GoogleHelper;
+import com.ingic.pnl.helpers.TokenUpdater;
 import com.ingic.pnl.interfaces.FacebookLoginListener;
 import com.ingic.pnl.ui.views.AnyEditTextView;
 import com.ingic.pnl.ui.views.TitleBar;
@@ -92,8 +95,10 @@ public class RegisterFragment extends BaseFragment implements GoogleHelper.Googl
                 prefHelper.setCity(userID.getUser().getCity() + "");
                 prefHelper.setPhoneNum(userID.getUser().getPhone() + "");
                 prefHelper.setUserEmail(userID.getUser().getEmail() + "");
+                TokenUpdater.getInstance().UpdateToken(getDockActivity(), prefHelper.getUserID(), AppConstants.Device_Type, FirebaseInstanceId.getInstance().getToken());
                 getDockActivity().popBackStackTillEntry(0);
                 getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
+
                 break;
         }
     }
@@ -169,9 +174,12 @@ public class RegisterFragment extends BaseFragment implements GoogleHelper.Googl
                 }
                 break;
             case R.id.btn_facebook:
+                LoginManager.getInstance().logOut();
                 LoginManager.getInstance().logInWithReadPermissions(RegisterFragment.this, facebookLoginHelper.getPermissionNeeds());
                 break;
             case R.id.btn_google:
+                googleHelper.googleRevokeAccess();
+                googleHelper.googleSignOut();
                 googleHelper.intentGoogleSign();
                 break;
         }

@@ -116,6 +116,10 @@ public class EditProfileFragment extends BaseFragment {
     public void onViewClicked() {
         if (isvalidated()) {
             hideKeyboard();
+            UIHelper.hideSoftKeyboard(getDockActivity(),edtPhone);
+            UIHelper.hideSoftKeyboard(getDockActivity(),edtCity);
+            UIHelper.hideSoftKeyboard(getDockActivity(),edtFullName);
+            UIHelper.hideSoftKeyboard(getDockActivity(),edtEmail);
             // UIHelper.showShortToastInCenter(getDockActivity(), getString(R.string.profie_update_message));
             serviceHelper.enqueueCall(webService.editProfile(prefHelper.getUserID(), edtFullName.getText().toString(),
                     edtPhone.getText().toString(), edtCity.getText().toString()), WebServiceConstants.UPDATEPROFILE);
@@ -137,15 +141,15 @@ public class EditProfileFragment extends BaseFragment {
             edtEmail.setError(getString(R.string.enter_valid_email));
             return false;
         } else if (!edtPhone.getText().toString().equals("") && edtPhone.getText().toString().length() <11) {
-            if (edtPhone.requestFocus()) {
+            /*if (edtPhone.requestFocus()) {
                 getMainActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-            }
+            }*/
             edtPhone.setError(getString(R.string.numberLength));
             return false;
         } else if (!edtCity.getText().toString().equals("") && edtCity.getText().toString().length() <2) {
-            if (edtCity.requestFocus()) {
+           /* if (edtCity.requestFocus()) {
                 getMainActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-            }
+            }*/
             edtCity.setError(getString(R.string.cityLength));
             return false;
         } else {

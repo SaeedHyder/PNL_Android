@@ -76,8 +76,8 @@ public class SideMenuFragment extends BaseFragment {
                 getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
                 break;
             case R.id.btn_notifications:
-//                getDockActivity().replaceDockableFragment(NotificationFragment.newInstance(), "NotificationFragment");
-                UIHelper.showShortToastInCenter(getDockActivity(),"Will be implemented in Future Version");
+                getDockActivity().replaceDockableFragment(NotificationFragment.newInstance(), "NotificationFragment");
+//                UIHelper.showShortToastInCenter(getDockActivity(),"Will be implemented in Future Version");
                 break;
             case R.id.btn_favourites:
                 getDockActivity().replaceDockableFragment(FavouriteFragment.newInstance(), "FavouriteFragment");
@@ -90,12 +90,14 @@ public class SideMenuFragment extends BaseFragment {
                 break;
             case R.id.btn_logout:
                 hideKeyboard();
-                final DialogHelper dialog = new DialogHelper(getDockActivity());
+                final DialogHelper dialog = new DialogHelper(getMainActivity());
                 dialog.initlogout(R.layout.logout_dialog, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         prefHelper.setLoginStatus(false);
+                        prefHelper.removeNotificationStauts();
                         hideKeyboard();
+                        UIHelper.hideSoftKeyboard(getDockActivity(), v);
                         getDockActivity().popBackStackTillEntry(0);
                         getDockActivity().replaceDockableFragment(LoginFragment.newInstance(), "LoginFragment");
                         dialog.hideDialog();
@@ -103,9 +105,10 @@ public class SideMenuFragment extends BaseFragment {
                 }, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        UIHelper.hideSoftKeyboard(getDockActivity(), v);
                         dialog.hideDialog();
                     }
-                });
+                }, getString(R.string.logout), getString(R.string.are_you_sure_you_want_to_logout));
                 dialog.showDialog();
 
                 break;

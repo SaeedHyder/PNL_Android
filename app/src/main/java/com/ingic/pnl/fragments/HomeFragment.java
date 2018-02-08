@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.ingic.pnl.R;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.AppConstants;
 import com.ingic.pnl.global.WebServiceConstants;
+import com.ingic.pnl.helpers.TokenUpdater;
 import com.ingic.pnl.ui.views.AnyTextView;
 import com.ingic.pnl.ui.views.TitleBar;
 
@@ -48,6 +51,20 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
+    public void ResponseSuccess(Object result, String Tag, String message) {
+        switch (Tag) {
+            case WebServiceConstants.FAVOURITECOUNT:
+                String count = (String) result;
+                if (!count.equals("0")) {
+                    txtFavouriteCount.setVisibility(View.VISIBLE);
+                    txtFavouriteCount.setText(count);
+                }
+
+                break;
+        }
+    }
+
+    @Override
     public void setTitleBar(TitleBar titleBar) {
         super.setTitleBar(titleBar);
         titleBar.hideButtons();
@@ -70,21 +87,6 @@ public class HomeFragment extends BaseFragment {
         serviceHelper.enqueueCall(webService.getFavouriteCount(prefHelper.getUserID()), WebServiceConstants.FAVOURITECOUNT);
 
     }
-
-    @Override
-    public void ResponseSuccess(Object result, String Tag, String message) {
-        switch (Tag) {
-            case WebServiceConstants.FAVOURITECOUNT:
-                String count = (String) result;
-                if (!count.equals("0")){
-                    txtFavouriteCount.setVisibility(View.VISIBLE);
-                    txtFavouriteCount.setText(count);
-                }
-
-                break;
-        }
-    }
-
 
     @OnClick({R.id.btn_popular, R.id.btn_services, R.id.top_shelf, R.id.btn_companies, R.id.btn_favourites})
     public void onViewClicked(View view) {
