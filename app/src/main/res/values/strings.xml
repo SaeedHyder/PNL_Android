@@ -194,6 +194,9 @@
     <integer name="key_item_at_position">512</integer>
     <string name="same_password_error">New password should not be same as previous password</string>
     <string name="user_not_exist_error">User not exist.Please Signup to Login</string>
+    <string name="clear">Clear</string>
+    <string name="clear_notification">Clear Notifications</string>
+    <string name="clear_message">Are you sure you want to clear all notifications ?</string>
     <array name="sortedalphabet">
         <item>A</item>
         <item>B</item>

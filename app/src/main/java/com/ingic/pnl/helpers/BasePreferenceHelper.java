@@ -14,7 +14,9 @@ public class BasePreferenceHelper extends PreferenceHelper {
     private static final String KEY_USEREMAIL= "KEY_USEREMAIL";
     private static final String KEY_CITY= "KEY_CITY";
     private static final String KEY_PHONE= "KEY_PHONE";
+    private static final String KEY_NOTIFICATION_STATUS= "KEY_NOTIFICATION_STATUS";
     private Context context;
+    protected static final String Firebase_TOKEN = "Firebasetoken";
 
 
     public BasePreferenceHelper(Context c) {
@@ -70,8 +72,23 @@ public class BasePreferenceHelper extends PreferenceHelper {
     }
 
     public boolean isLogin() {
-        return getBooleanPreference(context, FILENAME, KEY_LOGIN_STATUS);
+        return getBooleanPreference(context, FILENAME, KEY_LOGIN_STATUS,false);
+    }
+    public String getFirebase_TOKEN() {
+        return getStringPreference(context, FILENAME, Firebase_TOKEN);
     }
 
+    public void setFirebase_TOKEN(String _token) {
+        putStringPreference(context, FILENAME, Firebase_TOKEN, _token);
+    }
 
+    public void setUserNotificationStatus(boolean checked) {
+        putBooleanPreference(context,FILENAME,KEY_NOTIFICATION_STATUS,checked);
+    }
+    public boolean getNotificationStauts() {
+        return getBooleanPreference(context, FILENAME, KEY_NOTIFICATION_STATUS,true);
+    }
+    public void removeNotificationStauts() {
+       removePreference(context,FILENAME,KEY_NOTIFICATION_STATUS);
+    }
 }

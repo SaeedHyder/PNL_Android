@@ -12,13 +12,16 @@ import android.widget.FrameLayout;
 import com.facebook.CallbackManager;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.ingic.pnl.R;
 import com.ingic.pnl.entities.FacebookLoginEnt;
 import com.ingic.pnl.entities.UserIDEnt;
 import com.ingic.pnl.fragments.abstracts.BaseFragment;
+import com.ingic.pnl.global.AppConstants;
 import com.ingic.pnl.global.WebServiceConstants;
 import com.ingic.pnl.helpers.FacebookLoginHelper;
 import com.ingic.pnl.helpers.GoogleHelper;
+import com.ingic.pnl.helpers.TokenUpdater;
 import com.ingic.pnl.interfaces.FacebookLoginListener;
 import com.ingic.pnl.ui.views.AnyEditTextView;
 import com.ingic.pnl.ui.views.AnyTextView;
@@ -81,6 +84,7 @@ public class LoginFragment extends BaseFragment implements GoogleHelper.GoogleHe
                 prefHelper.setUserEmail(userID.getUser().getEmail() + "");
                 getDockActivity().popBackStackTillEntry(0);
                 prefHelper.setLoginStatus(true);
+                TokenUpdater.getInstance().UpdateToken(getDockActivity(), prefHelper.getUserID(), AppConstants.Device_Type, FirebaseInstanceId.getInstance().getToken());
                 getDockActivity().replaceDockableFragment(HomeFragment.newInstance(), "HomeFragment");
                 break;
         }

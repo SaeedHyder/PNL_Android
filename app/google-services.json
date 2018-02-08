@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "499493821873",
+    "firebase_url": "https://pnl-andorid.firebaseio.com",
+    "project_id": "pnl-andorid",
+    "storage_bucket": "pnl-andorid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499493821873:android:7d97fdc2582f56cd",
+        "android_client_info": {
+          "package_name": "com.ingic.pnl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499493821873-4ttsm2lknj7d237j2h0knnf7supntkpg.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "499493821873-g1deku78g4albu9vu21qoe0au4t017ee.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ingic.pnl",
+            "certificate_hash": "151f8c777c9f6f3d03c193f33c8a389955d58c02"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlNny3CUMYy204L9y_RbOt2N615jI_c7o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499493821873-4ttsm2lknj7d237j2h0knnf7supntkpg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
